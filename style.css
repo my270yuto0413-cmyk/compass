@@ -647,7 +647,7 @@ p {
   color: var(--white);
   background: var(--ink-950);
   isolation: isolate;
-  padding: calc(var(--header-height) + 60px) 0 72px;
+  padding: calc(var(--header-height) + 44px) 0 54px;
 }
 
 .hero-particles {
@@ -736,11 +736,15 @@ p {
 
 .hero h1 {
   color: var(--white);
-  font-size: clamp(3.1rem, 7.2vw, 7.25rem);
+  font-size: clamp(3rem, 6.2vw, 6.25rem);
   font-weight: 900;
   line-height: 0.98;
   letter-spacing: 0;
   text-shadow: 0 30px 92px rgba(0, 0, 0, 0.62);
+}
+
+.hero h1 span {
+  white-space: nowrap;
 }
 
 .hero-subcopy {
@@ -775,7 +779,7 @@ p {
 }
 
 .orbit-system {
-  width: min(560px, 100%);
+  width: min(520px, 100%);
   aspect-ratio: 1;
   position: relative;
   transform:
