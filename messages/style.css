@@ -1,0 +1,666 @@
+```css
+/* ==========================================================
+   COMPASS Official Website
+   style.css (Blueprint Version)
+
+   NOTE:
+   This file is NOT the final design.
+   It is only a structural stylesheet that defines
+   spacing, hierarchy and overall design direction.
+
+   Codex should redesign this file completely while
+   preserving the philosophy below.
+
+   Design Philosophy
+   --------------------------
+   Theme:
+   - Academic
+   - Futuristic
+   - Elegant
+   - Cosmic
+   - Premium
+
+   Inspiration:
+   Stripe
+   Apple
+   Vercel
+   NASA
+   DeepMind
+
+   Color Palette:
+   Background : #040814
+   Primary    : #73E7FF
+   Accent     : #C8F5FF
+   Gold       : #FFD86A
+   White      : #FFFFFF
+
+   Typography:
+   Modern sans-serif
+   Large Hero typography
+   Wide spacing
+   Premium feeling
+
+   Motion:
+   Soft
+   Slow
+   Smooth
+   Never distracting
+
+========================================================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+
+    font-family:
+    "Inter",
+    "Segoe UI",
+    sans-serif;
+
+    background:#040814;
+    color:white;
+
+    line-height:1.8;
+
+    overflow-x:hidden;
+
+}
+
+/* ==========================================================
+   Header
+========================================================== */
+
+.site-header{
+
+    position:fixed;
+
+    width:100%;
+
+    top:0;
+    left:0;
+
+    z-index:999;
+
+    backdrop-filter:blur(20px);
+
+    background:rgba(4,8,20,.55);
+
+    border-bottom:
+    1px solid rgba(255,255,255,.08);
+
+}
+
+.header-inner{
+
+    width:min(1200px,92%);
+
+    margin:auto;
+
+    height:72px;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+}
+
+.site-logo{
+
+    color:white;
+
+    text-decoration:none;
+
+    font-size:1.3rem;
+
+    font-weight:700;
+
+}
+
+.desktop-nav{
+
+    display:flex;
+
+    gap:2rem;
+
+}
+
+.desktop-nav a{
+
+    color:white;
+
+    text-decoration:none;
+
+    opacity:.8;
+
+}
+
+.desktop-nav a:hover{
+
+    opacity:1;
+
+}
+
+.hamburger{
+
+    display:none;
+
+}
+
+/* ==========================================================
+   Hero
+========================================================== */
+
+.hero{
+
+    position:relative;
+
+    min-height:100vh;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    text-align:center;
+
+    overflow:hidden;
+
+}
+
+/*
+===========================================================
+
+Codex Design Instructions
+
+Create an immersive Hero.
+
+Background:
+
+- Space
+- Earth
+- DNA
+- AI Network
+- Glowing World Map
+- Future City
+- Deep Parallax
+
+Center:
+
+Large Compass.
+
+Around compass:
+
+Three orbiting planets.
+
+Resources
+
+Education
+
+Community
+
+Very slow orbit.
+
+Soft glow.
+
+Premium animation.
+
+Desktop:
+Huge cinematic hero.
+
+Mobile:
+Simplify animation.
+
+===========================================================
+*/
+
+.hero-background{
+
+    position:absolute;
+
+    inset:0;
+
+    opacity:.35;
+
+}
+
+.hero-orbit-system{
+
+    position:absolute;
+
+    width:100%;
+
+    height:100%;
+
+}
+
+.central-compass{
+
+    position:absolute;
+
+    top:50%;
+    left:50%;
+
+    transform:
+    translate(-50%,-50%);
+
+    width:180px;
+    height:180px;
+
+    border-radius:50%;
+
+    border:
+
+    2px solid rgba(115,231,255,.5);
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    color:#73E7FF;
+
+}
+
+/* planets */
+
+.orbit-planet{
+
+    position:absolute;
+
+    padding:18px 28px;
+
+    border-radius:999px;
+
+    background:
+
+    rgba(255,255,255,.05);
+
+    border:
+
+    1px solid rgba(255,255,255,.08);
+
+    color:white;
+
+    text-decoration:none;
+
+    backdrop-filter:blur(10px);
+
+}
+
+/*
+Codex:
+
+Replace these placeholder positions.
+
+Implement true orbit animation.
+
+*/
+
+.planet-resources{
+
+    top:18%;
+    left:28%;
+
+}
+
+.planet-education{
+
+    top:22%;
+    right:24%;
+
+}
+
+.planet-community{
+
+    bottom:20%;
+    left:50%;
+
+    transform:translateX(-50%);
+
+}
+
+.hero-content{
+
+    position:relative;
+
+    z-index:5;
+
+    width:min(900px,90%);
+
+}
+
+.hero-kicker{
+
+    color:#73E7FF;
+
+    letter-spacing:.15em;
+
+    text-transform:uppercase;
+
+}
+
+.hero h1{
+
+    font-size:clamp(3rem,7vw,6rem);
+
+    line-height:1.05;
+
+    margin:1.2rem 0;
+
+}
+
+.hero-lead{
+
+    max-width:760px;
+
+    margin:auto;
+
+    opacity:.85;
+
+}
+
+.hero-actions{
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:1rem;
+
+    margin-top:3rem;
+
+}
+
+/* ==========================================================
+   Buttons
+========================================================== */
+
+.btn{
+
+    display:inline-block;
+
+    padding:
+
+    16px 34px;
+
+    border-radius:999px;
+
+    text-decoration:none;
+
+    transition:.3s;
+
+}
+
+.btn-primary{
+
+    background:#73E7FF;
+
+    color:#041018;
+
+}
+
+.btn-secondary{
+
+    border:
+
+    1px solid rgba(255,255,255,.15);
+
+    color:white;
+
+}
+
+/* ==========================================================
+   Sections
+========================================================== */
+
+.section{
+
+    padding:
+
+    120px 0;
+
+}
+
+.section-inner{
+
+    width:min(1200px,92%);
+
+    margin:auto;
+
+}
+
+.section-label{
+
+    color:#73E7FF;
+
+    text-transform:uppercase;
+
+    letter-spacing:.12em;
+
+    margin-bottom:1rem;
+
+}
+
+.section h2{
+
+    font-size:clamp(2rem,4vw,3.2rem);
+
+    margin-bottom:2rem;
+
+}
+
+/* ==========================================================
+   Cards
+========================================================== */
+
+.pillar-grid,
+.resource-grid,
+.education-grid,
+.achievement-grid{
+
+    display:grid;
+
+    gap:2rem;
+
+    margin-top:4rem;
+
+}
+
+.pillar-grid{
+
+    grid-template-columns:
+
+    repeat(3,1fr);
+
+}
+
+.resource-grid{
+
+    grid-template-columns:
+
+    repeat(2,1fr);
+
+}
+
+.education-grid{
+
+    grid-template-columns:
+
+    repeat(3,1fr);
+
+}
+
+.achievement-grid{
+
+    grid-template-columns:
+
+    repeat(3,1fr);
+
+}
+
+.pillar-card,
+.resource-card,
+.education-card,
+.achievement-card{
+
+    padding:2rem;
+
+    border-radius:28px;
+
+    background:
+
+    rgba(255,255,255,.04);
+
+    border:
+
+    1px solid rgba(255,255,255,.08);
+
+}
+
+/*
+Codex:
+
+Cards should glow slightly on hover.
+
+Use glassmorphism.
+
+Premium shadows.
+
+Soft transitions.
+
+*/
+
+/* ==========================================================
+   Community
+========================================================== */
+
+.community-list{
+
+    display:grid;
+
+    gap:1rem;
+
+    margin-top:2rem;
+
+}
+
+/* ==========================================================
+   Footer
+========================================================== */
+
+.site-footer{
+
+    padding:80px 0;
+
+    border-top:
+
+    1px solid rgba(255,255,255,.08);
+
+}
+
+.footer-inner{
+
+    width:min(1200px,92%);
+
+    margin:auto;
+
+    text-align:center;
+
+}
+
+.footer-nav{
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:2rem;
+
+    margin:2rem 0;
+
+}
+
+.footer-nav a{
+
+    color:white;
+
+    text-decoration:none;
+
+}
+
+.footer-copy{
+
+    color:#73E7FF;
+
+}
+
+/* ==========================================================
+   Responsive
+========================================================== */
+
+@media(max-width:900px){
+
+.desktop-nav{
+
+    display:none;
+
+}
+
+.hamburger{
+
+    display:block;
+
+}
+
+.pillar-grid,
+.resource-grid,
+.education-grid,
+.achievement-grid{
+
+    grid-template-columns:1fr;
+
+}
+
+.hero{
+
+    padding-top:100px;
+
+}
+
+.hero h1{
+
+    font-size:3rem;
+
+}
+
+/*
+Codex:
+
+Mobile Hero should not simply shrink.
+
+Redesign Hero.
+
+Keep Compass.
+
+Orbit may stop.
+
+Planets may stack vertically.
+
+Maintain premium appearance.
+
+*/
+
+}
+```

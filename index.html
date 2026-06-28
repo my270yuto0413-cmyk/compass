@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>COMPASS Official Website</title>
+
+  <!--
+    COMPASS Official Website - Design Blueprint
+
+    Purpose:
+    This file is a structural blueprint for the COMPASS official website.
+    It is NOT intended to be the final design.
+    Codex should use this HTML as the conceptual and content foundation,
+    then implement full visual design, CSS, animations, and responsive behavior.
+
+    Core Concept:
+    COMPASS is a student-led educational platform built around three pillars:
+
+    1. Resources
+       - Educational resource platforms
+       - Future Strategy Library
+       - COMPASS Essentials
+
+    2. Education
+       - English Education
+       - AI Education
+       - Life Science Education
+
+    3. Community
+       - COMPASS Student Community
+       - Monthly meetings, discussions, informal gatherings, future official club structure
+
+    Hero Concept:
+    - A grand cosmic hero section.
+    - Central glowing compass representing COMPASS.
+    - Three planet-like objects orbit around the compass:
+      Resources, Education, Community.
+    - Background world:
+      space, Earth, DNA, AI network, glowing world map, futuristic city.
+    - Main copy:
+      Better Education. Better Decisions.
+
+    Design Direction:
+    - Grand, futuristic, academic, cosmic.
+    - Inherit the atmosphere of the Future Strategy Library website.
+    - Use dark navy, cyan, white, silver, and gold.
+    - Avoid childish design.
+    - Avoid excessive text.
+    - Web should feel like a serious student-led educational platform,
+      not a casual club page.
+
+    Implementation Notes for Codex:
+    - Create style.css and script.js separately.
+    - Use responsive design.
+    - Desktop: large cosmic visual hero with orbiting planets.
+    - Mobile: simplify motion; planets may stack vertically or orbit slowly.
+    - Hamburger menu required.
+    - Add smooth scroll.
+    - Add hover effects to Resources / Education / Community planets.
+    - Add section reveal animations.
+    - Use GSAP if appropriate.
+    - Three.js is optional; do not over-engineer if performance becomes heavy.
+  -->
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+  <!-- =========================================================
+       Header / Navigation
+       ========================================================= -->
+  <header class="site-header">
+    <div class="header-inner">
+
+      <a href="#top" class="site-logo" aria-label="COMPASS Home">
+        <!-- Codex: replace with compass icon or SVG logo -->
+        <span class="logo-mark">🧭</span>
+        <span class="logo-text">COMPASS</span>
+      </a>
+
+      <nav class="desktop-nav" aria-label="Main navigation">
+        <a href="#resources">Resources</a>
+        <a href="#education">Education</a>
+        <a href="#community">Community</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+      <!-- Hamburger menu for mobile -->
+      <button class="hamburger" aria-label="Open navigation menu" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+    </div>
+
+    <nav class="mobile-nav" aria-label="Mobile navigation">
+      <a href="#resources">Resources</a>
+      <a href="#education">Education</a>
+      <a href="#community">Community</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+
+  <!-- =========================================================
+       Hero Section
+       ========================================================= -->
+  <main id="top">
+
+    <section class="hero" aria-labelledby="hero-title">
+
+      <!--
+        Codex:
+        Create a large, cinematic Hero.
+        Background should evoke:
+        - Deep space
+        - Earth
+        - DNA
+        - AI network
+        - Glowing world map
+        - Futuristic city
+        - Academic/cosmic navigation
+
+        Central object:
+        - A glowing compass / navigation instrument.
+
+        Around the compass:
+        - Three orbiting planets:
+          1. Resources
+          2. Education
+          3. Community
+
+        Each planet should look like a symbolic world:
+        - Resources: knowledge, documents, data, blue/cyan.
+        - Education: light, learning, DNA/AI, gold.
+        - Community: people, connection, warm cyan/green.
+
+        Motion:
+        - Very slow orbit.
+        - Soft glow.
+        - Subtle parallax.
+        - Avoid excessive movement.
+      -->
+
+      <div class="hero-background" aria-hidden="true">
+        <!-- Codex: background image / cosmic layers / particles go here -->
+      </div>
+
+      <div class="hero-orbit-system" aria-hidden="true">
+
+        <div class="central-compass">
+          <!-- Codex: implement as SVG, image, or CSS-based compass -->
+          <span>COMPASS</span>
+        </div>
+
+        <a class="orbit-planet planet-resources" href="#resources">
+          <span class="planet-title">Resources</span>
+          <span class="planet-caption">知識を集める</span>
+        </a>
+
+        <a class="orbit-planet planet-education" href="#education">
+          <span class="planet-title">Education</span>
+          <span class="planet-caption">学びを広げる</span>
+        </a>
+
+        <a class="orbit-planet planet-community" href="#community">
+          <span class="planet-title">Community</span>
+          <span class="planet-caption">人とつながる</span>
+        </a>
+
+      </div>
+
+      <div class="hero-content">
+        <p class="hero-kicker">Student-led educational platform</p>
+
+        <h1 id="hero-title">
+          Better Education.<br />
+          Better Decisions.
+        </h1>
+
+        <p class="hero-lead">
+          COMPASSは、学生が英語、AI、生命科学、研究、進路について学び、
+          自分に合った選択を考えるための教育プラットフォームです。
+        </p>
+
+        <div class="hero-actions">
+          <a href="#resources" class="btn btn-primary">Explore COMPASS</a>
+          <a href="#about" class="btn btn-secondary">About</a>
+        </div>
+      </div>
+
+    </section>
+
+
+    <!-- =========================================================
+         About
+         ========================================================= -->
+    <section id="about" class="section about-section">
+      <div class="section-inner">
+
+        <p class="section-label">About COMPASS</p>
+        <h2>学びを、意思決定の力へ。</h2>
+
+        <p>
+          COMPASSは、資料提供、講演、ワークショップ、学生交流を通じて、
+          大学生がより良い学びと選択に出会うきっかけをつくります。
+        </p>
+
+        <p>
+          活動の中心は、Resources、Education、Communityの3つです。
+          学生主体の活動として、教員や大学関係者との連携も大切にしています。
+        </p>
+
+      </div>
+    </section>
+
+
+    <!-- =========================================================
+         Three Pillars Overview
+         ========================================================= -->
+    <section class="section pillars-section">
+      <div class="section-inner">
+
+        <p class="section-label">Three Pillars</p>
+        <h2>COMPASSの3つの柱</h2>
+
+        <div class="pillar-grid">
+
+          <article class="pillar-card">
+            <h3>Resources</h3>
+            <p>
+              学生が学び、考え、行動するための資料提供基盤。
+              Future Strategy LibraryとCOMPASS Essentialsを中心に展開します。
+            </p>
+            <a href="#resources">View Resources</a>
+          </article>
+
+          <article class="pillar-card">
+            <h3>Education</h3>
+            <p>
+              英語教育、AI活用教育、生命科学教育を軸に、
+              講演やワークショップを行います。
+            </p>
+            <a href="#education">View Education</a>
+          </article>
+
+          <article class="pillar-card">
+            <h3>Community</h3>
+            <p>
+              学年や研究室を越えて、学びや挑戦について話せる
+              学生コミュニティをつくります。
+            </p>
+            <a href="#community">View Community</a>
+          </article>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- =========================================================
+         Resources
+         ========================================================= -->
+    <section id="resources" class="section resources-section">
+      <div class="section-inner">
+
+        <p class="section-label">Resources</p>
+        <h2>資料提供基盤</h2>
+
+        <p>
+          COMPASSでは、対象や公開範囲に応じて資料提供基盤を分けています。
+          学内限定資料と、広く共有可能な教育資料を明確に区別します。
+        </p>
+
+        <div class="resource-grid">
+
+          <article class="resource-card">
+            <h3>Future Strategy Library</h3>
+            <p class="target">対象：北里大学薬学部生・生命科学系学生</p>
+            <p>
+              英語、AI、研究室選択、大学院進学、キャリア形成などに関する資料を提供します。
+              学部・専門分野に近い内容を含むため、対象者を限定して運用します。
+            </p>
+          </article>
+
+          <article class="resource-card">
+            <h3>COMPASS Essentials</h3>
+            <p class="target">対象：大学生・協力教員</p>
+            <p>
+              英語とAIを中心とした、より広い学生・教育関係者向けの教育リソースです。
+              他学部や他大学との連携にも対応しやすい公開範囲で運用します。
+            </p>
+          </article>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- =========================================================
+         Education
+         ========================================================= -->
+    <section id="education" class="section education-section">
+      <div class="section-inner">
+
+        <p class="section-label">Education</p>
+        <h2>教育支援事業</h2>
+
+        <p>
+          COMPASSは、英語、AI、生命科学を中心に、
+          学生が学びを実践へつなげるための講演・ワークショップ・資料提供を行います。
+        </p>
+
+        <div class="education-grid">
+
+          <article class="education-card">
+            <h3>English Education</h3>
+            <p>
+              生命科学系学生を中心に、英語学習の意義や実践的な活用方法を伝えます。
+            </p>
+            <ul>
+              <li>英語学習啓発講義</li>
+              <li>英語プレゼンテーション練習</li>
+              <li>留学生を含めた国際交流</li>
+            </ul>
+          </article>
+
+          <article class="education-card">
+            <h3>AI Education</h3>
+            <p>
+              生成AIを学習、研究、資料作成、Web制作、情報整理に活かす方法を共有します。
+            </p>
+            <ul>
+              <li>情報リテラシー系講義でのAI活用講演</li>
+              <li>学生向けAI活用ワークショップ</li>
+              <li>AI活用資料の提供</li>
+            </ul>
+          </article>
+
+          <article class="education-card">
+            <h3>Life Science Education</h3>
+            <p>
+              生命科学や薬学を学ぶ学生が、研究や進路について考える機会をつくります。
+            </p>
+            <ul>
+              <li>研究室選択に関する情報共有</li>
+              <li>大学院進学・研究生活に関する交流</li>
+              <li>生命科学系セミナー・講演会</li>
+            </ul>
+          </article>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- =========================================================
+         Community
+         ========================================================= -->
+    <section id="community" class="section community-section">
+      <div class="section-inner">
+
+        <p class="section-label">Community</p>
+        <h2>学生コミュニティ形成</h2>
+
+        <p>
+          COMPASS Student Communityは、COMPASSの活動を支える学生コミュニティです。
+          学年や研究室を越えて、学習、研究、進路、挑戦したいことについて話せる場をつくります。
+        </p>
+
+        <p>
+          月1回程度のミーティングや交流会を中心に、
+          無理なく続けられる知的コミュニティを目指します。
+          将来的には、COMPASS傘下の公式学生団体化も視野に入れています。
+        </p>
+
+        <div class="community-list">
+          <div>月例ミーティング</div>
+          <div>学習・進路相談</div>
+          <div>研究や挑戦に関するディスカッション</div>
+          <div>食事会・交流会</div>
+          <div>教育プロジェクトの企画・運営</div>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- =========================================================
+         Achievements / Trust
+         ========================================================= -->
+    <section class="section achievements-section">
+      <div class="section-inner">
+
+        <p class="section-label">Achievements</p>
+        <h2>活動実績</h2>
+
+        <!--
+          Codex:
+          This section should be clean and modest.
+          Do not make it look boastful.
+          Use numbers only when verified.
+          Placeholder values are used for now.
+        -->
+
+        <div class="achievement-grid">
+          <div class="achievement-card">
+            <strong>Lecture</strong>
+            <span>英語・AI・教育に関する講義参加・講演</span>
+          </div>
+
+          <div class="achievement-card">
+            <strong>Resources</strong>
+            <span>英語・AI・研究・進路に関する教育資料</span>
+          </div>
+
+          <div class="achievement-card">
+            <strong>Collaboration</strong>
+            <span>教員・大学関係者との連携</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- =========================================================
+         For Faculty and Partners
+         ========================================================= -->
+    <section class="section faculty-section">
+      <div class="section-inner">
+
+        <p class="section-label">For Faculty and Partners</p>
+        <h2>教員・教育関係者の方へ</h2>
+
+        <p>
+          COMPASSは、学生主体の教育活動として、教員や大学関係者との連携を大切にしています。
+          講義でのゲスト参加、学生向けワークショップ、教育資料の提供、共同企画などを通じて、
+          学びの機会を広げていきます。
+        </p>
+
+        <a href="#contact" class="btn btn-secondary">Contact</a>
+
+      </div>
+    </section>
+
+
+    <!-- =========================================================
+         Contact
+         ========================================================= -->
+    <section id="contact" class="section contact-section">
+      <div class="section-inner">
+
+        <p class="section-label">Contact</p>
+        <h2>お問い合わせ</h2>
+
+        <p>
+          COMPASSに関するお問い合わせ、連携のご相談、資料提供に関するご連絡は、
+          以下のフォームまたはメールよりお願いいたします。
+        </p>
+
+        <!-- Codex: replace with actual Google Form link or mail link -->
+        <div class="contact-actions">
+          <a href="#" class="btn btn-primary">Contact Form</a>
+          <a href="mailto:example@example.com" class="btn btn-secondary">Email</a>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+
+  <!-- =========================================================
+       Footer
+       ========================================================= -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+
+      <p class="footer-logo">COMPASS</p>
+
+      <nav class="footer-nav" aria-label="Footer navigation">
+        <a href="#resources">Resources</a>
+        <a href="#education">Education</a>
+        <a href="#community">Community</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+      <p class="footer-copy">
+        Better Education. Better Decisions.
+      </p>
+
+      <p class="copyright">
+        © COMPASS. All rights reserved.
+      </p>
+
+    </div>
+  </footer>
+
+
+  <script src="script.js"></script>
+</body>
+</html>
+```
