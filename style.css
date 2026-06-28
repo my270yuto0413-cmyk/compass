@@ -661,7 +661,7 @@ p {
 
 .hero-media {
   position: absolute;
-  inset: -5%;
+  inset: -2%;
   z-index: -4;
   background-image: url("images/hero.desktop.highlight.png");
   background-size: cover;
@@ -673,7 +673,7 @@ p {
       calc(var(--hero-gaze-y) * -0.45 + var(--hero-scroll) * 0.18),
       0
     )
-    scale(1.06);
+    scale(1.02);
   transition: transform 0.18s ease-out;
 }
 
@@ -767,7 +767,7 @@ p {
 }
 
 .hero-visual {
-  min-height: 620px;
+  min-height: 560px;
   position: relative;
   z-index: 1;
   display: grid;
@@ -775,7 +775,7 @@ p {
 }
 
 .orbit-system {
-  width: min(620px, 100%);
+  width: min(560px, 100%);
   aspect-ratio: 1;
   position: relative;
   transform:
