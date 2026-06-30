@@ -235,6 +235,7 @@
   let height = 0;
   let particles = [];
   let animationId = null;
+  let particleAnimationStart = 0;
 
   const particleCount = () => {
     if (mobileQuery.matches) {
@@ -258,33 +259,58 @@
     };
   };
 
-  const drawMobileLightRays = (time = 0) => {
+  const drawMobileLightRays = (time = 0, elapsed = 0) => {
     if (!mobileQuery.matches) return;
 
     const compassX = width * 0.54;
     const compassY = height * 0.2;
     const horizonY = height * 0.78;
+    const intro = Math.max(0, 1 - elapsed / 2400);
+    const introBloom = Math.sin((1 - intro) * Math.PI);
 
     context.save();
     context.globalCompositeOperation = "screen";
 
     const rayGradient = context.createLinearGradient(compassX, compassY, width * 0.72, horizonY);
-    rayGradient.addColorStop(0, "rgba(255, 255, 255, 0.18)");
-    rayGradient.addColorStop(0.34, "rgba(115, 231, 255, 0.14)");
-    rayGradient.addColorStop(0.72, "rgba(214, 164, 58, 0.1)");
+    rayGradient.addColorStop(0, `rgba(255, 255, 255, ${0.18 + introBloom * 0.18})`);
+    rayGradient.addColorStop(0.34, `rgba(115, 231, 255, ${0.14 + introBloom * 0.12})`);
+    rayGradient.addColorStop(0.72, `rgba(214, 164, 58, ${0.1 + introBloom * 0.1})`);
     rayGradient.addColorStop(1, "rgba(115, 231, 255, 0)");
 
     context.strokeStyle = rayGradient;
-    context.lineWidth = 1.1;
-    context.globalAlpha = 0.34;
+    context.lineWidth = 1.1 + introBloom * 0.8;
+    context.globalAlpha = 0.34 + introBloom * 0.22;
 
-    for (let i = 0; i < 5; i += 1) {
+    for (let i = 0; i < 7; i += 1) {
       const targetX = width * (0.18 + i * 0.16);
       const targetY = horizonY + Math.sin(time / 1800 + i) * 18;
       context.beginPath();
       context.moveTo(compassX, compassY);
       context.lineTo(targetX, targetY);
       context.stroke();
+    }
+
+    if (intro > 0) {
+      const ringRadius = (1 - intro) * Math.max(width, height) * 0.42 + 22;
+      const ringGradient = context.createRadialGradient(compassX, compassY, Math.max(0, ringRadius - 34), compassX, compassY, ringRadius);
+      ringGradient.addColorStop(0, "rgba(115, 231, 255, 0)");
+      ringGradient.addColorStop(0.68, `rgba(115, 231, 255, ${0.26 * introBloom})`);
+      ringGradient.addColorStop(1, "rgba(255, 255, 255, 0)");
+      context.strokeStyle = ringGradient;
+      context.lineWidth = 2.4;
+      context.globalAlpha = 0.9;
+      context.beginPath();
+      context.arc(compassX, compassY, ringRadius, 0, Math.PI * 2);
+      context.stroke();
+
+      const coreGradient = context.createRadialGradient(compassX, compassY, 0, compassX, compassY, 92 + introBloom * 58);
+      coreGradient.addColorStop(0, `rgba(255, 255, 255, ${0.42 * introBloom})`);
+      coreGradient.addColorStop(0.28, `rgba(214, 164, 58, ${0.24 * introBloom})`);
+      coreGradient.addColorStop(1, "rgba(115, 231, 255, 0)");
+      context.fillStyle = coreGradient;
+      context.beginPath();
+      context.arc(compassX, compassY, 92 + introBloom * 58, 0, Math.PI * 2);
+      context.fill();
     }
 
     const phase = (time % 5200) / 5200;
@@ -298,7 +324,7 @@
 
     context.globalAlpha = 1;
     context.strokeStyle = trailGradient;
-    context.lineWidth = 1.4;
+    context.lineWidth = 1.4 + introBloom * 0.9;
     context.beginPath();
     context.moveTo(headX - width * 0.22, headY + height * 0.08);
     context.lineTo(headX, headY);
@@ -320,7 +346,7 @@
 
   const drawStaticParticles = () => {
     context.clearRect(0, 0, width, height);
-    drawMobileLightRays(1800);
+    drawMobileLightRays(1800, 2600);
 
     particles.forEach((particle) => {
       context.beginPath();
@@ -336,9 +362,11 @@
     const isMobile = mobileQuery.matches;
     const connectionDistance = isMobile ? 118 : 132;
     const connectionStrength = isMobile ? 0.16 : 0.11;
+    if (!particleAnimationStart) particleAnimationStart = time;
+    const elapsed = time - particleAnimationStart;
 
     context.clearRect(0, 0, width, height);
-    drawMobileLightRays(time);
+    drawMobileLightRays(time, elapsed);
 
     for (let i = 0; i < particles.length; i += 1) {
       const particle = particles[i];
@@ -398,6 +426,7 @@
 
   window.addEventListener("resize", () => {
     if (animationId) cancelAnimationFrame(animationId);
+    particleAnimationStart = 0;
     resizeCanvas();
     if (reduceMotion) {
       drawStaticParticles();
