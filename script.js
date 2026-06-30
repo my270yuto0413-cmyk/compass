@@ -130,6 +130,22 @@
     });
   }
 
+
+  const communityDetailsToggle = document.querySelector("[data-community-details-toggle]");
+  if (communityDetailsToggle) {
+    const detailsId = communityDetailsToggle.getAttribute("aria-controls");
+    const detailsBody = detailsId ? document.getElementById(detailsId) : null;
+    const detailsLabel = communityDetailsToggle.querySelector("strong");
+
+    communityDetailsToggle.addEventListener("click", () => {
+      if (!detailsBody) return;
+      const isOpen = communityDetailsToggle.getAttribute("aria-expanded") === "true";
+      communityDetailsToggle.setAttribute("aria-expanded", String(!isOpen));
+      detailsBody.hidden = isOpen;
+      if (detailsLabel) detailsLabel.textContent = isOpen ? "詳細を見る" : "閉じる";
+    });
+  }
+
   const updateHeader = () => {
     if (!header) return;
     header.classList.toggle("is-scrolled", window.scrollY > 12);
