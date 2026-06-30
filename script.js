@@ -237,8 +237,74 @@
   let animationId = null;
 
   const particleCount = () => {
-    if (mobileQuery.matches) return 34;
+    if (mobileQuery.matches) {
+      return Math.min(78, Math.max(52, Math.floor((window.innerWidth * window.innerHeight) / 6800)));
+    }
     return Math.min(96, Math.floor((window.innerWidth * window.innerHeight) / 14500));
+  };
+
+  const createParticle = () => {
+    const isMobile = mobileQuery.matches;
+
+    return {
+      x: Math.random() * width,
+      y: Math.random() * height,
+      vx: isMobile ? (Math.random() - 0.58) * 0.28 : (Math.random() - 0.5) * 0.18,
+      vy: isMobile ? (Math.random() - 0.74) * 0.24 : (Math.random() - 0.5) * 0.18,
+      radius: isMobile ? Math.random() * 2.2 + 0.55 : Math.random() * 1.8 + 0.4,
+      warmth: Math.random(),
+      phase: Math.random() * Math.PI * 2,
+      layer: Math.random() * 0.8 + 0.2
+    };
+  };
+
+  const drawMobileLightRays = (time = 0) => {
+    if (!mobileQuery.matches) return;
+
+    const compassX = width * 0.54;
+    const compassY = height * 0.2;
+    const horizonY = height * 0.78;
+
+    context.save();
+    context.globalCompositeOperation = "screen";
+
+    const rayGradient = context.createLinearGradient(compassX, compassY, width * 0.72, horizonY);
+    rayGradient.addColorStop(0, "rgba(255, 255, 255, 0.18)");
+    rayGradient.addColorStop(0.34, "rgba(115, 231, 255, 0.14)");
+    rayGradient.addColorStop(0.72, "rgba(214, 164, 58, 0.1)");
+    rayGradient.addColorStop(1, "rgba(115, 231, 255, 0)");
+
+    context.strokeStyle = rayGradient;
+    context.lineWidth = 1.1;
+    context.globalAlpha = 0.34;
+
+    for (let i = 0; i < 5; i += 1) {
+      const targetX = width * (0.18 + i * 0.16);
+      const targetY = horizonY + Math.sin(time / 1800 + i) * 18;
+      context.beginPath();
+      context.moveTo(compassX, compassY);
+      context.lineTo(targetX, targetY);
+      context.stroke();
+    }
+
+    const phase = (time % 5200) / 5200;
+    const shine = Math.sin(phase * Math.PI);
+    const headX = width * (1.08 - phase * 1.24);
+    const headY = height * (0.14 + phase * 0.24);
+    const trailGradient = context.createLinearGradient(headX - width * 0.22, headY + height * 0.08, headX, headY);
+    trailGradient.addColorStop(0, "rgba(115, 231, 255, 0)");
+    trailGradient.addColorStop(0.56, `rgba(115, 231, 255, ${0.18 * shine})`);
+    trailGradient.addColorStop(1, `rgba(255, 255, 255, ${0.42 * shine})`);
+
+    context.globalAlpha = 1;
+    context.strokeStyle = trailGradient;
+    context.lineWidth = 1.4;
+    context.beginPath();
+    context.moveTo(headX - width * 0.22, headY + height * 0.08);
+    context.lineTo(headX, headY);
+    context.stroke();
+
+    context.restore();
   };
 
   const resizeCanvas = () => {
@@ -249,18 +315,13 @@
     canvas.height = Math.floor(height * ratio);
     context.setTransform(ratio, 0, 0, ratio, 0, 0);
 
-    particles = Array.from({ length: particleCount() }, () => ({
-      x: Math.random() * width,
-      y: Math.random() * height,
-      vx: (Math.random() - 0.5) * 0.18,
-      vy: (Math.random() - 0.5) * 0.18,
-      radius: Math.random() * 1.8 + 0.4,
-      warmth: Math.random()
-    }));
+    particles = Array.from({ length: particleCount() }, createParticle);
   };
 
   const drawStaticParticles = () => {
     context.clearRect(0, 0, width, height);
+    drawMobileLightRays(1800);
+
     particles.forEach((particle) => {
       context.beginPath();
       context.arc(particle.x, particle.y, particle.radius, 0, Math.PI * 2);
@@ -271,18 +332,32 @@
     });
   };
 
-  const renderParticles = () => {
+  const renderParticles = (time = 0) => {
+    const isMobile = mobileQuery.matches;
+    const connectionDistance = isMobile ? 118 : 132;
+    const connectionStrength = isMobile ? 0.16 : 0.11;
+
     context.clearRect(0, 0, width, height);
+    drawMobileLightRays(time);
 
     for (let i = 0; i < particles.length; i += 1) {
       const particle = particles[i];
-      particle.x += particle.vx;
-      particle.y += particle.vy;
+      const sway = isMobile ? Math.sin(time * 0.0012 + particle.phase) * particle.layer * 0.07 : 0;
+
+      particle.x += particle.vx + sway;
+      particle.y += particle.vy - (isMobile ? particle.layer * 0.012 : 0);
 
       if (particle.x < -20) particle.x = width + 20;
       if (particle.x > width + 20) particle.x = -20;
       if (particle.y < -20) particle.y = height + 20;
       if (particle.y > height + 20) particle.y = -20;
+
+      if (isMobile) {
+        context.shadowBlur = particle.radius * 5 + 4;
+        context.shadowColor = particle.warmth > 0.86
+          ? "rgba(214, 164, 58, 0.46)"
+          : "rgba(115, 231, 255, 0.46)";
+      }
 
       context.beginPath();
       context.arc(particle.x, particle.y, particle.radius, 0, Math.PI * 2);
@@ -290,18 +365,21 @@
         ? "rgba(214, 164, 58, 0.64)"
         : "rgba(115, 231, 255, 0.66)";
       context.fill();
+      context.shadowBlur = 0;
 
       for (let j = i + 1; j < particles.length; j += 1) {
         const other = particles[j];
         const dx = particle.x - other.x;
         const dy = particle.y - other.y;
         const distance = Math.sqrt(dx * dx + dy * dy);
-        if (distance > 132) continue;
+        if (distance > connectionDistance) continue;
 
         context.beginPath();
         context.moveTo(particle.x, particle.y);
         context.lineTo(other.x, other.y);
-        context.strokeStyle = `rgba(115, 231, 255, ${0.11 * (1 - distance / 132)})`;
+        context.strokeStyle = particle.warmth > 0.86 || other.warmth > 0.86
+          ? `rgba(214, 164, 58, ${connectionStrength * 0.75 * (1 - distance / connectionDistance)})`
+          : `rgba(115, 231, 255, ${connectionStrength * (1 - distance / connectionDistance)})`;
         context.lineWidth = 1;
         context.stroke();
       }
