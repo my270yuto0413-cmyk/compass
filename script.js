@@ -173,6 +173,16 @@
   }
 
   const hero = document.querySelector(".hero");
+  if (hero) {
+    if (mobileQuery.matches && !reduceMotion) {
+      window.setTimeout(() => {
+        hero.classList.add("is-intro-complete");
+      }, 3300);
+    } else {
+      hero.classList.add("is-intro-complete");
+    }
+  }
+
   if (hero && !reduceMotion) {
     let pointerFrame = null;
     hero.addEventListener("pointermove", (event) => {
