@@ -1406,6 +1406,22 @@ p {
   content: " ->";
 }
 
+.feature-card h3 span {
+  display: inline-block;
+  margin-left: 0.3em;
+  color: var(--gold-soft);
+  font-size: 0.78em;
+  font-weight: 850;
+}
+
+.feature-card-status {
+  width: fit-content;
+  margin-top: auto;
+  padding-top: 24px;
+  color: var(--cyan);
+  font-weight: 870;
+}
+
 .education-card {
   min-height: 250px;
   position: relative;
@@ -1719,6 +1735,13 @@ p {
   margin-top: 18px;
 }
 
+.founder-subcopy {
+  margin-top: -10px;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.86rem;
+  font-weight: 800;
+}
+
 .contact-card .button {
   margin-top: 28px;
 }
@@ -1755,6 +1778,23 @@ p {
 
 .footer-nav a:hover {
   color: var(--cyan);
+}
+
+.footer-cta {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  font-size: 0.84rem;
+  font-weight: 760;
+}
+
+.footer-cta a {
+  color: rgba(255, 255, 255, 0.56);
+}
+
+.footer-cta a:hover {
+  color: rgba(115, 231, 255, 0.86);
 }
 
 .copyright {
