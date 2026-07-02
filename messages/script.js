@@ -154,6 +154,18 @@
     revealTargets.forEach((target) => target.classList.add("is-visible"));
   }
 
+  const messageBody = document.querySelector("[data-message-stagger]");
+  if (messageBody) {
+    const messageBlocks = Array.from(messageBody.children);
+    messageBlocks.forEach((block, index) => {
+      block.style.transitionDelay = reduceMotion ? "0ms" : `${Math.min(index * 70, 1260)}ms`;
+    });
+
+    requestAnimationFrame(() => {
+      messageBody.classList.add("is-staggered");
+    });
+  }
+
   document.querySelectorAll('a[href^="#"]').forEach((link) => {
     link.addEventListener("click", (event) => {
       const id = link.getAttribute("href");
