@@ -1643,6 +1643,58 @@ p {
   font-weight: 850;
 }
 
+.feature-card-interactive {
+  position: relative;
+  overflow: hidden;
+  border-color: rgba(115, 231, 255, 0.34);
+  background:
+    linear-gradient(145deg, rgba(115, 231, 255, 0.14), rgba(214, 164, 58, 0.08)),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.09), rgba(255, 255, 255, 0.04));
+  box-shadow:
+    0 24px 70px rgba(0, 0, 0, 0.26),
+    var(--glow-cyan);
+}
+
+.feature-card-interactive::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(90deg, rgba(115, 231, 255, 0.16), transparent 42%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.08), transparent 48%);
+}
+
+.feature-card-interactive > * {
+  position: relative;
+}
+
+.feature-card-kicker {
+  width: fit-content;
+  margin-bottom: 12px;
+  padding: 5px 10px;
+  border-radius: 999px;
+  color: var(--ink-950);
+  background: linear-gradient(135deg, var(--cyan), var(--gold-soft));
+  font-size: 0.72rem;
+  font-weight: 920;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.feature-card-interactive a {
+  min-height: 46px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 24px;
+  padding: 11px 18px;
+  border-radius: 999px;
+  color: var(--ink-950);
+  background: linear-gradient(135deg, var(--cyan), var(--white) 58%, var(--gold-soft));
+  box-shadow: 0 18px 42px rgba(115, 231, 255, 0.2);
+}
+
 .feature-card-status {
   width: fit-content;
   margin-top: auto;
