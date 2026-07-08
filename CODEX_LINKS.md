@@ -1,4 +1,4 @@
-# CODEX_LINKS.md
+﻿# CODEX_LINKS.md
 
 ## COMPASS Official Website Development - Shared Links
 
@@ -12,7 +12,7 @@ Future Strategy Library Official Website
 
 **URL**
 
-https://my270yuto0413-cmyk.github.io/future-strategy-library/
+https://compass-official.pages.dev/future-strategy-library/
 
 ### Usage
 

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ja">
 <head>
   <!-- Google tag (gtag.js) -->
@@ -14,6 +14,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="format-detection" content="telephone=no" />
   <meta name="theme-color" content="#020812" />
+  <meta name="theme-color" content="#020812" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#020812" media="(prefers-color-scheme: dark)" />
+  <meta name="color-scheme" content="dark light" />
   <meta name="robots" content="index, follow, max-image-preview:large" />
 
   <title>大学生のための未来戦略ライブラリ | 北里大学薬学部生向け 英語・AI・研究室選び・学習支援</title>
@@ -28,7 +31,7 @@
     content="北里大学薬学部, 薬学生, 英語学習, TOEIC, 英検1級, 英会話, AI活用, 研究室選び, 大学院進学, 研究, キャリア形成, 未来戦略ライブラリ, 松井優知, Yuto Matsui"
   />
 
-  <link rel="canonical" href="https://my270yuto0413-cmyk.github.io/future-strategy-library/" />
+  <link rel="canonical" href="https://compass-official.pages.dev/future-strategy-library/" />
   <link
     rel="preload"
     as="image"
@@ -45,7 +48,7 @@
     media="(min-width: 681px)"
     fetchpriority="high"
   />
-  <link rel="stylesheet" href="style.css?v=20260624-hero1" />
+  <link rel="stylesheet" href="style.css?v=20260702-desktop-hero" />
 
   <meta property="og:locale" content="ja_JP" />
   <meta property="og:type" content="website" />
@@ -55,15 +58,15 @@
     property="og:description"
     content="TOEIC・英検1級などの英語学習、薬学部の学習戦略、AI活用、研究室選び、大学院進学を学生目線で整理した資料ライブラリ。"
   />
-  <meta property="og:url" content="https://my270yuto0413-cmyk.github.io/future-strategy-library/" />
-  <meta property="og:image" content="https://my270yuto0413-cmyk.github.io/future-strategy-library/Image1.png" />
+  <meta property="og:url" content="https://compass-official.pages.dev/future-strategy-library/" />
+  <meta property="og:image" content="https://compass-official.pages.dev/future-strategy-library/Image1.png" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="大学生のための未来戦略ライブラリ" />
   <meta
     name="twitter:description"
     content="北里大学薬学部生向け。英語・AI・学習・研究室選び・キャリア形成のための学生目線の資料ライブラリ。"
   />
-  <meta name="twitter:image" content="https://my270yuto0413-cmyk.github.io/future-strategy-library/Image1.png" />
+  <meta name="twitter:image" content="https://compass-official.pages.dev/future-strategy-library/Image1.png" />
 
   <script type="application/ld+json">
   {
@@ -72,7 +75,7 @@
     "name": "大学生のための未来戦略ライブラリ",
     "alternateName": "Pharmacy Students’ Resource Library",
     "description": "北里大学薬学部生向けに、英語学習、TOEIC、英検1級、AI活用、薬学部の学習戦略、研究室選び、大学院進学、キャリア形成に関する資料を提供する学生目線の資料ライブラリです。",
-    "url": "https://my270yuto0413-cmyk.github.io/future-strategy-library/",
+    "url": "https://compass-official.pages.dev/future-strategy-library/",
     "inLanguage": "ja",
     "audience": {
       "@type": "EducationalAudience",
@@ -102,20 +105,84 @@
 <body>
   <a class="skip-link" href="#main">本文へスキップ</a>
 
-  <header class="site-header">
+    <header class="site-header" data-site-header>
     <div class="header-inner">
-      <a href="#top" class="site-logo" aria-label="未来戦略ライブラリ トップへ">
-        <span class="logo-mark" aria-hidden="true"></span>
-        <span>未来戦略ライブラリ</span>
+      <a href="https://compass-official.pages.dev/" class="site-logo" aria-label="COMPASS公式サイトへ移動">
+        <span class="logo-mark" aria-hidden="true">
+          <span></span>
+        </span>
+        <span class="logo-copy">
+          <strong>COMPASS</strong>
+          <small>大学生のための未来戦略ライブラリ</small>
+        </span>
       </a>
 
-      <nav class="site-nav" aria-label="メインナビゲーション">
-        <a href="#value">Value</a>
-        <a href="#about">About</a>
-        <a href="#status">Status</a>
-        <a href="#contents">Contents</a>
-        <a href="#materials">Materials</a>
-        <a href="#registration">Registration</a>
+      <nav class="desktop-nav" aria-label="メインナビゲーション">
+        <div class="nav-group" data-nav-menu>
+          <button class="nav-trigger" type="button" aria-expanded="false" aria-controls="library-menu">
+            LIBRARY
+          </button>
+          <div id="library-menu" class="nav-panel" role="menu">
+            <a class="panel-link" href="#value" role="menuitem">
+              <span>Value / ライブラリの意義</span>
+              <small>未来戦略ライブラリの意義</small>
+            </a>
+            <a class="panel-link" href="#about" role="menuitem">
+              <span>About / ライブラリについて</span>
+              <small>未来戦略ライブラリについて</small>
+            </a>
+            <a class="panel-link" href="#status" role="menuitem">
+              <span>Status / 現在の利用状況</span>
+              <small>現在の運用状況</small>
+            </a>
+          </div>
+        </div>
+
+        <div class="nav-group" data-nav-menu>
+          <button class="nav-trigger" type="button" aria-expanded="false" aria-controls="contents-menu">
+            CONTENTS
+          </button>
+          <div id="contents-menu" class="nav-panel" role="menu">
+            <a class="panel-link" href="#contents" role="menuitem">
+              <span>Contents / 資料について</span>
+              <small>資料の構成と目的</small>
+            </a>
+            <a class="panel-link" href="#materials" role="menuitem">
+              <span>Materials / 公開資料ギャラリー</span>
+              <small>公開中の資料一覧</small>
+            </a>
+            <a class="panel-link" href="#rules" role="menuitem">
+              <span>Rules / 利用ルール</span>
+              <small>利用ルールと共有範囲</small>
+            </a>
+          </div>
+        </div>
+
+        <div class="nav-group" data-nav-menu>
+          <button class="nav-trigger" type="button" aria-expanded="false" aria-controls="access-menu">
+            ACCESS
+          </button>
+          <div id="access-menu" class="nav-panel" role="menu">
+            <a class="panel-link" href="#registration" role="menuitem">
+              <span>Registration / 利用登録について</span>
+              <small>資料への利用登録方法</small>
+            </a>
+            <a
+              class="panel-link"
+              href="https://docs.google.com/forms/d/e/1FAIpQLSf8gLujuK-giYnkCnv-Cxp7qon1kY8mhnGvfkA62hOlrJgAHA/viewform"
+              target="_blank"
+              rel="noopener noreferrer"
+              role="menuitem"
+            >
+              <span>Registration Form / 登録フォーム</span>
+              <small>Google Formを開く</small>
+            </a>
+          </div>
+        </div>
+
+        <a class="nav-link" href="https://compass-official.pages.dev/" aria-label="COMPASS公式サイト">
+          COMPASS
+        </a>
       </nav>
 
       <a
@@ -124,7 +191,7 @@
         target="_blank"
         rel="noopener noreferrer"
       >
-        無料で資料を見る
+        無料で資料にアクセスする
       </a>
 
       <button
@@ -133,6 +200,7 @@
         aria-controls="mobile-menu"
         aria-expanded="false"
         aria-label="メニューを開く"
+        data-menu-toggle
       >
         <span aria-hidden="true"></span>
         <span aria-hidden="true"></span>
@@ -140,7 +208,7 @@
     </div>
   </header>
 
-  <div class="mobile-menu-overlay" data-menu-close hidden></div>
+  <div class="mobile-scrim" data-menu-close hidden></div>
   <aside
     id="mobile-menu"
     class="mobile-menu"
@@ -151,28 +219,50 @@
   >
     <div class="mobile-menu-panel">
       <div class="mobile-menu-top">
-        <p>Future Strategy Library</p>
+        <div>
+          <p>COMPASS</p>
+          <span>大学生のための未来戦略ライブラリ</span>
+        </div>
         <button class="mobile-menu-close" type="button" data-menu-close aria-label="メニューを閉じる">
           <span aria-hidden="true"></span>
           <span aria-hidden="true"></span>
         </button>
       </div>
-      <p class="mobile-menu-trust">北里大学薬学部生向け・登録無料</p>
-      <nav class="mobile-menu-nav" aria-label="モバイルメニュー">
-        <a href="#value">Value</a>
-        <a href="#about">About</a>
-        <a href="#contents">Contents</a>
-        <a href="#materials">Materials</a>
-        <a href="#registration">Registration</a>
-        <a href="#rules">Rules</a>
+
+      <nav class="mobile-nav" aria-label="モバイルメニュー">
+        <section class="mobile-nav-group" aria-labelledby="mobile-library-title">
+          <h2 id="mobile-library-title">ライブラリ</h2>
+          <a href="#value">ライブラリの意義</a>
+          <a href="#about">ライブラリについて</a>
+          <a href="#status">現在の利用状況</a>
+        </section>
+
+        <section class="mobile-nav-group" aria-labelledby="mobile-contents-title">
+          <h2 id="mobile-contents-title">資料</h2>
+          <a href="#contents">資料について</a>
+          <a href="#materials">公開資料ギャラリー</a>
+          <a href="#rules">利用ルール</a>
+        </section>
+
+        <section class="mobile-nav-group" aria-labelledby="mobile-access-title">
+          <h2 id="mobile-access-title">利用登録</h2>
+          <a href="#registration">利用登録について</a>
+          <a href="https://docs.google.com/forms/d/e/1FAIpQLSf8gLujuK-giYnkCnv-Cxp7qon1kY8mhnGvfkA62hOlrJgAHA/viewform" target="_blank" rel="noopener noreferrer">登録フォーム</a>
+        </section>
+
+        <section class="mobile-nav-group" aria-labelledby="mobile-compass-title">
+          <h2 id="mobile-compass-title">COMPASS公式</h2>
+          <a href="https://compass-official.pages.dev/">COMPASS公式サイト</a>
+        </section>
       </nav>
+
       <a
         class="button button-primary mobile-menu-cta"
         href="https://docs.google.com/forms/d/e/1FAIpQLSf8gLujuK-giYnkCnv-Cxp7qon1kY8mhnGvfkA62hOlrJgAHA/viewform"
         target="_blank"
         rel="noopener noreferrer"
       >
-        大学アカウントで無料登録
+        無料で資料にアクセス
       </a>
     </div>
   </aside>
@@ -188,6 +278,7 @@
 
       <div class="container hero-grid">
         <div class="hero-content">
+          <p class="hero-mobile-label">未来戦略ライブラリ</p>
           <p class="eyebrow">PHARMACY STUDENTS’ RESOURCE LIBRARY</p>
 
           <h1 id="hero-title" class="hero-catch">
@@ -198,6 +289,13 @@
           <p class="hero-subtitle">
             北里大学薬学部生のための<span class="title-break">学生目線の資料ライブラリ。</span>
           </p>
+
+          <div class="mobile-hero-needs" aria-label="主な支援領域">
+            <span class="need-exam">試験対策</span>
+            <span class="need-pharmacy">薬学部の学習</span>
+            <span class="need-ai">英語・AI活用</span>
+          </div>
+
           <p class="hero-text">
             試験対策から英語学習、AI活用、研究室選び、大学院進学まで。
             学生が自分の意思で学び、考え、未来の選択肢を広げるための資料をまとめています。
@@ -535,7 +633,7 @@
 
           <article class="status-card status-card-highlight">
             <span class="status-number">
-              <span class="count-up" data-count-end="57">0</span><span class="unit">名</span>
+              <span class="count-up" data-count-end="73">0</span><span class="unit">名</span>
             </span>
             <h3>利用登録者</h3>
             <p>北里大学薬学部生を中心に登録制で運営しています。</p>
@@ -864,7 +962,7 @@
             <h3>教育活動・講演等のご相談</h3>
             <p>
               学内関係者による教育支援、講演、学習支援活動への協力相談も、
-              同じGoogleフォームから受け付けています。
+              歓迎しております。
             </p>
           </div>
         </div>
@@ -884,7 +982,7 @@
         <div class="rules-grid">
           <article>
             <h3>オリジナル資料を中心に公開</h3>
-            <p>掲載資料の多くは、運営者が独自に作成したオリジナルコンテンツです。</p>
+            <p>掲載資料の多くは、運営者が独自に作成したオリジナルコンテンツです。過去問題や講義資料の無断転載はせず、著作権に配慮しています。</p>
           </article>
 
           <article>
@@ -899,7 +997,7 @@
 
           <article>
             <h3>中立性を重視</h3>
-            <p>特定の進路、資格、研究室、AIサービスを過度に推奨しません。</p>
+            <p>特定の進路、資格、研究室、AIサービスを過度に推奨しません。また、特定研究室への誘導や内情の開示は一切行っていません。</p>
           </article>
 
           <article>
@@ -960,7 +1058,7 @@
           <h2 id="collaboration-title">教育活動への協力について</h2>
 
           <p>
-            未来戦略ライブラリでは、学生向けの学習支援を主軸としながら、
+            COMPASSでは、学生向けの学習支援を主軸としながら、
             学内での教育活動、英語学習支援、AI活用に関する講演・説明会などのご相談も受け付けています。
           </p>
 
@@ -971,7 +1069,7 @@
         </div>
         <a
           class="button button-secondary collaboration-button"
-          href="https://docs.google.com/forms/d/e/1FAIpQLSf8gLujuK-giYnkCnv-Cxp7qon1kY8mhnGvfkA62hOlrJgAHA/viewform"
+          href="https://docs.google.com/forms/d/e/1FAIpQLSehSdW10_HOjAigq_42AzooHtiV1P8AvI_1tWu5D3DaR2QxJQ/viewform"
           target="_blank"
           rel="noopener noreferrer"
         >
@@ -1015,12 +1113,14 @@
         <h2>大学生のための未来戦略ライブラリ</h2>
         <p>Pharmacy Students’ Resource Library</p>
       </div>
-
-      <p class="footer-note">
-        本ライブラリは、学生支援団体COMPASSによる学生支援活動の一環として運営されています。
-        現在は北里大学薬学部生向けに運営しています。
-        利用登録および教育活動に関するご相談は、Googleフォームより受け付けています。
-        試験・履修・進路等の重要情報は、必ず大学公式情報と照合してください。
+<div class="footer-note">
+      <p>
+        COMPASSは、学生有志による任意の学生支援活動であり、大学公式組織ではありません。
+        本サイトおよび関連資料の内容は、大学・学部・研究室・所属機関の見解を代表するものではありません。
+      </p>
+      <p>
+        代表者名・連絡先を除き、特定の研究室名、運営者の所属研究室情報、登録者情報、
+        その他の機密情報は公開しておらず、著作権・中立性・情報管理に十分配慮しています。
       </p>
 
       <p class="footer-links">
@@ -1041,7 +1141,18 @@
         </a>
       </p>
 
-      <p class="copyright">© 2026 Yuto Matsui. All rights reserved.</p>
+      <p class="footer-compass-link">
+        <span>Operated by COMPASS</span>
+        <a
+          href="https://compass-official.pages.dev/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          公式サイト <span aria-hidden="true">↗</span>
+        </a>
+      </p>
+
+      <p class="copyright">© 2026 COMPASS. All rights reserved.</p>
     </div>
   </footer>
 
@@ -1070,10 +1181,41 @@
         }
       };
       root.classList.add('reveal-enabled');
+      const header = document.querySelector('[data-site-header]');
+      const navGroups = Array.from(document.querySelectorAll('[data-nav-menu]'));
+      const closeAllNavGroups = () => {
+        navGroups.forEach((group) => {
+          group.classList.remove('is-open');
+          const trigger = group.querySelector('.nav-trigger');
+          if (trigger) trigger.setAttribute('aria-expanded', 'false');
+        });
+      };
 
-      const menuToggle = document.querySelector('.menu-toggle');
+      navGroups.forEach((group) => {
+        const trigger = group.querySelector('.nav-trigger');
+        if (!trigger) return;
+
+        trigger.addEventListener('click', (event) => {
+          event.stopPropagation();
+          const isOpen = group.classList.contains('is-open');
+          closeAllNavGroups();
+          group.classList.toggle('is-open', !isOpen);
+          trigger.setAttribute('aria-expanded', String(!isOpen));
+        });
+
+        trigger.addEventListener('keydown', (event) => {
+          if (event.key !== 'ArrowDown') return;
+          event.preventDefault();
+          group.classList.add('is-open');
+          trigger.setAttribute('aria-expanded', 'true');
+          const firstLink = group.querySelector('.nav-panel a');
+          if (firstLink) firstLink.focus();
+        });
+      });
+
+      const menuToggle = document.querySelector('[data-menu-toggle]');
       const mobileMenu = document.querySelector('#mobile-menu');
-      const menuOverlay = document.querySelector('.mobile-menu-overlay');
+      const menuOverlay = document.querySelector('.mobile-scrim');
       const menuCloseControls = document.querySelectorAll('[data-menu-close]');
       let lastFocusedElement = null;
 
@@ -1140,13 +1282,13 @@
         });
 
         document.addEventListener('keydown', (event) => {
-          if (!mobileMenu.classList.contains('is-open')) return;
-
           if (event.key === 'Escape') {
-            closeMenu();
+            closeAllNavGroups();
+            if (mobileMenu.classList.contains('is-open')) closeMenu();
             return;
           }
 
+          if (!mobileMenu.classList.contains('is-open')) return;
           if (event.key !== 'Tab') return;
           const focusable = getFocusableMenuItems();
           if (!focusable.length) return;
@@ -1166,6 +1308,15 @@
           if (!event.matches) closeMenu({ restoreFocus: false });
         });
       }
+
+      document.addEventListener('click', closeAllNavGroups);
+
+      const updateHeader = () => {
+        if (!header) return;
+        header.classList.toggle('is-scrolled', window.scrollY > 12);
+      };
+      updateHeader();
+      window.addEventListener('scroll', updateHeader, { passive: true });
 
       const stickyCta = document.querySelector('.mobile-sticky-cta');
       const heroSection = document.querySelector('.hero');
