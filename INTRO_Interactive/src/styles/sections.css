@@ -590,8 +590,8 @@
   .hero-section {
     min-height: 100svh;
     align-items: start;
-    padding-top: calc(var(--header-height) + 54px);
-    padding-bottom: 86px;
+    padding-top: calc(var(--header-height) + 34px);
+    padding-bottom: 116px;
   }
 
   .hero-visual {
@@ -747,15 +747,16 @@
   }
 
   .hero-grid {
-    min-height: calc(100svh - var(--header-height) - 140px);
+    min-height: calc(100svh - var(--header-height) - 132px);
     grid-template-columns: minmax(0, 0.94fr) minmax(410px, 0.86fr);
-    align-items: center;
+    align-items: start;
+    padding-top: clamp(10px, 3vh, 34px);
     text-align: left;
     gap: 82px;
   }
 
   .hero-copy {
-    align-self: center;
+    align-self: start;
     padding-top: 0;
   }
 
@@ -816,13 +817,13 @@
 
   .hero-mock {
     max-width: none;
-    align-self: center;
+    align-self: start;
     perspective: 1100px;
   }
 
   .hero-mock-stage {
     position: relative;
-    transform: translateY(10px);
+    transform: translateY(-8px);
   }
 
   .hero-mock-stage::before,
