@@ -593,6 +593,9 @@
 }
 
 .mock-card {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
   padding: 22px;
   background: rgba(255, 255, 255, 0.08);
   backdrop-filter: blur(18px);
@@ -615,14 +618,19 @@
 }
 
 .topic-tabs {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
   display: flex;
   gap: 10px;
   overflow-x: auto;
+  overscroll-behavior-inline: contain;
   padding-bottom: 8px;
 }
 
 .topic-tabs button {
-  min-width: 220px;
+  flex: 0 0 min(76vw, 220px);
+  min-width: 0;
   min-height: 86px;
   padding: 14px;
   border-radius: var(--radius-card);
@@ -732,6 +740,7 @@
   width: min(100%, var(--container));
   margin: 0 auto;
   align-items: flex-start;
+  flex-wrap: wrap;
 }
 
 .footer-nav {
@@ -745,6 +754,14 @@
   color: rgba(255, 255, 255, 0.68);
   font-weight: 800;
   font-size: 0.88rem;
+}
+
+.footer-copy {
+  flex: 0 0 100%;
+  margin-top: 18px;
+  color: rgba(255, 255, 255, 0.46);
+  font-size: 0.78rem;
+  font-weight: 750;
 }
 
 @media (min-width: 900px) {
@@ -771,6 +788,7 @@
   }
 
   .topic-tabs button {
+    flex-basis: auto;
     min-width: 0;
   }
 }
@@ -782,9 +800,14 @@
 
   .footer-inner {
     display: grid;
+    gap: 18px;
   }
 
   .footer-nav {
     justify-content: flex-start;
+  }
+
+  .footer-copy {
+    margin-top: 0;
   }
 }

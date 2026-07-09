@@ -85,6 +85,55 @@
   }
 }
 
+@keyframes desktopScreenBreathe {
+  0%,
+  100% {
+    opacity: 0.86;
+    transform: perspective(900px) rotateY(-10deg) rotateX(2deg) translateY(0);
+  }
+
+  50% {
+    opacity: 1;
+    transform: perspective(900px) rotateY(-9deg) rotateX(2deg) translateY(-8px);
+  }
+}
+
+@keyframes desktopSeatPulse {
+  0%,
+  100% {
+    opacity: 0.44;
+  }
+
+  50% {
+    opacity: 0.92;
+  }
+}
+
+@keyframes desktopDataSweep {
+  0%,
+  100% {
+    opacity: 0.36;
+    clip-path: inset(0 100% 0 0);
+  }
+
+  48%,
+  62% {
+    opacity: 0.86;
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+@keyframes desktopOrbitFloat {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+
+  50% {
+    transform: translate3d(0, -10px, 0);
+  }
+}
+
 @keyframes mobileTitleQuiet {
   from {
     opacity: 0;
@@ -188,5 +237,12 @@
 
   .mobile-menu {
     transition: none;
+  }
+
+  .hero-theater__screen,
+  .hero-theater__seats span,
+  .hero-data-ribbon,
+  .hero-orbit {
+    animation: none;
   }
 }

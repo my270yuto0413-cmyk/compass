@@ -35,6 +35,12 @@
   gap: 36px;
 }
 
+.split-grid > *,
+.science-grid > *,
+.technology-layout > * {
+  min-width: 0;
+}
+
 .split-grid--reverse {
   direction: rtl;
 }

@@ -448,6 +448,24 @@ p {
   transform: translateY(-1px);
 }
 
+.panel-link-interactive {
+  border: 1px solid rgba(115, 231, 255, 0.24);
+  background:
+    linear-gradient(135deg, rgba(115, 231, 255, 0.14), rgba(143, 244, 207, 0.07)),
+    rgba(255, 255, 255, 0.045);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+.panel-link-interactive:hover {
+  background:
+    linear-gradient(135deg, rgba(115, 231, 255, 0.2), rgba(143, 244, 207, 0.1)),
+    rgba(255, 255, 255, 0.065);
+}
+
+.panel-link-interactive small {
+  color: rgba(230, 252, 255, 0.78);
+}
+
 .panel-link span {
   font-size: 0.94rem;
   font-weight: 880;
@@ -648,6 +666,24 @@ p {
   border-right: 2px solid rgba(115, 231, 255, 0.84);
   transform: rotate(45deg);
   flex: 0 0 auto;
+}
+
+.mobile-nav-group a.mobile-nav-highlight {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 50px;
+  padding: 0 12px;
+  border: 1px solid rgba(115, 231, 255, 0.18);
+  border-radius: 12px;
+  color: rgba(245, 252, 255, 0.96);
+  background:
+    linear-gradient(135deg, rgba(115, 231, 255, 0.12), rgba(143, 244, 207, 0.045)),
+    rgba(255, 255, 255, 0.035);
+}
+
+.mobile-nav-group a.mobile-nav-highlight::after {
+  border-color: rgba(143, 244, 207, 0.9);
 }
 
 /* Hero */
@@ -1613,14 +1649,17 @@ p {
 
 .feature-layout {
   display: grid;
-  grid-template-columns: minmax(0, 0.9fr) minmax(360px, 0.92fr);
-  gap: clamp(32px, 6vw, 78px);
+  grid-template-columns: minmax(260px, 0.76fr) minmax(0, 1.18fr);
+  gap: clamp(28px, 4.4vw, 58px);
   align-items: start;
 }
 
 .feature-cards {
   display: grid;
   gap: 16px;
+  width: 100%;
+  max-width: 780px;
+  justify-self: stretch;
 }
 
 .feature-card a {
@@ -1646,13 +1685,15 @@ p {
 .feature-card-interactive {
   position: relative;
   overflow: hidden;
-  border-color: rgba(115, 231, 255, 0.34);
+  border-color: rgba(115, 231, 255, 0.44);
   background:
-    linear-gradient(145deg, rgba(115, 231, 255, 0.14), rgba(214, 164, 58, 0.08)),
-    linear-gradient(180deg, rgba(255, 255, 255, 0.09), rgba(255, 255, 255, 0.04));
+    radial-gradient(circle at 88% 12%, rgba(143, 244, 207, 0.14), transparent 30%),
+    linear-gradient(145deg, rgba(115, 231, 255, 0.2), rgba(214, 164, 58, 0.08)),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.11), rgba(255, 255, 255, 0.05));
   box-shadow:
     0 24px 70px rgba(0, 0, 0, 0.26),
-    var(--glow-cyan);
+    0 0 0 1px rgba(115, 231, 255, 0.08),
+    0 0 54px rgba(115, 231, 255, 0.16);
 }
 
 .feature-card-interactive::before {

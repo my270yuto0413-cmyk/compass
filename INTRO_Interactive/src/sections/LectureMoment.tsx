@@ -5,6 +5,17 @@ import { Section } from "../components/ui/Section";
 export function LectureMoment() {
   return (
     <Section id="reality" className="lecture-reality section--dark">
+      <div className="lecture-hall-backdrop" aria-hidden="true">
+        <div className="lecture-hall-backdrop__screen" />
+        <div className="lecture-hall-backdrop__rows">
+          {Array.from({ length: 56 }, (_, index) => (
+            <span key={index} />
+          ))}
+        </div>
+        <div className="lecture-hall-backdrop__silence lecture-hall-backdrop__silence--one" />
+        <div className="lecture-hall-backdrop__silence lecture-hall-backdrop__silence--two" />
+        <div className="lecture-hall-backdrop__silence lecture-hall-backdrop__silence--three" />
+      </div>
       <div className="floating-words" aria-hidden="true">
         {lectureReality.floatingWords.map((word, index) => (
           <span className={`floating-word floating-word--${index + 1}`} key={word}>

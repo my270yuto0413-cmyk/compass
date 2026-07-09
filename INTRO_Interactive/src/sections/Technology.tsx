@@ -11,10 +11,10 @@ export function Technology() {
           <SectionHeader
             eyebrow="TECHNOLOGY"
             title="リアルタイム講義を支える、現代的なWebアプリケーション設計。"
-            lead="リアルタイム性、モバイルファーストUI、AI連携、アクセス制御を重視した講義支援アプリケーションとして見せます。"
+            lead="リアルタイム性、モバイルファースト設計、AI連携、アクセス制御を備えた、現代的な講義支援Webアプリケーション。"
           />
           <div className="developer-credit">
-            <span>Developer / Product Architect</span>
+            <span>開発者・プロダクト設計者</span>
             <strong>Yuto Matsui</strong>
             <p>Molecular Biology Research × Pharmacy Education × AI/Web Application</p>
           </div>

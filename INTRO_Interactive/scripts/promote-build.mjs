@@ -3,7 +3,7 @@ import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const projectRoot = dirname(dirname(fileURLToPath(import.meta.url)));
-const distDir = join(projectRoot, "dist");
+const distDir = join(projectRoot, "app", "dist");
 const publicAssetsDir = join(projectRoot, "assets");
 
 if (!existsSync(join(distDir, "index.html"))) {

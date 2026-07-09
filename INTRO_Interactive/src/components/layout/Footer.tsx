@@ -20,6 +20,7 @@ export function Footer() {
           <a href="#technology">Technology</a>
           <a href={links.compassHome}>COMPASSへ戻る</a>
         </nav>
+        <p className="footer-copy">© 2026 COMPASS. All rights reserved.</p>
       </div>
     </footer>
   );

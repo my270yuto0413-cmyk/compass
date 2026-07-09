@@ -9,10 +9,13 @@ export function EngineeringPhilosophy() {
       <Reveal>
         <SectionHeader
           eyebrow="ENGINEERING PHILOSOPHY"
-          title="講義の現場課題から、設計原則を決める。"
-          lead="静的LPでありながら、実アプリの設計思想が伝わるように、リアルタイム、モバイル、RLS、AI、継続改善の軸で構成します。"
+          title="すべての設計は、より良い講義体験のために。"
+          lead="COMPASS Interactiveは、リアルタイム同期、モバイルファーストUI、RLSによるアクセス制御、AI連携、継続改善を軸に設計された講義支援Webアプリケーションです。"
           align="center"
         />
+        <p className="engineering-subcopy">
+          講義中の反応・質問・理解度を可視化し、教員と学生のあいだに、自然な双方向性を生み出します。
+        </p>
       </Reveal>
       <div className="principle-grid">
         {architecturePrinciples.map((principle, index) => (
