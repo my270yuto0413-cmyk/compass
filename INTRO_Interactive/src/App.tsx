@@ -1,6 +1,7 @@
 import { Header } from "./components/layout/Header";
 import { Footer } from "./components/layout/Footer";
 import { Hero } from "./sections/Hero";
+import { MobileLectureStatus } from "./sections/MobileLectureStatus";
 import { LectureMoment } from "./sections/LectureMoment";
 import { Students } from "./sections/Students";
 import { ScienceLectureExperience } from "./sections/ScienceLectureExperience";
@@ -23,6 +24,7 @@ export function App() {
       <Header />
       <main id="main">
         <Hero />
+        <MobileLectureStatus />
         <LectureMoment />
         <Students />
         <ScienceLectureExperience />

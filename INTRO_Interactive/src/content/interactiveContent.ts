@@ -376,7 +376,7 @@ export const architecturePrinciples = [
 
 export const technologyCards = [
   ["フロントエンド", "React / TypeScript / Vite"],
-  ["バックエンド・リアルタイムデータベース", "Supabase / PostgreSQL / Realtime Sync"],
+  ["バックエンド", "Supabase / PostgreSQL / Realtime Sync"],
   ["セキュリティ", "Row Level Security / Role-based Access Control"],
   ["ホスティング", "Cloudflare Pages"],
   ["外部API連携", "OpenAI API / Google Workspace API / Google Apps Script"],
