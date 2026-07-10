@@ -13,7 +13,7 @@ const mobileItems = [
   { href: "#students", label: "学生向け" },
   { href: "#examples", label: "講義例" },
   { href: "#teachers", label: "教員向け" },
-  { href: "#security", label: "技術・安全性" },
+  { href: "#technology", label: "技術・安全性" },
   { href: links.compassHome, label: "COMPASSへ戻る" }
 ];
 

@@ -375,10 +375,12 @@ export const architecturePrinciples = [
 ];
 
 export const technologyCards = [
-  ["Frontend", "React / TypeScript"],
-  ["Application Logic", "Python"],
-  ["Version Control", "Git"],
-  ["AI-assisted Development", "OpenAI Codex"]
+  ["フロントエンド", "React / TypeScript / Vite"],
+  ["バックエンド・リアルタイムデータベース", "Supabase / PostgreSQL / Realtime Sync"],
+  ["セキュリティ", "Row Level Security / Role-based Access Control"],
+  ["ホスティング", "Cloudflare Pages"],
+  ["外部API連携", "OpenAI API / Google Workspace API / Google Apps Script"],
+  ["AI実装支援", "OpenAI Codex / ChatGPT 5.5 Pro"]
 ];
 
 export const securityCards = [
