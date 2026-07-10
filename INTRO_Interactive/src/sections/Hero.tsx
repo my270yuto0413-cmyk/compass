@@ -25,10 +25,20 @@ export function Hero() {
         <Reveal className="hero-copy">
           <p className="eyebrow">{hero.eyebrow}</p>
           <h1 id="hero-title" className="hero-title" aria-label={hero.title}>
-            <span className="hero-title__line hero-title__line--quiet">わからないが、</span>
+            <span className="hero-title__line hero-title__line--quiet">
+              <span className="hero-title__desktop">わからないが、</span>
+              <span className="hero-title__mobile">わからないが</span>
+            </span>
             <span className="hero-title__line hero-title__line--active">動き出す。</span>
           </h1>
-          <p className="hero-lead">{hero.lead}</p>
+          <p className="hero-lead">
+            <span className="hero-lead__desktop">{hero.lead}</span>
+            <span className="hero-lead__mobile">
+              リアルタイム×AIが
+              <br />
+              講義を変える
+            </span>
+          </p>
           <div className="mobile-hero-signals" aria-hidden="true">
             <div className="mobile-signal-card mobile-signal-card--question">
               <span>質問</span>

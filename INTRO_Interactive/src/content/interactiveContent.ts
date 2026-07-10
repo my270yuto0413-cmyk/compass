@@ -375,33 +375,31 @@ export const architecturePrinciples = [
 ];
 
 export const technologyCards = [
-  ["Frontend", "React / TypeScript / Vite"],
-  ["Realtime Backend", "Supabase / PostgreSQL / Realtime Sync"],
-  ["Database Design", "Lecture-centered Schema"],
-  ["Security", "Row Level Security / Role-based Access Control"],
-  ["AI Integration", "OpenAI API / Google Workspace API / Google Apps Script"],
-  ["Deploy & Operations", "Cloudflare Pages / GitHub"]
+  ["Frontend", "React / TypeScript"],
+  ["Application Logic", "Python"],
+  ["Version Control", "Git"],
+  ["AI-assisted Development", "OpenAI Codex"]
 ];
 
 export const securityCards = [
   {
-    title: "講義単位のデータ分離",
-    body: "コメント、クイズ、要約を講義IDに紐づけて管理。関係のない講義データへアクセスできない構成を重視します。"
+    title: "講義ごとのデータ分離",
+    body: "コメントやクイズは講義単位で管理し、他の講義からアクセスできない設計です。"
   },
   {
-    title: "ロールに応じた権限管理",
-    body: "学生、教員、管理者で権限を分離。投稿、閲覧、クイズ作成、ログ確認、管理操作の範囲を明確にします。"
+    title: "権限に応じたアクセス管理",
+    body: "学生・教員・管理者ごとに、利用できる機能を適切に制御します。"
   },
   {
-    title: "最小限のデータ収集",
-    body: "講義参加に不要な個人情報は扱わない方針。学習体験の改善に必要な範囲に限定してデータを設計します。"
+    title: "必要最小限のデータ設計",
+    body: "講義に不要な個人情報は扱わず、必要な情報のみを管理します。"
   },
   {
-    title: "不適切投稿への対策",
-    body: "投稿削除、通報、教員側の表示制御を想定。匿名性と安全性のバランスを取ります。"
+    title: "安全なコミュニティ運営",
+    body: "投稿管理や通報機能を備え、安心して参加できる環境を目指します。"
   },
   {
-    title: "AI利用の透明性",
-    body: "AI要約・翻訳は補助機能として明示。講義内容の正確性確認や重要判断は、教員・利用者が行う前提にします。"
+    title: "AIの透明な活用",
+    body: "AIは学習支援の補助として利用し、最終的な判断は利用者・教員が行います。"
   }
 ];
