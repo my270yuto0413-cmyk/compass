@@ -9,8 +9,8 @@ export function SecurityGovernance() {
       <Reveal>
         <SectionHeader
           eyebrow="SECURITY & GOVERNANCE"
-          title="教育データを、安全に。"
-          lead="講義データは、学生の学習支援と授業改善のために、安全かつ適切に管理します。"
+          title="安心して質問できる、信頼の学習環境。"
+          lead="講義ごとのアクセス管理、AIモデレーション、明確な回答表示を通じて、すべての参加者が学びに集中できる環境を提供する。"
           align="center"
         />
       </Reveal>
@@ -26,7 +26,7 @@ export function SecurityGovernance() {
         ))}
       </div>
       <Reveal className="governance-note">
-        <p>すべては、より良い学習体験のために。</p>
+        <p>安全性と透明性が、より深い学びを支えます。</p>
       </Reveal>
     </Section>
   );

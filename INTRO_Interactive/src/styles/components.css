@@ -788,6 +788,27 @@
   font-weight: 750;
 }
 
+.footer-meta {
+  flex: 0 0 100%;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px 20px;
+  margin-top: 18px;
+}
+
+.footer-note {
+  color: rgba(255, 255, 255, 0.34);
+  font-size: 0.7rem;
+  font-weight: 650;
+}
+
+.footer-meta .footer-copy {
+  flex: initial;
+  margin-top: 0;
+}
+
 @media (min-width: 900px) {
   .desktop-nav {
     display: flex;
@@ -868,5 +889,10 @@
 
   .footer-copy {
     margin-top: 0;
+  }
+
+  .footer-meta {
+    margin-top: 0;
+    align-items: flex-start;
   }
 }

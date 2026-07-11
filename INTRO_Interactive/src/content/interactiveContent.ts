@@ -7,7 +7,7 @@ export const hero = {
   eyebrow: "COMPASS Interactive",
   title: "わからないが、動き出す。",
   lead: "リアルタイム × AI が、講義を変える。",
-  chips: ["リアルタイム掲示板", "ライブ講義", "AI講義要約", "自動字幕・翻訳", "リアルタイムクイズ"]
+  chips: ["リアルタイム掲示板", "ライブクイズ", "AI学習サポート", "リアルタイム字幕", "講義後AI要約"]
 };
 
 export const heroLectureMock = {
@@ -36,28 +36,28 @@ export const heroLectureMock = {
 };
 
 export const lectureReality = {
-  eyebrow: "LECTURE REALITY",
-  title: "200人の講義室で、わからないは声にならない。",
+  eyebrow: "LECTURE MOMENT",
+  title: "200人の講義室で、「わからない」は声にならない。",
   body: [
-    "説明は進んでいる。でも、自分の理解は少し前で止まっている。",
-    "作用機序、反応機構、実験デザイン。一つつまずくと、その先の説明が急に遠くなる。",
-    "質問したい。友達とつながりたい。でも、大人数講義では発言しづらい。",
-    "COMPASS Interactive は、その小さな「わからない」を、講義の中で動かし始めるためのシステムです。"
+    "説明は進む。自分の理解だけが、少し前で止まっている。",
+    "作用機序、反応機構、実験デザイン。一つの疑問を残したまま、その先の説明が遠くなっていく。",
+    "質問したい。同じところで迷う誰かとつながりたい。それでも、大人数の講義室では声を上げるまでの距離が長い。",
+    "その小さな「わからない」を、講義の中で動かし始める。それがCOMPASS Interactiveである。"
   ],
   floatingWords: [
-    "作用機序がつながらない",
-    "反応機構で止まった",
-    "RT-qPCRの対照がわからない",
-    "KmとVmaxが曖昧",
-    "薬物動態が式だけに見える",
-    "周りに聞きづらい"
+    "作用機序をつなげたい",
+    "反応機構を深く理解したい",
+    "RT-qPCRの対照を確認したい",
+    "KmとVmaxを整理したい",
+    "薬物動態を直感的に捉えたい",
+    "クラスの気づきを共有したい"
   ]
 };
 
 export const studentCards = [
   {
-    title: "聞けなかった疑問を、その場で送れる。",
-    body: "大人数講義で手を挙げるのは難しい。でも、コメントなら送れる。作用機序、反応機構、実験デザインの疑問を、講義中にそのまま共有できます。",
+    title: "生まれた疑問を、その場で共有できる。",
+    body: "作用機序、反応機構、実験デザインの疑問を、講義中にそのまま投稿。学生の気づきがリアルタイムに教員とクラスへ届きます。",
     feature: "リアルタイム掲示板",
     phoneTitle: "Realtime Board",
     items: [
@@ -83,8 +83,8 @@ export const studentCards = [
     }
   },
   {
-    title: "友達と同じところで迷っているとわかる。",
-    body: "自分だけがわかっていないと思っていた部分に、実は多くの学生がつまずいていることがあります。",
+    title: "クラスの共通する疑問が見える。",
+    body: "リアクションを通じて、クラスで関心が集まっている論点を共有。仲間の視点が、自分の理解をさらに深めます。",
     feature: "リアクション",
     phoneTitle: "Shared Questions",
     items: [
@@ -105,7 +105,7 @@ export const studentCards = [
     ]
   },
   {
-    title: "英語の専門用語で、理解を止めない。",
+    title: "英語の専門用語を、その場で理解へつなぐ。",
     body: "英語スライド、英語論文、専門用語が講義中に出てきても、自動字幕・翻訳で講義への参加ハードルを下げます。",
     feature: "自動字幕・翻訳",
     phoneTitle: "Caption",
@@ -156,7 +156,7 @@ export const scienceTopics = [
   {
     id: "biochemistry",
     label: "生化学",
-    title: "式ではなく、意味で理解する。",
+    title: "式と意味をつなげて理解する。",
     lead: "酵素反応、Km / Vmax、競合阻害を講義中に確認。",
     comments: [
       "Kmが小さいと、なぜ親和性が高いと言えるのですか？",
@@ -247,47 +247,93 @@ export const features = [
   {
     eyebrow: "Realtime Board",
     title: "リアルタイム掲示板",
-    headline: "声に出せない疑問も、講義の一部に。",
-    body: "学生の質問、コメント、気づきをリアルタイムに共有。専門講義で生まれる小さな疑問を、その場で教員とクラス全体に届けます。",
+    headline: "すべての疑問が、講義を深める。",
+    body: "学生の質問、コメント、気づきをリアルタイムに共有。専門講義で生まれる疑問を、その場で教員とクラス全体に届けます。",
     tags: ["質問", "コメント", "リアクション", "共有"]
   },
   {
-    eyebrow: "Live Lecture",
-    title: "ライブ講義",
-    headline: "教室でも、オンラインでも、同じ講義体験へ。",
-    body: "対面講義、オンライン講義、ハイブリッド授業に対応。コメント、クイズ、字幕、要約を同じ画面で扱えます。",
-    tags: ["対面", "オンライン", "ハイブリッド"]
+    eyebrow: "Live Quiz",
+    title: "ライブクイズ",
+    headline: "理解の変化を、その場で共有する。",
+    body: "講義中の問いにスマートフォンから回答。学生は理解を確かめ、教員はクラス全体の理解度をリアルタイムに捉えます。",
+    tags: ["即時回答", "理解度", "ライブ集計"]
   },
   {
     eyebrow: "Realtime Quiz",
-    title: "リアルタイムクイズ",
-    headline: "理解度が、その場で見える。",
-    body: "作用機序、反応機構、実験デザインなどの理解度を即時に確認。学生は自分の理解を、教員はクラス全体のつまずきを把握できます。",
-    tags: ["投票", "理解度チェック", "集計"]
+    title: "質問フォーカス",
+    headline: "クラスの重要な疑問が、ひと目でわかる。",
+    body: "リアクションが集まった質問を上位に表示。大人数講義でも、クラス全体に共通する重要な論点をすばやく共有します。",
+    tags: ["注目質問", "リアクション", "優先表示"]
   },
   {
     eyebrow: "AI Summary",
     title: "AI講義要約",
-    headline: "講義後、何を復習すべきかが見える。",
-    body: "講義内容、コメント、クイズ結果をもとに、重要ポイントを整理。薬理学、分子生物学、生化学などの専門講義を復習しやすい形にまとめます。",
-    tags: ["要点整理", "課題確認", "復習支援"]
+    headline: "講義のすべてが、次の理解につながる。",
+    body: "講義内容、コメント、質問、クイズ結果をAIが横断的に整理。重要ポイント、質問が集中したテーマ、理解度の傾向、復習内容を講義終了後にまとめます。",
+    tags: ["要点整理", "理解度分析", "復習設計"]
   },
   {
     eyebrow: "Auto Caption & Translation",
-    title: "自動字幕・翻訳",
-    headline: "専門用語と英語で、学びを止めない。",
-    body: "英語スライド、英語論文、専門用語を含む講義を字幕・翻訳で支援。多言語環境での参加にも対応しやすくなります。",
+    title: "リアルタイム字幕・翻訳",
+    headline: "専門用語と英語を、理解へつなぐ。",
+    body: "講義者の音声をリアルタイムに文字化し、専門用語の理解を支援。英語を含む講義では翻訳表示を通じて、多言語環境での参加を実現します。",
     tags: ["字幕", "翻訳", "多言語支援"]
+  }
+];
+
+export const aiSupportCards = [
+  {
+    eyebrow: "LECTURE RECAP",
+    title: "講義終了後コメント要約",
+    body: "講義中に集まったコメントと質問をAIが整理し、重要な論点、質問が集中したテーマ、復習すべき内容を一つのビューにまとめます。",
+    tags: ["コメント要約", "重要論点", "復習支援"]
+  },
+  {
+    eyebrow: "QUESTION FOCUS",
+    title: "注目コメントの上位表示",
+    body: "リアクションと参加状況をもとに、クラス全体で共有する価値の高いコメントを上位に表示。講義者が次に扱うべき論点を明確にします。",
+    tags: ["リアクション集計", "優先表示", "クラス共有"]
+  },
+  {
+    eyebrow: "SMART ORGANIZATION",
+    title: "AIによる質問分類",
+    body: "投稿内容を学術的質問、講義内容の確認、運営上の質問、感想に分類。必要な情報へすばやくアクセスできる講義空間をつくります。",
+    tags: ["自動分類", "質問整理", "即時アクセス"]
+  },
+  {
+    eyebrow: "AI REFERENCE",
+    title: "学術的質問へのAI参考回答",
+    body: "講義資料と登録情報をもとに、OpenAI APIの最新モデルが学術的質問への参考回答を生成。AI回答と講義者回答を明確に表示します。",
+    tags: ["AI参考回答", "講義資料連携", "回答支援"]
+  },
+  {
+    eyebrow: "SMART MODERATION",
+    title: "AIモデレーション",
+    body: "投稿内容をリアルタイムに解析し、安心して参加できる講義コミュニティを維持。管理者確認まで一貫した運用を実現します。",
+    tags: ["投稿管理", "自動検出", "管理者確認"]
+  }
+];
+
+export const plannedAIModels = [
+  {
+    name: "GPT-5.6 Luna",
+    role: "講義理解・質問整理",
+    description: "講義資料と投稿の文脈を横断し、質問分類、学術的な参考回答、重要論点の抽出、講義後要約を高精度に担う次世代モデル。"
+  },
+  {
+    name: "OpenAI Realtime-Whisper",
+    role: "リアルタイム音声理解",
+    description: "講義音声を低遅延で文字化し、専門用語を含む字幕と多言語翻訳へ接続。講義の言葉を、その瞬間に理解へ変える音声モデル。"
   }
 ];
 
 export const beforeAfter = {
   before: [
-    "200〜300人の講義で、誰も質問しない。",
-    "わからない学生は、そのまま置いていかれる。",
-    "教員には学生の理解度が見えない。",
-    "講義後までクイズや課題の反応がわからない。",
-    "復習すべきポイントが曖昧なまま残る。"
+    "200〜300人の講義に、多様な疑問が生まれる。",
+    "学生一人ひとりが、それぞれの視点で理解を進める。",
+    "教員が専門知識と講義体験を届ける。",
+    "クイズや課題に、学生の反応が集まる。",
+    "講義後も、復習へ学びが続く。"
   ],
   after: [
     "疑問がリアルタイム掲示板に届く。",
@@ -301,14 +347,14 @@ export const beforeAfter = {
 export const teacherCards = [
   {
     title: "理解度を、その場で把握できる。",
-    body: "リアルタイムクイズにより、学生がどの概念で迷っているかを講義中に確認できます。"
+    body: "リアルタイムクイズにより、学生の理解が変化するポイントを講義中に確認できます。"
   },
   {
-    title: "質問が出ない講義でも、疑問を集められる。",
-    body: "学生が手を挙げなくても、掲示板に疑問を投稿できます。似た質問をまとめて扱うことで、大人数講義でも効率的に補足説明できます。"
+    title: "すべての疑問を、クラスの学びに変える。",
+    body: "掲示板に集まる疑問をAIが整理し、共通する質問をまとめて表示。大人数講義でも、最適な補足説明をすばやく届けます。"
   },
   {
-    title: "学生が離れた瞬間に気づける。",
+    title: "学生の理解が動く瞬間を捉える。",
     body: "コメント数、クイズ回答率、リアクションの変化から、講義中の集中度や参加状況の変化を把握できます。"
   },
   {
@@ -319,7 +365,7 @@ export const teacherCards = [
 
 export const teacherDashboard = {
   responseRate: 82,
-  signals: ["コメント急増: 酵素阻害の説明後", "理解度低下: Km / Vmax の比較問題", "質問集中: RT-qPCRの内在性コントロール"],
+  signals: ["コメント急増: 酵素阻害の説明後", "理解度変化: Km / Vmax の比較問題", "質問集中: RT-qPCRの内在性コントロール"],
   keywords: ["Km", "競合阻害", "Vmax", "Lineweaver-Burk", "ΔΔCt法"]
 };
 
@@ -338,7 +384,7 @@ export const useCases = [
   },
   {
     title: "薬化学・有機化学",
-    body: "反応機構、pKa、立体化学、構造活性相関など、途中で置いていかれやすい内容を確認できます。"
+    body: "反応機構、pKa、立体化学、構造活性相関を、クイズと質問で段階的に理解できます。"
   },
   {
     title: "研究セミナー・卒業研究指導",
@@ -348,60 +394,65 @@ export const useCases = [
 
 export const architecturePrinciples = [
   {
-    title: "Realtime-first",
-    body: "コメント、クイズ回答、講義状態をリアルタイムに同期。学生の反応を講義中に扱うため、画面更新を待たない体験を重視します。",
-    tags: ["Supabase Realtime", "PostgreSQL", "Realtime Sync"]
+    title: "リアルタイムに反応が届く",
+    body: "コメント、クイズ回答、講義状態を即時に同期し、学生の反応をその瞬間の講義へ反映します。",
+    tags: ["Supabase Realtime", "PostgreSQL"]
   },
   {
-    title: "Mobile-first UI",
-    body: "学生の主な利用端末をスマートフォンと想定し、片手で参加できるUI、短い導線、読みやすいカード設計を優先します。",
+    title: "スマートフォンで直感的に使える",
+    body: "片手で参加できるUI、短い導線、読みやすいカード設計で、講義への参加をスムーズにします。",
     tags: ["React", "TypeScript", "Vite", "Responsive Components"]
   },
   {
-    title: "RLS-first Security",
-    body: "講義、ユーザー、ロールごとにデータアクセスを制御。必要な範囲の情報だけを扱える設計を重視します。",
+    title: "講義ごとに情報を守る",
+    body: "講義、ユーザー、ロールごとにデータアクセスを制御し、許可された情報を安全に扱います。",
     tags: ["Row Level Security", "Role-based Access Control", "Lecture-scoped Data Access"]
   },
   {
-    title: "AI-assisted Learning",
-    body: "AIは講義を置き換えるものではなく、理解と復習を補助するレイヤーとして設計します。",
+    title: "AIが理解と復習を加速する",
+    body: "質問整理、参考回答、講義要約、モデレーションを一つのAI学習支援レイヤーとして提供します。",
     tags: ["OpenAI API", "Google Workspace API", "Google Apps Script"]
   },
   {
-    title: "Edge Deploy",
-    body: "Cloudflare Pages と GitHub を用いた軽量なデプロイ構成により、改善をすばやく反映できる開発フローを重視します。",
+    title: "継続的に進化する",
+    body: "Cloudflare PagesとGitHubを組み合わせ、改善をすばやく反映する開発フローを構築します。",
     tags: ["Cloudflare Pages", "GitHub", "CI/CD-ready Workflow"]
   }
 ];
 
 export const technologyCards = [
   ["フロントエンド", "React / TypeScript / Vite"],
-  ["バックエンド", "Supabase / PostgreSQL / Realtime Sync"],
-  ["セキュリティ", "Row Level Security / Role-based Access Control"],
+  ["バックエンド基盤", "Supabase（PostgreSQL / Realtime / Auth）"],
+  ["アクセス制御", "Row Level Security / Lecture-scoped Access"],
+  ["AI・音声処理", "OpenAI API 最新モデル / Realtime API / Moderation"],
+  ["外部連携", "Google Workspace API / Google Apps Script"],
   ["ホスティング", "Cloudflare Pages"],
-  ["外部API連携", "OpenAI API / Google Workspace API / Google Apps Script"],
-  ["AI実装支援", "OpenAI Codex / ChatGPT 5.5 Pro"]
+  ["開発・継続改善", "GitHub / CI/CD / OpenAI Codex"]
+];
+
+export const technologyGlossary = [
+  ["UI", "ユーザーが実際に見て操作する画面とボタンの構成"],
+  ["React", "画面の変化を効率的に管理するWeb開発技術"],
+  ["TypeScript", "大規模な開発でも高い品質を保つプログラミング言語"],
+  ["Supabase", "データベース、認証、リアルタイム通信を統合する基盤"],
+  ["PostgreSQL", "コメントや講義情報を安全に保存・整理するデータベース"],
+  ["Realtime", "コメントやクイズ結果を画面更新なしで即時に届ける仕組み"],
+  ["RLS", "ユーザーと講義ごとに閲覧可能なデータを制御する仕組み"],
+  ["API", "異なるサービスの機能を安全につなぐ接続方式"],
+  ["CI/CD", "コードの更新を検証し、公開へ反映する開発フロー"]
 ];
 
 export const securityCards = [
   {
-    title: "講義ごとのデータ分離",
-    body: "コメントやクイズは講義単位で管理し、他の講義からアクセスできない設計です。"
+    title: "講義ごとのアクセス管理",
+    body: "コメントやクイズを講義単位で管理し、許可された参加者だけが必要な情報へアクセスします。"
   },
   {
-    title: "権限に応じたアクセス管理",
-    body: "学生・教員・管理者ごとに、利用できる機能を適切に制御します。"
+    title: "安心して参加できる投稿環境",
+    body: "投稿管理、通報、AIモデレーションを組み合わせ、すべての参加者が学びに集中できる環境を提供します。"
   },
   {
-    title: "必要最小限のデータ設計",
-    body: "講義に不要な個人情報は扱わず、必要な情報のみを管理します。"
-  },
-  {
-    title: "安全なコミュニティ運営",
-    body: "投稿管理や通報機能を備え、安心して参加できる環境を目指します。"
-  },
-  {
-    title: "AIの透明な活用",
-    body: "AIは学習支援の補助として利用し、最終的な判断は利用者・教員が行います。"
+    title: "AI利用の透明性",
+    body: "AIが生成した参考回答と講義者による回答を明確に区別し、信頼できる学習体験を届けます。"
   }
 ];

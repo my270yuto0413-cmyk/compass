@@ -6,15 +6,15 @@ const navItems = [
   { href: "#students", label: "Students" },
   { href: "#examples", label: "Examples" },
   { href: "#teachers", label: "Teachers" },
-  { href: "#technology", label: "Technology" }
+  { href: "#developers", label: "For Developers" }
 ];
 
 const mobileItems = [
   { href: "#students", label: "学生向け" },
   { href: "#examples", label: "講義例" },
   { href: "#teachers", label: "教員向け" },
-  { href: "#technology", label: "技術・安全性" },
-  { href: links.compassHome, label: "COMPASSへ戻る" }
+  { href: "#developers", label: "開発者向け" },
+  { href: "#developer-profile", label: "開発者紹介" }
 ];
 
 export function Header() {
@@ -99,7 +99,7 @@ export function Header() {
             </button>
           </div>
           <a className="mobile-home-cta" href={links.compassHome} onClick={() => setOpen(false)}>
-            COMPASS 公式サイト
+            COMPASS 公式サイトへ戻る
           </a>
           <nav className="mobile-nav" aria-label="モバイルナビゲーション">
             {mobileItems.map((item) => (
@@ -107,9 +107,6 @@ export function Header() {
                 {item.label}
               </a>
             ))}
-            <CTAButton className="mobile-join" href={links.join} onClick={() => setOpen(false)}>
-              今すぐ講義に参加する
-            </CTAButton>
           </nav>
         </div>
       </aside>
