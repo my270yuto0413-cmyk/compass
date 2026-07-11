@@ -23,16 +23,6 @@
     revealTargets.forEach((target) => target.classList.add("is-visible"));
   }
 
-  if (hero) {
-    if (mobileQuery.matches && !reduceMotion) {
-      window.setTimeout(() => {
-        hero.classList.add("is-intro-complete");
-      }, 3300);
-    } else {
-      hero.classList.add("is-intro-complete");
-    }
-  }
-
   if (hero && !hero.classList.contains("hero--editorial") && !reduceMotion) {
     let pointerFrame = null;
     hero.addEventListener("pointermove", (event) => {
@@ -68,22 +58,6 @@
     }, { passive: true });
     updateHeroScroll();
   }
-
-  document.querySelectorAll('a[href^="#"]').forEach((link) => {
-    link.addEventListener("click", (event) => {
-      const id = link.getAttribute("href");
-      if (!id || id === "#") return;
-      const target = document.querySelector(id);
-      if (!target) return;
-
-      event.preventDefault();
-      closeAllNavGroups();
-      target.scrollIntoView({
-        behavior: reduceMotion ? "auto" : "smooth",
-        block: "start"
-      });
-    });
-  });
 
   const canvas = document.querySelector(".hero-particles");
   if (!canvas) return;

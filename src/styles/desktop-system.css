@@ -12,7 +12,7 @@
     --desktop-ink: #0a1726;
     --desktop-blue: #3e839c;
     --desktop-gold: #b58b3e;
-    --desktop-muted: #66727d;
+    --desktop-muted: #4f5d68;
     --desktop-line: rgba(10, 23, 38, 0.14);
     --desktop-line-strong: rgba(10, 23, 38, 0.24);
     --section-y: clamp(82px, 8vw, 106px);
@@ -159,7 +159,7 @@
   }
 
   .vision-section .section-body p {
-    color: rgba(255, 255, 255, 0.74);
+    color: rgba(255, 255, 255, 0.84);
   }
 
   .orbits-section {
@@ -449,7 +449,7 @@
   }
 
   .community-invitation p:not(.community-invitation-lead) {
-    color: rgba(255, 255, 255, 0.7);
+    color: rgba(255, 255, 255, 0.82);
   }
 
   .community-invitation .community-details,
@@ -522,7 +522,7 @@
   .community-details-body {
     margin-top: 0;
     border-color: var(--desktop-blue);
-    color: rgba(255, 255, 255, 0.74);
+    color: rgba(255, 255, 255, 0.84);
   }
 
   .community-join-button {
@@ -558,7 +558,7 @@
   }
 
   .explore-chapter p {
-    color: rgba(255, 255, 255, 0.72);
+    color: rgba(255, 255, 255, 0.82);
   }
 
   .visual-image {
