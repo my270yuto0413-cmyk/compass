@@ -5,13 +5,12 @@ import { MobileLectureStatus } from "./sections/MobileLectureStatus";
 import { LectureMoment } from "./sections/LectureMoment";
 import { Students } from "./sections/Students";
 import { ScienceLectureExperience } from "./sections/ScienceLectureExperience";
-import { StudentFlow } from "./sections/StudentFlow";
 import { Features } from "./sections/Features";
+import { AILearningSupport } from "./sections/AILearningSupport";
 import { BeforeAfter } from "./sections/BeforeAfter";
 import { Teachers } from "./sections/Teachers";
 import { TeachingUseCases } from "./sections/TeachingUseCases";
 import { Technology } from "./sections/Technology";
-import { EngineeringPhilosophy } from "./sections/EngineeringPhilosophy";
 import { SecurityGovernance } from "./sections/SecurityGovernance";
 import { FinalCTA } from "./sections/FinalCTA";
 
@@ -26,16 +25,15 @@ export function App() {
         <Hero />
         <MobileLectureStatus />
         <LectureMoment />
+        <Features />
+        <AILearningSupport />
+        <BeforeAfter />
         <Students />
         <ScienceLectureExperience />
-        <StudentFlow />
-        <Features />
-        <BeforeAfter />
         <Teachers />
         <TeachingUseCases />
-        <Technology />
-        <EngineeringPhilosophy />
         <SecurityGovernance />
+        <Technology />
         <FinalCTA />
       </main>
       <Footer />

@@ -14,13 +14,16 @@ export function Footer() {
           </span>
         </a>
         <nav className="footer-nav" aria-label="フッターナビゲーション">
-          <a href="#students">Students</a>
-          <a href="#examples">Examples</a>
-          <a href="#teachers">Teachers</a>
-          <a href="#technology">Technology</a>
+          <a href="#students">学生向け</a>
+          <a href="#examples">講義例</a>
+          <a href="#teachers">教員向け</a>
+          <a href="#developers">開発者向け</a>
           <a href={links.compassHome}>COMPASSへ戻る</a>
         </nav>
-        <p className="footer-copy">© 2026 COMPASS. All rights reserved.</p>
+        <div className="footer-meta">
+          <p className="footer-note">一部機能には開発中のものも含まれます。</p>
+          <p className="footer-copy">© 2026 COMPASS. All rights reserved.</p>
+        </div>
       </div>
     </footer>
   );

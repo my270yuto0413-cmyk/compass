@@ -9,8 +9,8 @@ export function Features() {
       <Reveal>
         <SectionHeader
           eyebrow="FEATURES"
-          title="講義中から講義後まで、ひとつの学習体験に。"
-          lead="リアルタイムの参加、理解度の確認、AIによる整理。聞く、質問する、確認する、復習するを一つにつなげます。"
+          title="講義のすべてを、ひとつの学習体験に。"
+          lead="リアルタイムの参加、理解度の共有、AIによる整理。聞く、質問する、確認する、復習する。そのすべてを一つにつなげます。"
           align="center"
         />
       </Reveal>

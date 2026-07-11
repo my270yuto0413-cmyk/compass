@@ -24,6 +24,11 @@ export function Hero() {
       <div className="hero-grid section__inner">
         <Reveal className="hero-copy">
           <p className="eyebrow">{hero.eyebrow}</p>
+          <div className="hero-ai-badge">
+            <span aria-hidden="true" />
+            <strong>OpenAI API 最新モデル搭載</strong>
+            <small>2026年7月現在</small>
+          </div>
           <h1 id="hero-title" className="hero-title" aria-label={hero.title}>
             <span className="hero-title__line hero-title__line--quiet">
               <span className="hero-title__desktop">わからないが、</span>
@@ -39,20 +44,6 @@ export function Hero() {
               講義を変える
             </span>
           </p>
-          <div className="mobile-hero-signals" aria-hidden="true">
-            <div className="mobile-signal-card mobile-signal-card--question">
-              <span>質問</span>
-              <p>RT-qPCRで検証できますか？</p>
-            </div>
-            <div className="mobile-signal-card mobile-signal-card--quiz">
-              <span>Quiz</span>
-              <p>回答率 82%</p>
-            </div>
-            <div className="mobile-signal-card mobile-signal-card--ai">
-              <span>AI Summary</span>
-              <p>重要語句を整理中</p>
-            </div>
-          </div>
           <div className="hero-chips" aria-label="主要機能">
             {hero.chips.map((chip) => (
               <FeatureChip key={chip}>{chip}</FeatureChip>

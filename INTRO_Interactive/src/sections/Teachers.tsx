@@ -11,8 +11,8 @@ export function Teachers() {
         <Reveal>
           <SectionHeader
             eyebrow="FOR TEACHERS"
-            title="学生の沈黙を、授業改善の手がかりに。"
-            lead="コメント、クイズ、リアクション、AI要約を通じて、講義中の反応を可視化し、次の説明や授業改善につなげます。"
+            title="学生の反応を、授業改善の力に。"
+            lead="コメント、クイズ、リアクション、AI要約を通じて、講義中の反応を可視化し、次の説明と授業改善につなげる。"
           />
           <div className="teacher-card-grid">
             {teacherCards.map((card) => (

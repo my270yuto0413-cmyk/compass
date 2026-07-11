@@ -7,12 +7,12 @@ export function BeforeAfter() {
   return (
     <Section id="before-after" className="before-after section--light">
       <Reveal>
-        <SectionHeader eyebrow="BEFORE / AFTER" title="沈黙していた講義が、反応しはじめる。" align="center" />
+        <SectionHeader eyebrow="LECTURE TRANSFORMATION" title="講義が反応し、理解が動き出す。" align="center" />
       </Reveal>
       <div className="before-after-grid">
         <Reveal>
           <article className="compare-card compare-card--before">
-            <p>Before</p>
+            <p>Lecture</p>
             {beforeAfter.before.map((item) => (
               <span key={item}>{item}</span>
             ))}
@@ -20,14 +20,14 @@ export function BeforeAfter() {
         </Reveal>
         <Reveal className="compare-center" delay={100}>
           <p>
-            講義は、話して終わるものから、
+            講義は、伝える時間から、
             <br />
             理解を一緒につくるものへ。
           </p>
         </Reveal>
         <Reveal delay={160}>
           <article className="compare-card compare-card--after">
-            <p>After</p>
+            <p>COMPASS Interactive</p>
             {beforeAfter.after.map((item) => (
               <span key={item}>{item}</span>
             ))}

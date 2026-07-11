@@ -16,8 +16,8 @@ export function Students() {
         <Reveal>
           <SectionHeader
             eyebrow="FOR STUDENTS"
-            title="もう、ひとりで黙って置いていかれない。"
-            lead="質問、掲示板、クイズ、字幕、翻訳、AI要約を通じて、講義中のつまずきをその場で拾い、理解へつなげます。"
+            title="すべての疑問が、次の理解につながる。"
+            lead="質問、掲示板、クイズ、字幕、翻訳、AI要約を通じて、講義中の気づきをその場で共有し、深い理解へつなげます。"
           />
           <div className="student-card-list" role="list">
             {studentCards.map((card, index) => (
