@@ -22,10 +22,14 @@ export function LegacyPageBody() {
         <ResourcesSection />
         <EducationSection />
         <CommunitySection />
-        <LibrarySection />
-        <MessageSection />
-        <FounderSection />
-        <ContactSection />
+        <div className="explore-chapter">
+          <LibrarySection />
+          <MessageSection />
+        </div>
+        <div className="trust-chapter">
+          <FounderSection />
+          <ContactSection />
+        </div>
       </main>
       <SiteFooter />
     </>
