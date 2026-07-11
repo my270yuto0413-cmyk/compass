@@ -48,7 +48,8 @@
     media="(min-width: 681px)"
     fetchpriority="high"
   />
-  <link rel="stylesheet" href="style.css?v=20260702-desktop-hero" />
+  <link rel="stylesheet" href="style.css?v=20260712-editorial" />
+  <link rel="stylesheet" href="desktop-editorial.css?v=20260712" media="(min-width: 921px)" />
 
   <meta property="og:locale" content="ja_JP" />
   <meta property="og:type" content="website" />
@@ -337,7 +338,21 @@
           </div>
         </div>
 
-        <div class="hero-visual" aria-label="英語、AI、研究、キャリアを統合した学習支援のビジュアル">
+        <div class="hero-visual" role="img" aria-label="未来戦略ライブラリが扱う薬学、英語、AI、研究・キャリアの4領域">
+          <div class="desktop-library-index" aria-hidden="true">
+            <div class="desktop-index-heading">
+              <span>LIBRARY INDEX</span>
+              <strong>Four fields.<br>One decision system.</strong>
+              <small>学習から未来設計までを、一つの資料体系へ。</small>
+            </div>
+            <ol class="desktop-index-list">
+              <li><span>01</span><strong>Pharmacy</strong><small>学習・試験対策</small></li>
+              <li><span>02</span><strong>English</strong><small>資格・実用英語</small></li>
+              <li><span>03</span><strong>AI Literacy</strong><small>思考・知識創造</small></li>
+              <li><span>04</span><strong>Research &amp; Career</strong><small>研究室・進路設計</small></li>
+            </ol>
+            <div class="desktop-index-foot"><span>COMPASS</span><span>FSL / 2026</span></div>
+          </div>
           <div class="orbital-ring ring-one" aria-hidden="true"></div>
           <div class="orbital-ring ring-two" aria-hidden="true"></div>
 
@@ -1180,6 +1195,29 @@
           query.addListener(handler);
         }
       };
+
+      const main = document.querySelector('main');
+      const valueSection = document.querySelector('#value');
+      const contentsSection = document.querySelector('#contents');
+      const materialsSection = document.querySelector('#materials');
+      const whySection = document.querySelector('.why');
+      const statusSection = document.querySelector('#status');
+      const registrationOrderTarget = document.querySelector('#registration');
+      const syncSectionOrder = () => {
+        if (!main || !valueSection || !contentsSection || !materialsSection || !whySection || !statusSection || !registrationOrderTarget) return;
+        if (desktopQuery.matches) {
+          main.insertBefore(contentsSection, valueSection);
+          main.insertBefore(materialsSection, valueSection);
+          main.insertBefore(whySection, statusSection);
+        } else {
+          main.insertBefore(whySection, registrationOrderTarget);
+          main.insertBefore(contentsSection, whySection);
+          main.insertBefore(materialsSection, whySection);
+        }
+      };
+      syncSectionOrder();
+      listenToMedia(desktopQuery, syncSectionOrder);
+
       root.classList.add('reveal-enabled');
       const header = document.querySelector('[data-site-header]');
       const navGroups = Array.from(document.querySelectorAll('[data-nav-menu]'));

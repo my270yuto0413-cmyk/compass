@@ -4054,6 +4054,10 @@ img {
   display: none;
 }
 
+.desktop-library-index {
+  display: none;
+}
+
 @media (max-width: 680px) {
   .hero {
     min-height: calc(100svh - 24px);
