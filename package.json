@@ -6,9 +6,9 @@
   "scripts": {
     "dev": "vite --host 127.0.0.1",
     "typecheck": "tsc --noEmit",
-    "build:client": "vite build --outDir .build/client",
-    "build:server": "vite build --ssr src/entry-server.tsx --outDir .build/server",
-    "build": "npm run typecheck && npm run build:client && npm run build:server && node scripts/assemble-site.mjs",
+    "build:client": "vite build --outDir ../.build/client",
+    "build:server": "vite build --ssr ../src/entry-server.tsx --outDir ../.build/server",
+    "build": "npm run typecheck && npm run build:client && npm run build:server && node scripts/assemble-site.mjs && node scripts/promote-root.mjs",
     "build:old-hero": "cross-env VITE_HERO_VARIANT=old npm run build",
     "verify": "node scripts/verify-build.mjs"
   },
