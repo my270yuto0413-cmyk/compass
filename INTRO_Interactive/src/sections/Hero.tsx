@@ -24,6 +24,11 @@ export function Hero() {
       <div className="hero-grid section__inner">
         <Reveal className="hero-copy">
           <p className="eyebrow">{hero.eyebrow}</p>
+          <div className="mobile-hero-brand-card" aria-label="COMPASS Interactive Live Lecture Experience">
+            <span className="mobile-hero-brand-card__status" aria-hidden="true" />
+            <strong>COMPASS Interactive</strong>
+            <small>LIVE LECTURE</small>
+          </div>
           <h1 id="hero-title" className="hero-title" aria-label={hero.title}>
             <span className="hero-title__line hero-title__line--quiet">
               <span className="hero-title__desktop">わからないが、</span>
