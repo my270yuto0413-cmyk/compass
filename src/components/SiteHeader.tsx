@@ -1,179 +1,303 @@
+import { useEffect, useRef, useState } from "react";
+
+type NavItem = {
+  className?: string;
+  description: string;
+  external?: boolean;
+  href: string;
+  label: string;
+};
+
+type NavGroup = {
+  id: "resources" | "education" | "community";
+  items: NavItem[];
+  label: string;
+};
+
+const navGroups: NavGroup[] = [
+  {
+    id: "resources",
+    label: "Resources",
+    items: [
+      {
+        href: "https://compass-official.pages.dev/future-strategy-library/",
+        label: "未来戦略ライブラリ",
+        description: "判断軸を届けるCOMPASSの中枢事業",
+        external: true
+      },
+      {
+        href: "INTRO_Interactive/",
+        label: "COMPASS Interactive",
+        description: "先進的な技術を駆使したリアルタイム講義支援システム",
+        className: "panel-link-interactive"
+      },
+      {
+        href: "https://forms.gle/sW49M329Dcets8ga9",
+        label: "COMPASS Essentials",
+        description: "英語・AIを中心とした厳選資料集",
+        external: true
+      }
+    ]
+  },
+  {
+    id: "education",
+    label: "Education",
+    items: [
+      { href: "#english-education", label: "English Education / 英語教育", description: "専門性を世界へ接続する力" },
+      { href: "#ai-literacy-education", label: "AI Literacy Education / AI活用教育", description: "人間が主語のAI活用" },
+      { href: "#life-science-education", label: "Life Science Education / 生命科学教育", description: "学びを研究と社会へつなげる" }
+    ]
+  },
+  {
+    id: "community",
+    label: "Community",
+    items: [
+      { href: "#vision", label: "About COMPASS", description: "学生支援の新しい羅針盤" },
+      {
+        href: "https://docs.google.com/forms/u/1/d/e/1FAIpQLSe8Z0GkK9lmXKutLWO8lGezBoP5zPstNlkAnUEqVOx_IY7v7g/viewform",
+        label: "Join COMPASS",
+        description: "学びを共につくる運営文化",
+        external: true
+      },
+      { href: "#activities", label: "Activities", description: "講演・交流・資料改善" },
+      { href: "#contact", label: "Partners", description: "教員・研究者・外部協力者との連携" }
+    ]
+  }
+];
+
+const mobileNavGroups: NavGroup[] = [
+  navGroups[0],
+  navGroups[1],
+  {
+    id: "community",
+    label: "Community",
+    items: [
+      { href: "#community", label: "COMPASSについて", description: "" },
+      {
+        href: "https://docs.google.com/forms/u/1/d/e/1FAIpQLSe8Z0GkK9lmXKutLWO8lGezBoP5zPstNlkAnUEqVOx_IY7v7g/viewform",
+        label: "コミュニティに参加する",
+        description: "",
+        external: true
+      },
+      { href: "#activities", label: "活動内容", description: "" },
+      { href: "#contact", label: "Partners", description: "" }
+    ]
+  }
+];
+
+const focusableSelector = "a[href], button:not([disabled])";
+
 export function SiteHeader() {
+  const headerRef = useRef<HTMLElement>(null);
+  const toggleRef = useRef<HTMLButtonElement>(null);
+  const mobilePanelRef = useRef<HTMLDivElement>(null);
+  const closeTimerRef = useRef<number | null>(null);
+  const [activeMenu, setActiveMenu] = useState<string | null>(null);
+  const [activeSection, setActiveSection] = useState("top");
+  const [mobileMounted, setMobileMounted] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const [onLightHero, setOnLightHero] = useState(true);
+
+  const closeMobileMenu = (restoreFocus = true) => {
+    setMobileOpen(false);
+    if (closeTimerRef.current) window.clearTimeout(closeTimerRef.current);
+    closeTimerRef.current = window.setTimeout(() => setMobileMounted(false), 280);
+    if (restoreFocus) window.setTimeout(() => toggleRef.current?.focus(), 0);
+  };
+
+  const openMobileMenu = () => {
+    if (closeTimerRef.current) window.clearTimeout(closeTimerRef.current);
+    setMobileMounted(true);
+    window.requestAnimationFrame(() => setMobileOpen(true));
+  };
+
+  useEffect(() => {
+    const updateHeader = () => {
+      setScrolled(window.scrollY > 12);
+      const hero = document.querySelector(".hero--editorial");
+      const headerHeight = headerRef.current?.getBoundingClientRect().height ?? 0;
+      setOnLightHero(Boolean(hero && hero.getBoundingClientRect().bottom > headerHeight));
+    };
+    updateHeader();
+    window.addEventListener("scroll", updateHeader, { passive: true });
+    return () => window.removeEventListener("scroll", updateHeader);
+  }, []);
+
+  useEffect(() => {
+    const ids = ["top", "resources", "education", "community", "message"];
+    const elements = ids.map((id) => document.getElementById(id)).filter((item): item is HTMLElement => Boolean(item));
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+        if (visible?.target.id) setActiveSection(visible.target.id);
+      },
+      { rootMargin: "-18% 0px -62% 0px", threshold: [0, 0.12, 0.4] }
+    );
+    elements.forEach((element) => observer.observe(element));
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    const handlePointer = (event: PointerEvent) => {
+      if (!headerRef.current?.contains(event.target as Node)) setActiveMenu(null);
+    };
+    const handleEscape = (event: KeyboardEvent) => {
+      if (event.key !== "Escape") return;
+      setActiveMenu(null);
+      if (mobileOpen) closeMobileMenu();
+    };
+    document.addEventListener("pointerdown", handlePointer);
+    document.addEventListener("keydown", handleEscape);
+    return () => {
+      document.removeEventListener("pointerdown", handlePointer);
+      document.removeEventListener("keydown", handleEscape);
+    };
+  }, [mobileOpen]);
+
+  useEffect(() => {
+    document.body.classList.toggle("menu-open", mobileOpen);
+    if (!mobileOpen) return;
+    const focusable = Array.from(mobilePanelRef.current?.querySelectorAll<HTMLElement>(focusableSelector) ?? []);
+    focusable[0]?.focus();
+    return () => document.body.classList.remove("menu-open");
+  }, [mobileOpen]);
+
+  const handleMobileKeyDown = (event: React.KeyboardEvent) => {
+    if (event.key !== "Tab") return;
+    const focusable = Array.from(mobilePanelRef.current?.querySelectorAll<HTMLElement>(focusableSelector) ?? []);
+    if (!focusable.length) return;
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+    if (event.shiftKey && document.activeElement === first) {
+      event.preventDefault();
+      last.focus();
+    } else if (!event.shiftKey && document.activeElement === last) {
+      event.preventDefault();
+      first.focus();
+    }
+  };
+
+  const headerClasses = [
+    "site-header",
+    scrolled ? "is-scrolled" : "",
+    onLightHero ? "is-on-light-hero" : ""
+  ].filter(Boolean).join(" ");
+
   return (
     <>
-<a className="skip-link" href="#main">本文へスキップ</a>
+      <a className="skip-link" href="#main">本文へスキップ</a>
+      <header ref={headerRef} className={headerClasses} data-site-header>
+        <div className="header-inner">
+          <a className="site-logo" href="#top" aria-label="COMPASS Home">
+            <span className="logo-mark" aria-hidden="true"><span /></span>
+            <span className="logo-copy"><strong>COMPASS</strong><small>Better Decisions</small></span>
+          </a>
 
-  <header className="site-header" data-site-header>
-    <div className="header-inner">
-      <a className="site-logo" href="#top" aria-label="COMPASS Home">
-        <span className="logo-mark" aria-hidden="true">
-          <span></span>
-        </span>
-        <span className="logo-copy">
-          <strong>COMPASS</strong>
-          <small>Better Decisions</small>
-        </span>
-      </a>
+          <nav className="desktop-nav" aria-label="Main navigation">
+            {navGroups.map((group) => {
+              const menuId = `${group.id}-menu`;
+              const current = activeSection === group.id;
+              return (
+                <div key={group.id} className={`nav-group${activeMenu === group.id ? " is-open" : ""}${current ? " is-current" : ""}`}>
+                  <button
+                    className="nav-trigger"
+                    type="button"
+                    aria-expanded={activeMenu === group.id}
+                    aria-controls={menuId}
+                    aria-current={current ? "location" : undefined}
+                    onClick={() => setActiveMenu((open) => open === group.id ? null : group.id)}
+                    onKeyDown={(event) => {
+                      if (event.key !== "ArrowDown") return;
+                      event.preventDefault();
+                      setActiveMenu(group.id);
+                      window.requestAnimationFrame(() => document.querySelector<HTMLAnchorElement>(`#${menuId} a`)?.focus());
+                    }}
+                  >
+                    {group.label}
+                  </button>
+                  <div id={menuId} className="nav-panel" role="menu">
+                    {group.items.map((item) => (
+                      <a
+                        key={item.href}
+                        className={`panel-link ${item.className ?? ""}`.trim()}
+                        href={item.href}
+                        role="menuitem"
+                        target={item.external ? "_blank" : undefined}
+                        rel={item.external ? "noopener noreferrer" : undefined}
+                        onClick={() => setActiveMenu(null)}
+                      >
+                        <span>{item.label}</span><small>{item.description}</small>
+                      </a>
+                    ))}
+                  </div>
+                </div>
+              );
+            })}
+            <a className={`nav-link${activeSection === "message" ? " is-current" : ""}`} href="messages/index.html">Messages</a>
+          </nav>
 
-      <nav className="desktop-nav" aria-label="Main navigation">
-        <div className="nav-group" data-nav-menu>
-          <button className="nav-trigger" type="button" aria-expanded="false" aria-controls="resources-menu">
-            Resources
+          <a className="header-cta" href="https://compass-official.pages.dev/future-strategy-library/" target="_blank" rel="noopener noreferrer">
+            Explore Library
+          </a>
+
+          <button
+            ref={toggleRef}
+            className="menu-toggle"
+            type="button"
+            aria-label={mobileOpen ? "メニューを閉じる" : "メニューを開く"}
+            aria-expanded={mobileOpen}
+            aria-controls="mobile-menu"
+            onClick={() => mobileOpen ? closeMobileMenu() : openMobileMenu()}
+          >
+            <span aria-hidden="true" /><span aria-hidden="true" />
           </button>
-          <div id="resources-menu" className="nav-panel" role="menu">
-            <a
-              className="panel-link"
-              href="https://compass-official.pages.dev/future-strategy-library/"
-              target="_blank"
-              rel="noopener noreferrer"
-              role="menuitem"
-            >
-              <span>未来戦略ライブラリ</span>
-              <small>判断軸を届けるCOMPASSの中枢事業</small>
-            </a>
-            <a className="panel-link panel-link-interactive" href="INTRO_Interactive/" role="menuitem">
-              <span>COMPASS Interactive</span>
-              <small>先進的な技術を駆使したリアルタイム講義支援システム</small>
-            </a>
-            <a
-              className="panel-link"
-              href="https://forms.gle/sW49M329Dcets8ga9"
-              target="_blank"
-              rel="noopener noreferrer"
-              role="menuitem"
-            >
-              <span>COMPASS Essentials</span>
-              <small>英語・AIを中心とした厳選資料集</small>
-            </a>
-          </div>
         </div>
+      </header>
 
-        <div className="nav-group" data-nav-menu>
-          <button className="nav-trigger" type="button" aria-expanded="false" aria-controls="education-menu">
-            Education
-          </button>
-          <div id="education-menu" className="nav-panel" role="menu">
-            <a className="panel-link" href="#english-education" role="menuitem">
-              <span>English Education / 英語教育</span>
-              <small>専門性を世界へ接続する力</small>
-            </a>
-            <a className="panel-link" href="#ai-literacy-education" role="menuitem">
-              <span>AI Literacy Education / AI活用教育</span>
-              <small>人間が主語のAI活用</small>
-            </a>
-            <a className="panel-link" href="#life-science-education" role="menuitem">
-              <span>Life Science Education / 生命科学教育</span>
-              <small>学びを研究と社会へつなげる</small>
-            </a>
-          </div>
-        </div>
-
-        <div className="nav-group" data-nav-menu>
-          <button className="nav-trigger" type="button" aria-expanded="false" aria-controls="community-menu">
-            Community
-          </button>
-          <div id="community-menu" className="nav-panel" role="menu">
-            <a className="panel-link" href="#vision" role="menuitem">
-              <span>About COMPASS</span>
-              <small>学生支援の新しい羅針盤</small>
-            </a>
-            <a
-              className="panel-link"
-              href="https://docs.google.com/forms/u/1/d/e/1FAIpQLSe8Z0GkK9lmXKutLWO8lGezBoP5zPstNlkAnUEqVOx_IY7v7g/viewform"
-              target="_blank"
-              rel="noopener noreferrer"
-              role="menuitem"
-            >
-              <span>Join COMPASS</span>
-              <small>学びを共につくる運営文化</small>
-            </a>
-            <a className="panel-link" href="#activities" role="menuitem">
-              <span>Activities</span>
-              <small>講演・交流・資料改善</small>
-            </a>
-            <a className="panel-link" href="#contact" role="menuitem">
-              <span>Partners</span>
-              <small>教員・研究者・外部協力者との連携</small>
-            </a>
-          </div>
-        </div>
-
-        <a className="nav-link" href="messages/index.html">Messages</a>
-      </nav>
-
-      <a
-        className="header-cta"
-        href="https://compass-official.pages.dev/future-strategy-library/"
-        target="_blank"
-        rel="noopener noreferrer"
+      <div className={`mobile-scrim${mobileOpen ? " is-visible" : ""}`} hidden={!mobileMounted} onClick={() => closeMobileMenu()} />
+      <aside
+        id="mobile-menu"
+        className={`mobile-menu${mobileOpen ? " is-open" : ""}`}
+        aria-label="Mobile navigation"
+        aria-hidden={!mobileOpen}
+        hidden={!mobileMounted}
+        onKeyDown={handleMobileKeyDown}
       >
-        Explore Library
-      </a>
-
-      <button
-        className="menu-toggle"
-        type="button"
-        aria-label="メニューを開く"
-        aria-expanded="false"
-        aria-controls="mobile-menu"
-        data-menu-toggle
-      >
-        <span aria-hidden="true"></span>
-        <span aria-hidden="true"></span>
-      </button>
-    </div>
-  </header>
-
-  <div className="mobile-scrim" data-menu-close hidden></div>
-  <aside id="mobile-menu" className="mobile-menu" aria-label="Mobile navigation" aria-hidden="true" hidden>
-    <div className="mobile-menu-panel">
-      <div className="mobile-menu-top">
-        <div>
-          <p>任意学生支援団体 COMPASS</p>
-          <span>Strategic Constellation Compass</span>
+        <div ref={mobilePanelRef} className="mobile-menu-panel">
+          <div className="mobile-menu-top">
+            <div><p>任意学生支援団体 COMPASS</p><span>Strategic Constellation Compass</span></div>
+            <button className="mobile-menu-close" type="button" aria-label="メニューを閉じる" onClick={() => closeMobileMenu()}>
+              <span aria-hidden="true" /><span aria-hidden="true" />
+            </button>
+          </div>
+          <nav className="mobile-nav" aria-label="Mobile menu links">
+            {mobileNavGroups.map((group) => (
+              <section key={group.id} className="mobile-nav-group" aria-labelledby={`mobile-${group.id}-title`}>
+                <h2 id={`mobile-${group.id}-title`}>{group.label}</h2>
+                {group.items.map((item) => (
+                  <a
+                    key={item.href}
+                    className={item.className === "panel-link-interactive" ? "mobile-nav-highlight" : undefined}
+                    href={item.href}
+                    target={item.external ? "_blank" : undefined}
+                    rel={item.external ? "noopener noreferrer" : undefined}
+                    onClick={() => closeMobileMenu(false)}
+                  >
+                    {item.label}
+                  </a>
+                ))}
+              </section>
+            ))}
+            <section className="mobile-nav-group" aria-labelledby="mobile-messages-title">
+              <h2 id="mobile-messages-title">Messages</h2>
+              <a href="messages/index.html" onClick={() => closeMobileMenu(false)}>後輩へのメッセージ</a>
+            </section>
+          </nav>
         </div>
-        <button className="mobile-menu-close" type="button" aria-label="メニューを閉じる" data-menu-close>
-          <span aria-hidden="true"></span>
-          <span aria-hidden="true"></span>
-        </button>
-      </div>
-
-      <nav className="mobile-nav" aria-label="Mobile menu links">
-        <section className="mobile-nav-group" aria-labelledby="mobile-resources-title">
-          <h2 id="mobile-resources-title">Resources</h2>
-          <a href="https://compass-official.pages.dev/future-strategy-library/" target="_blank" rel="noopener noreferrer">
-            未来戦略ライブラリ
-          </a>
-          <a className="mobile-nav-highlight" href="INTRO_Interactive/">
-            COMPASS Interactive
-          </a>
-          <a href="https://forms.gle/sW49M329Dcets8ga9" target="_blank" rel="noopener noreferrer">
-            COMPASS Essentials
-          </a>
-        </section>
-
-        <section className="mobile-nav-group" aria-labelledby="mobile-education-title">
-          <h2 id="mobile-education-title">Education</h2>
-          <a href="#english-education">English Education / 英語教育</a>
-          <a href="#ai-literacy-education">AI Literacy Education / AI活用教育</a>
-          <a href="#life-science-education">Life Science Education / 生命科学教育</a>
-        </section>
-
-        <section className="mobile-nav-group" aria-labelledby="mobile-community-title">
-          <h2 id="mobile-community-title">Community</h2>
-          <a href="#community">COMPASSについて</a>
-          <a href="https://docs.google.com/forms/u/1/d/e/1FAIpQLSe8Z0GkK9lmXKutLWO8lGezBoP5zPstNlkAnUEqVOx_IY7v7g/viewform" target="_blank" rel="noopener noreferrer">コミュニティに参加する</a>
-          <a href="#activities">活動内容</a>
-          <a href="#contact">Partners</a>
-        </section>
-
-        <section className="mobile-nav-group" aria-labelledby="mobile-messages-title">
-          <h2 id="mobile-messages-title">Messages</h2>
-          <a href="messages/index.html">後輩へのメッセージ</a>
-        </section>
-      </nav>
-    </div>
-  </aside>
+      </aside>
     </>
   );
 }

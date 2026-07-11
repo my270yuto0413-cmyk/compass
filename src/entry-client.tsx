@@ -2,6 +2,7 @@ import { hydrateRoot } from "react-dom/client";
 import { App } from "./App";
 import "./styles/legacy.css";
 import "./styles/hero.css";
+import "./styles/desktop-system.css";
 
 if (import.meta.env.VITE_HERO_VARIANT === "old") {
   void import("./styles/legacy-hero.css");

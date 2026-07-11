@@ -1,3 +1,5 @@
+import { Disclosure } from "../components/Disclosure";
+
 export function CommunitySection() {
   return (
     <>
@@ -25,6 +27,7 @@ export function CommunitySection() {
             <span>Skill Workshops</span>
             <h3>ワークショップ</h3>
             <p>実践的な学びを通して、新しい知識やスキルを身につけます。</p>
+            <Disclosure id="community-workshop-topics" className="community-list-disclosure" label="今後扱っていきたいテーマ" preserveMobileContent>
             <div className="community-list-block">
               <p>今後扱っていきたいテーマ</p>
               <ul>
@@ -37,6 +40,7 @@ export function CommunitySection() {
                 <li>Webデザイン（HTML / CSS）</li>
               </ul>
             </div>
+            </Disclosure>
           </article>
            <article className="community-activity-card">
         <span>Build COMPASS</span>
@@ -45,6 +49,7 @@ export function CommunitySection() {
           COMPASSの活動は、まだ発展途上です。
           教育活動、イベント、情報発信、資料制作などを、これから一緒に形にしてくださる運営メンバーを募集しています。
         </p>
+        <Disclosure id="community-operations-topics" className="community-list-disclosure" label="今後取り組んでいきたい活動" preserveMobileContent>
         <div className="community-list-block">
           <p>今後取り組んでいきたい活動</p>
           <ul>
@@ -58,6 +63,7 @@ export function CommunitySection() {
             <li>プロジェクトの立案・運営</li>
           </ul>
         </div>
+        </Disclosure>
       </article>
         </div>
 
@@ -69,18 +75,8 @@ export function CommunitySection() {
   参加頻度や関わり方に決まりはありません。経験や特別なスキルも必要ありません。
   「ちょっと参加してみたい」「誰かと話してみたい」という気持ちがあれば、それだけで十分です。
 </p>
-          <div className="community-details">
-            <button
-              className="community-details-toggle"
-              type="button"
-              aria-expanded="false"
-              aria-controls="community-member-details"
-              data-community-details-toggle
-            >
-              <span>運営メンバーの募集について</span>
-              <strong>詳細を見る</strong>
-            </button>
-            <div id="community-member-details" className="community-details-body" hidden>
+          <Disclosure id="community-member-details" className="community-details" label="運営メンバーの募集について">
+            <div className="community-details-body">
               <p>
                 COMPASSは、まだ立ち上げ段階にある学生コミュニティです。
                 資料提供、交流イベント、ワークショップなどを通して、学生にとって本当に役立つ活動を少しずつ形にしていく仲間を募集しています。
@@ -95,7 +91,7 @@ export function CommunitySection() {
                 なお、運営メンバーの活動は現在、学生主体のボランティアとして行っています。将来的に活動規模や運営体制が発展した場合には、必要に応じて謝礼等を検討する可能性があります。
               </p>
             </div>
-          </div>
+          </Disclosure>
 
           <a className="button button-primary community-join-button" href="https://docs.google.com/forms/u/1/d/e/1FAIpQLSe8Z0GkK9lmXKutLWO8lGezBoP5zPstNlkAnUEqVOx_IY7v7g/viewform" target="_blank" rel="noopener noreferrer">
             コミュニティに参加する
