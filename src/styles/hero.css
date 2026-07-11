@@ -1,0 +1,429 @@
+:root {
+  --editorial-base: #f5f6f2;
+  --editorial-ink: #0a1726;
+  --editorial-blue: #3e839c;
+  --editorial-gold: #b58b3e;
+  --editorial-muted: #66727d;
+  --editorial-line: rgba(10, 23, 38, 0.14);
+}
+
+.hero-copy-mobile {
+  display: none;
+}
+
+@media (min-width: 901px) {
+  .site-header.is-on-light-hero {
+    color: var(--editorial-ink);
+    background: rgba(245, 246, 242, 0.9);
+    border-color: rgba(10, 23, 38, 0.1);
+    box-shadow: none;
+  }
+
+  .site-header.is-on-light-hero.is-scrolled {
+    background: rgba(245, 246, 242, 0.94);
+    border-color: rgba(10, 23, 38, 0.12);
+    box-shadow: 0 14px 42px rgba(10, 23, 38, 0.08);
+  }
+
+  .site-header.is-on-light-hero .logo-mark {
+    border-color: rgba(10, 23, 38, 0.24);
+    background:
+      radial-gradient(circle, rgba(255, 255, 255, 0.92), transparent 46%),
+      linear-gradient(135deg, rgba(62, 131, 156, 0.14), rgba(181, 139, 62, 0.1));
+    box-shadow: none;
+  }
+
+  .site-header.is-on-light-hero .logo-mark::before {
+    border-color: rgba(10, 23, 38, 0.5);
+  }
+
+  .site-header.is-on-light-hero .logo-mark span {
+    background: rgba(10, 23, 38, 0.5);
+  }
+
+  .site-header.is-on-light-hero .logo-copy strong,
+  .site-header.is-on-light-hero .nav-trigger,
+  .site-header.is-on-light-hero .nav-link {
+    color: var(--editorial-ink);
+  }
+
+  .site-header.is-on-light-hero .logo-copy small {
+    color: var(--editorial-muted);
+  }
+
+  .site-header.is-on-light-hero .nav-trigger:hover,
+  .site-header.is-on-light-hero .nav-link:hover,
+  .site-header.is-on-light-hero .nav-trigger[aria-expanded="true"] {
+    color: var(--editorial-ink);
+    background: rgba(10, 23, 38, 0.06);
+  }
+
+  .site-header.is-on-light-hero .header-cta {
+    color: #fff;
+    background: var(--editorial-ink);
+    box-shadow: none;
+  }
+
+  .hero.hero--editorial {
+    min-height: clamp(680px, 86svh, 820px);
+    align-items: center;
+    overflow: clip;
+    padding: calc(var(--header-height) + clamp(48px, 7vh, 78px)) 0 clamp(58px, 8vh, 86px);
+    color: var(--editorial-ink);
+    background: var(--editorial-base);
+    isolation: isolate;
+  }
+
+  .hero.hero--editorial::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background-image:
+      linear-gradient(rgba(10, 23, 38, 0.032) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(10, 23, 38, 0.032) 1px, transparent 1px);
+    background-size: 72px 72px;
+    mask-image: linear-gradient(90deg, transparent, #000 42%, #000 100%);
+  }
+
+  .hero.hero--editorial::after {
+    content: "";
+    position: absolute;
+    inset: auto 0 0;
+    z-index: 1;
+    height: 1px;
+    background: rgba(10, 23, 38, 0.12);
+  }
+
+  .hero--editorial .hero-particles,
+  .hero--editorial .hero-media,
+  .hero--editorial .hero-shade,
+  .hero--editorial .hero-mobile-intro {
+    display: none;
+  }
+
+  .hero.hero--editorial .hero-grid {
+    width: min(1280px, calc(100% - 72px));
+    min-height: 0;
+    display: grid;
+    grid-template-columns: minmax(0, 1.16fr) minmax(340px, 0.84fr);
+    align-items: center;
+    gap: clamp(44px, 6vw, 96px);
+  }
+
+  .hero--editorial .hero-copy {
+    max-width: 740px;
+    margin: 0;
+    padding: 0;
+    text-shadow: none;
+  }
+
+  .hero--editorial .hero-copy::before,
+  .hero--editorial .hero-actions::before {
+    display: none;
+  }
+
+  .hero--editorial .hero-label {
+    margin: 0 0 22px;
+    color: var(--editorial-blue);
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 0.18em;
+  }
+
+  .hero--editorial h1 {
+    max-width: none;
+    margin: 0;
+    color: var(--editorial-ink);
+    font-size: clamp(3.35rem, 5.6vw, 4.6rem);
+    font-weight: 700;
+    line-height: 0.98;
+    letter-spacing: -0.055em;
+    text-wrap: balance;
+  }
+
+  .hero--editorial h1 span {
+    display: inline;
+    color: inherit;
+    background: none;
+    -webkit-text-fill-color: currentColor;
+  }
+
+  .hero--editorial .hero-subcopy {
+    max-width: 620px;
+    margin: 32px 0 0;
+    color: var(--editorial-ink);
+    font-size: clamp(1.08rem, 1.55vw, 1.3rem);
+    font-weight: 650;
+    line-height: 1.75;
+  }
+
+  .hero--editorial .hero-support {
+    max-width: 620px;
+    margin: 10px 0 0;
+    color: var(--editorial-muted);
+    font-size: 0.98rem;
+    line-height: 1.9;
+  }
+
+  .hero--editorial .hero-actions {
+    display: flex;
+    align-items: center;
+    gap: 26px;
+    margin-top: 34px;
+  }
+
+  .hero--editorial .button-primary {
+    min-height: 50px;
+    padding: 13px 24px;
+    color: #fff;
+    background: var(--editorial-ink);
+    border: 1px solid var(--editorial-ink);
+    border-radius: 3px;
+    box-shadow: none;
+    font-size: 0.9rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+  }
+
+  .hero--editorial .button-primary:hover {
+    background: #14283c;
+    box-shadow: 0 12px 28px rgba(10, 23, 38, 0.16);
+  }
+
+  .hero--editorial .hero-library-link {
+    min-height: 44px;
+    padding: 0 2px;
+    color: var(--editorial-ink);
+    background: transparent;
+    border: 0;
+    border-bottom: 1px solid rgba(10, 23, 38, 0.3);
+    border-radius: 0;
+    box-shadow: none;
+    backdrop-filter: none;
+    font-size: 0.88rem;
+    font-weight: 700;
+  }
+
+  .hero--editorial .hero-library-link:hover {
+    color: var(--editorial-blue);
+    background: transparent;
+    border-color: var(--editorial-blue);
+  }
+
+  .hero--editorial .mobile-orbit-brief,
+  .hero--editorial .hero-mobile-break {
+    display: none;
+  }
+
+  .hero--editorial .hero-visual--editorial {
+    width: 100%;
+    min-height: 0;
+    display: grid;
+    place-items: center;
+    padding: 0;
+    overflow: visible;
+  }
+
+  .hero--editorial .hero-visual--editorial::before {
+    display: none;
+  }
+
+  .precision-compass {
+    position: relative;
+    width: min(100%, 500px);
+    aspect-ratio: 1;
+    color: var(--editorial-ink);
+  }
+
+  .precision-compass__field {
+    position: absolute;
+    inset: 4%;
+    border-radius: 50%;
+    background:
+      radial-gradient(circle at 50% 50%, rgba(62, 131, 156, 0.075), transparent 36%),
+      repeating-conic-gradient(from -0.5deg, rgba(10, 23, 38, 0.2) 0 1deg, transparent 1deg 10deg);
+    mask-image: radial-gradient(circle, transparent 0 70%, #000 70.2% 71%, transparent 71.2%);
+  }
+
+  .precision-compass__ring {
+    position: absolute;
+    border-radius: 50%;
+    border: 1px solid var(--editorial-line);
+  }
+
+  .precision-compass__ring--outer {
+    inset: 8%;
+  }
+
+  .precision-compass__ring--inner {
+    inset: 27%;
+    border-color: rgba(62, 131, 156, 0.28);
+  }
+
+  .precision-compass__crosshair {
+    position: absolute;
+    inset: 15%;
+    border-radius: 50%;
+    background:
+      linear-gradient(90deg, transparent calc(50% - 0.5px), rgba(10, 23, 38, 0.13) 50%, transparent calc(50% + 0.5px)),
+      linear-gradient(transparent calc(50% - 0.5px), rgba(10, 23, 38, 0.13) 50%, transparent calc(50% + 0.5px));
+  }
+
+  .precision-compass__needle {
+    position: absolute;
+    z-index: 3;
+    left: calc(50% - 2px);
+    top: 20%;
+    width: 4px;
+    height: 30%;
+    border-radius: 999px 999px 2px 2px;
+    background: linear-gradient(var(--editorial-gold) 0 52%, var(--editorial-blue) 52% 100%);
+    transform: rotate(18deg);
+    transform-origin: 50% 100%;
+    animation: compassNeedleSettle 1.15s cubic-bezier(0.2, 0.75, 0.2, 1) 0.28s both;
+  }
+
+  .precision-compass__core {
+    position: absolute;
+    z-index: 4;
+    left: 50%;
+    top: 50%;
+    width: 136px;
+    aspect-ratio: 1;
+    display: grid;
+    place-content: center;
+    gap: 2px;
+    border-radius: 50%;
+    color: #fff;
+    background: var(--editorial-ink);
+    box-shadow: 0 18px 50px rgba(10, 23, 38, 0.16);
+    transform: translate(-50%, -50%);
+    text-align: center;
+  }
+
+  .precision-compass__core::after {
+    content: "";
+    position: absolute;
+    inset: -9px;
+    border: 1px solid rgba(10, 23, 38, 0.2);
+    border-radius: inherit;
+  }
+
+  .precision-compass__core strong {
+    font-size: 0.8rem;
+    font-weight: 800;
+    letter-spacing: 0.16em;
+  }
+
+  .precision-compass__core span {
+    color: rgba(255, 255, 255, 0.58);
+    font-size: 0.58rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .precision-compass__axis {
+    position: absolute;
+    z-index: 5;
+    display: grid;
+    gap: 0;
+    min-width: 118px;
+    padding-top: 10px;
+    border-top: 1px solid rgba(10, 23, 38, 0.28);
+  }
+
+  .precision-compass__axis span {
+    color: var(--editorial-gold);
+    font-size: 0.62rem;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+  }
+
+  .precision-compass__axis strong {
+    font-size: 0.78rem;
+    font-weight: 750;
+    letter-spacing: 0.02em;
+  }
+
+  .precision-compass__axis small {
+    color: var(--editorial-muted);
+    font-size: 0.52rem;
+    letter-spacing: 0.14em;
+  }
+
+  .precision-compass__axis--resources {
+    left: 1%;
+    top: 25%;
+  }
+
+  .precision-compass__axis--education {
+    right: 0;
+    top: 16%;
+  }
+
+  .precision-compass__axis--community {
+    right: 3%;
+    bottom: 17%;
+  }
+
+  .precision-compass__coordinate {
+    position: absolute;
+    color: rgba(10, 23, 38, 0.45);
+    font-size: 0.55rem;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+  }
+
+  .precision-compass__coordinate--north { left: 50%; top: 4%; transform: translateX(-50%); }
+  .precision-compass__coordinate--east { right: 4%; top: 50%; transform: translateY(-50%); }
+  .precision-compass__coordinate--south { left: 50%; bottom: 4%; transform: translateX(-50%); }
+  .precision-compass__coordinate--west { left: 4%; top: 50%; transform: translateY(-50%); }
+}
+
+@media (min-width: 901px) and (max-width: 1080px) {
+  .hero.hero--editorial .hero-grid {
+    width: min(100% - 48px, 1180px);
+    grid-template-columns: minmax(0, 1.12fr) minmax(300px, 0.88fr);
+    gap: 34px;
+  }
+
+  .hero--editorial h1 {
+    font-size: clamp(3.1rem, 5.4vw, 4rem);
+  }
+
+  .precision-compass__axis {
+    min-width: 100px;
+  }
+}
+
+@media (max-width: 900px) {
+  .hero-copy-desktop {
+    display: none;
+  }
+
+  .hero-copy-mobile {
+    display: inline;
+  }
+
+  .hero--editorial .hero-mobile-intro {
+    display: none;
+  }
+
+  .js .hero--editorial .hero-mobile-intro {
+    display: grid;
+  }
+}
+
+@keyframes compassNeedleSettle {
+  from { opacity: 0; transform: rotate(10deg); }
+  to { opacity: 1; transform: rotate(18deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .precision-compass__needle {
+    animation: none;
+    transform: rotate(18deg);
+  }
+}

@@ -1,0 +1,5 @@
+@media (min-width: 901px) {
+  .hero:not(.hero--editorial) .hero-media {
+    background-image: url("/images/hero.desktop.highlight.png");
+  }
+}
