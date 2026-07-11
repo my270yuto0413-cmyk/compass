@@ -4,17 +4,6 @@ export function NewHero() {
       <canvas className="hero-particles" aria-hidden="true" />
       <div className="hero-media" aria-hidden="true" />
       <div className="hero-shade" aria-hidden="true" />
-      <div className="hero-mobile-intro" aria-hidden="true">
-        <div className="intro-compass-mark">
-          <span />
-        </div>
-        <div className="intro-copy">
-          <span>COMPASS</span>
-          <strong>Better Education.</strong>
-          <strong>Better Decisions.</strong>
-        </div>
-      </div>
-
       <div className="container hero-grid">
         <div className="hero-copy" data-reveal>
           <p className="hero-label">任意学生支援団体 COMPASS</p>

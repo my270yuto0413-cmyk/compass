@@ -96,6 +96,7 @@ export function SiteHeader() {
   const [activeSection, setActiveSection] = useState("top");
   const [mobileMounted, setMobileMounted] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [pendingMobileTarget, setPendingMobileTarget] = useState<string | null>(null);
   const [scrolled, setScrolled] = useState(false);
   const [onLightHero, setOnLightHero] = useState(true);
 
@@ -165,6 +166,24 @@ export function SiteHeader() {
     return () => document.body.classList.remove("menu-open");
   }, [mobileOpen]);
 
+  useEffect(() => {
+    if (mobileOpen || !pendingMobileTarget) return;
+    const target = document.querySelector<HTMLElement>(pendingMobileTarget);
+    if (!target) {
+      setPendingMobileTarget(null);
+      return;
+    }
+
+    const timer = window.setTimeout(() => {
+      target.scrollIntoView({
+        behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth",
+        block: "start"
+      });
+      setPendingMobileTarget(null);
+    }, 300);
+    return () => window.clearTimeout(timer);
+  }, [mobileOpen, pendingMobileTarget]);
+
   const handleMobileKeyDown = (event: React.KeyboardEvent) => {
     if (event.key !== "Tab") return;
     const focusable = Array.from(mobilePanelRef.current?.querySelectorAll<HTMLElement>(focusableSelector) ?? []);
@@ -178,6 +197,18 @@ export function SiteHeader() {
       event.preventDefault();
       first.focus();
     }
+  };
+
+  const handleMobileNavClick = (event: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    closeMobileMenu(false);
+    if (!href.startsWith("#")) return;
+
+    const target = document.querySelector<HTMLElement>(href);
+    if (!target) return;
+
+    event.preventDefault();
+    window.history.pushState(null, "", href);
+    setPendingMobileTarget(href);
   };
 
   const headerClasses = [
@@ -284,7 +315,7 @@ export function SiteHeader() {
                     href={item.href}
                     target={item.external ? "_blank" : undefined}
                     rel={item.external ? "noopener noreferrer" : undefined}
-                    onClick={() => closeMobileMenu(false)}
+                    onClick={(event) => handleMobileNavClick(event, item.href)}
                   >
                     {item.label}
                   </a>
@@ -293,7 +324,7 @@ export function SiteHeader() {
             ))}
             <section className="mobile-nav-group" aria-labelledby="mobile-messages-title">
               <h2 id="mobile-messages-title">Messages</h2>
-              <a href="messages/index.html" onClick={() => closeMobileMenu(false)}>後輩へのメッセージ</a>
+              <a href="messages/index.html" onClick={(event) => handleMobileNavClick(event, "messages/index.html")}>後輩へのメッセージ</a>
             </section>
           </nav>
         </div>
