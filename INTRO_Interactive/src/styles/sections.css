@@ -127,6 +127,10 @@
   white-space: nowrap;
 }
 
+.mobile-hero-brand-card {
+  display: none;
+}
+
 .hero-chips {
   display: flex;
   flex-wrap: wrap;
@@ -1540,6 +1544,69 @@
     }
   }
 
+  @keyframes mobileHeroBackdropDrift {
+    0% {
+      transform: scale(1.02) translate3d(0, 0, 0);
+    }
+
+    100% {
+      transform: scale(1.055) translate3d(-4px, 7px, 0);
+    }
+  }
+
+  @keyframes mobileHeroAmbientGlow {
+    0%,
+    100% {
+      opacity: 0.82;
+    }
+
+    50% {
+      opacity: 1;
+    }
+  }
+
+  @keyframes mobileBrandCardIn {
+    0% {
+      opacity: 0.62;
+      transform: translateY(-9px) scale(0.965);
+    }
+
+    72% {
+      opacity: 1;
+      transform: translateY(1px) scale(1.006);
+    }
+
+    100% {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+
+  @keyframes mobileBrandSweep {
+    from {
+      transform: translateX(-150%) skewX(-18deg);
+    }
+
+    to {
+      transform: translateX(260%) skewX(-18deg);
+    }
+  }
+
+  @keyframes mobileLivePulse {
+    0%,
+    100% {
+      opacity: 0.72;
+      transform: scale(0.92);
+      box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.2);
+    }
+
+    50% {
+      opacity: 1;
+      transform: scale(1);
+      box-shadow: 0 0 0 5px rgba(34, 197, 94, 0);
+    }
+  }
+
   .hero-section {
     min-height: 100svh;
     align-items: center;
@@ -1552,12 +1619,16 @@
     background-position: center top;
     opacity: 0.46;
     filter: saturate(0.86) contrast(1.06);
+    transform-origin: center top;
+    will-change: transform;
+    animation: mobileHeroBackdropDrift 9s ease-in-out infinite alternate;
   }
 
   .hero-shade {
     background:
       radial-gradient(circle at 50% 40%, rgba(6, 182, 212, 0.12), transparent 38%),
       linear-gradient(180deg, rgba(5, 10, 20, 0.86), rgba(5, 13, 27, 0.62) 42%, rgba(5, 10, 20, 0.98) 100%);
+    animation: mobileHeroAmbientGlow 6.5s ease-in-out infinite;
   }
 
   .hero-section::before {
@@ -1588,6 +1659,64 @@
 
   .hero-copy .eyebrow {
     display: none;
+  }
+
+  .mobile-hero-brand-card {
+    order: 0;
+    position: relative;
+    width: fit-content;
+    min-height: 40px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    overflow: hidden;
+    padding: 8px 13px;
+    border-radius: 999px;
+    color: rgba(236, 251, 255, 0.84);
+    background:
+      linear-gradient(135deg, rgba(6, 182, 212, 0.1), rgba(255, 255, 255, 0.035)),
+      rgba(3, 15, 30, 0.58);
+    border: 1px solid rgba(125, 211, 252, 0.18);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.08),
+      0 14px 36px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(14px);
+    animation: mobileBrandCardIn 520ms var(--ease-out) 30ms both;
+  }
+
+  .mobile-hero-brand-card::after {
+    content: "";
+    position: absolute;
+    inset: -20% auto -20% -26%;
+    width: 28%;
+    background: linear-gradient(90deg, transparent, rgba(208, 249, 255, 0.18), transparent);
+    animation: mobileBrandSweep 760ms var(--ease-out) 460ms 1 both;
+    pointer-events: none;
+  }
+
+  .mobile-hero-brand-card__status {
+    width: 7px;
+    height: 7px;
+    flex: 0 0 auto;
+    border-radius: 999px;
+    background: var(--color-green);
+    animation: mobileLivePulse 2.2s ease-in-out 1.2s infinite;
+  }
+
+  .mobile-hero-brand-card strong {
+    font-size: 0.76rem;
+    font-weight: 900;
+    letter-spacing: 0.01em;
+  }
+
+  .mobile-hero-brand-card small {
+    padding-left: 8px;
+    border-left: 1px solid rgba(125, 211, 252, 0.16);
+    color: rgba(166, 235, 247, 0.62);
+    font-size: 0.58rem;
+    font-weight: 850;
+    letter-spacing: 0.08em;
   }
 
   .hero-ai-badge {
@@ -1623,7 +1752,7 @@
     position: relative;
     display: grid;
     gap: 2px;
-    margin-top: 0;
+    margin-top: 25px;
     font-size: clamp(2.68rem, 11.5vw, 3.05rem);
     line-height: 0.98;
   }
@@ -1733,14 +1862,30 @@
 
   .hero-chips .feature-chip:nth-child(1) {
     animation-delay: 230ms;
+    color: rgba(238, 252, 255, 0.92);
+    background:
+      linear-gradient(145deg, rgba(14, 165, 233, 0.22), rgba(6, 182, 212, 0.11)),
+      rgba(5, 28, 54, 0.58);
+    border: 1px solid rgba(125, 211, 252, 0.24);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
   }
 
   .hero-chips .feature-chip:nth-child(2) {
     animation-delay: 290ms;
+    color: rgba(244, 251, 255, 0.9);
+    background:
+      linear-gradient(145deg, rgba(37, 99, 235, 0.16), rgba(6, 182, 212, 0.1)),
+      rgba(8, 28, 48, 0.56);
+    border-block: 1px solid rgba(125, 211, 252, 0.16);
   }
 
   .hero-chips .feature-chip:nth-child(3) {
     animation-delay: 350ms;
+    color: rgba(235, 255, 246, 0.9);
+    background:
+      linear-gradient(145deg, rgba(6, 182, 212, 0.14), rgba(34, 197, 94, 0.14)),
+      rgba(5, 35, 39, 0.56);
+    border: 1px solid rgba(74, 222, 128, 0.16);
   }
 
   .hero-chips .feature-chip + .feature-chip {
