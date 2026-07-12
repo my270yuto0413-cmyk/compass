@@ -109,6 +109,9 @@ export function Header() {
               </a>
             ))}
           </nav>
+          <CTAButton className="mobile-join" href={links.join} onClick={() => setOpen(false)}>
+            今すぐ講義に参加する
+          </CTAButton>
         </div>
       </aside>
     </header>
