@@ -82,6 +82,11 @@ body::selection {
   box-shadow: 0 24px 64px rgba(10, 23, 38, 0.14);
 }
 
+.desktop-nav .nav-panel .panel-link,
+.desktop-nav .nav-panel .panel-link > span {
+  color: var(--editorial-ink);
+}
+
 .nav-panel a:hover,
 .nav-panel a:focus-visible {
   background: rgba(62, 131, 156, 0.08);
@@ -1061,6 +1066,10 @@ body::selection {
   font-size: 0.7rem;
   font-weight: 800;
   letter-spacing: 0.14em;
+}
+
+.about .two-column > div:first-child .philosophy-note > p:last-child {
+  color: var(--editorial-body) !important;
 }
 
 .about .philosophy-note {
