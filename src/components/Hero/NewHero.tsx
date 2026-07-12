@@ -24,9 +24,11 @@ export function NewHero() {
             </span>
           </p>
           <div className="hero-actions" aria-label="Hero actions">
-            <a className="button button-primary" href="#vision">
-              <span className="hero-copy-desktop">COMPASSを知る</span>
-              <span className="hero-copy-mobile">Discover COMPASS</span>
+            <a className="button button-primary hero-action-desktop" href="#vision">
+              COMPASSを知る
+            </a>
+            <a className="button button-primary hero-action-mobile" href="INTRO_Interactive/">
+              未来を体験する
             </a>
             <a
               className="button button-secondary hero-library-link"
@@ -34,8 +36,13 @@ export function NewHero() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <span className="hero-copy-desktop">未来戦略ライブラリへ <span aria-hidden="true">→</span></span>
-              <span className="hero-copy-mobile">Explore the library</span>
+              ライブラリを見る <span aria-hidden="true">→</span>
+            </a>
+            <a
+              className="button button-secondary hero-interactive-link hero-action-desktop"
+              href="INTRO_Interactive/"
+            >
+              未来を体験する <span aria-hidden="true">→</span>
             </a>
           </div>
           <nav className="mobile-orbit-brief" aria-label="Mobile Three Orbits">
