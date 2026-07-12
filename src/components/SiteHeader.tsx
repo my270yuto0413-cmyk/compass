@@ -270,9 +270,14 @@ export function SiteHeader() {
             <a className={`nav-link${activeSection === "message" ? " is-current" : ""}`} href="messages/index.html">Messages</a>
           </nav>
 
-          <a className="header-cta" href="https://compass-official.pages.dev/future-strategy-library/" target="_blank" rel="noopener noreferrer">
-            Explore Library
-          </a>
+          <div className="header-actions" aria-label="Primary actions">
+            <a className="header-cta" href="https://compass-official.pages.dev/future-strategy-library/" target="_blank" rel="noopener noreferrer">
+              ライブラリを見る
+            </a>
+            <a className="header-cta header-cta--interactive" href="INTRO_Interactive/">
+              未来を体験する
+            </a>
+          </div>
 
           <button
             ref={toggleRef}
