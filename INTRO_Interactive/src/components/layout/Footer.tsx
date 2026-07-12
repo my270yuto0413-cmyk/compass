@@ -14,7 +14,8 @@ export function Footer() {
           </span>
         </a>
         <nav className="footer-nav" aria-label="フッターナビゲーション">
-          <a href="#students">学生向け</a>
+          <a href="#reality">学生向け</a>
+          <a href="#ai-support">AI機能</a>
           <a href="#examples">講義例</a>
           <a href="#teachers">教員向け</a>
           <a href="#developers">開発者向け</a>
