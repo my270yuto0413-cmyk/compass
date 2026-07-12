@@ -1059,19 +1059,8 @@ p {
   }
 
   .message-hero::after {
-    content: "01\A A LETTER FOR\A FUTURE STUDENTS";
-    position: absolute;
-    right: max(42px, calc((100vw - var(--container)) / 2));
-    bottom: 88px;
-    width: min(31vw, 350px);
-    padding-top: 28px;
-    border-top: 1px solid var(--desktop-line-strong);
-    color: var(--desktop-gold);
-    font-size: clamp(0.72rem, 1vw, 0.82rem);
-    font-weight: 800;
-    line-height: 1.65;
-    letter-spacing: 0.18em;
-    white-space: pre-line;
+    content: none;
+    display: none;
   }
 
   .message-hero-shade {
@@ -1133,19 +1122,8 @@ p {
   }
 
   .message-shell::before {
-    content: "MESSAGE 01\A TO FUTURE STUDENTS\A YUTO MATSUI";
-    position: absolute;
-    top: clamp(102px, 10vw, 138px);
-    left: 0;
-    width: 176px;
-    padding-left: 22px;
-    border-left: 2px solid var(--desktop-gold);
-    color: var(--desktop-body);
-    font-size: 0.68rem;
-    font-weight: 760;
-    line-height: 2;
-    letter-spacing: 0.13em;
-    white-space: pre-line;
+    content: none;
+    display: none;
   }
 
   .message-shell::after {
@@ -1153,7 +1131,7 @@ p {
   }
 
   .message-body {
-    width: min(720px, calc(100% - 250px));
+    width: min(720px, 100%);
     margin: 0 auto;
     color: var(--desktop-ink);
     font-size: clamp(1.04rem, 1.22vw, 1.12rem);
