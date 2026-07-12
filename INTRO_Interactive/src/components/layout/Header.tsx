@@ -10,7 +10,8 @@ const navItems = [
 ];
 
 const mobileItems = [
-  { href: "#students", label: "学生向け" },
+  { href: "#reality", label: "学生向け" },
+  { href: "#ai-support", label: "AI機能" },
   { href: "#examples", label: "講義例" },
   { href: "#teachers", label: "教員向け" },
   { href: "#developers", label: "開発者向け" },
