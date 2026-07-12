@@ -909,3 +909,385 @@ p {
     transform: none !important;
   }
 }
+
+/*
+ * Desktop editorial layer
+ *
+ * Keep the established mobile experience intact. Everything in this layer is
+ * deliberately scoped above the mobile breakpoint used by this page.
+ */
+@media (min-width: 901px) {
+  :root {
+    --desktop-base: #f5f6f2;
+    --desktop-paper: #fbfcfa;
+    --desktop-mist: #eaf0ee;
+    --desktop-ink: #0a1726;
+    --desktop-body: #4f5d68;
+    --desktop-blue: #3e839c;
+    --desktop-gold: #b58b3e;
+    --desktop-dark: #07101d;
+    --desktop-line: rgba(10, 23, 38, 0.14);
+    --desktop-line-strong: rgba(10, 23, 38, 0.24);
+  }
+
+  html,
+  body {
+    background: var(--desktop-base);
+  }
+
+  body {
+    color: var(--desktop-ink);
+  }
+
+  body::selection {
+    color: #fff;
+    background: var(--desktop-blue);
+  }
+
+  a:focus-visible,
+  button:focus-visible {
+    outline-color: var(--desktop-blue);
+  }
+
+  .skip-link {
+    color: #fff;
+    background: var(--desktop-blue);
+    border-radius: 2px;
+  }
+
+  .site-header,
+  .site-header.is-scrolled {
+    color: var(--desktop-ink);
+    background: rgba(245, 246, 242, 0.94);
+    border-color: rgba(10, 23, 38, 0.1);
+    box-shadow: 0 10px 34px rgba(10, 23, 38, 0.055);
+  }
+
+  .site-header .logo-mark {
+    border-color: rgba(10, 23, 38, 0.24);
+    background:
+      radial-gradient(circle, rgba(255, 255, 255, 0.92), transparent 46%),
+      linear-gradient(135deg, rgba(62, 131, 156, 0.14), rgba(181, 139, 62, 0.1));
+    box-shadow: none;
+  }
+
+  .site-header .logo-mark::before {
+    border-color: rgba(10, 23, 38, 0.5);
+  }
+
+  .site-header .logo-mark span {
+    background: rgba(10, 23, 38, 0.5);
+  }
+
+  .site-header .logo-copy strong,
+  .site-header .nav-trigger,
+  .site-header .nav-link {
+    color: var(--desktop-ink);
+  }
+
+  .site-header .logo-copy small {
+    color: var(--desktop-body);
+  }
+
+  .site-header .nav-trigger:hover,
+  .site-header .nav-link:hover,
+  .site-header .nav-trigger[aria-expanded="true"],
+  .site-header .nav-group.is-open > .nav-trigger,
+  .site-header .nav-link.is-active {
+    color: var(--desktop-ink);
+    background: rgba(10, 23, 38, 0.06);
+  }
+
+  .site-header .nav-link.is-active::before {
+    content: "";
+    width: 5px;
+    height: 5px;
+    margin-right: 8px;
+    border-radius: 50%;
+    background: var(--desktop-gold);
+  }
+
+  .site-header .nav-panel {
+    color: var(--desktop-ink);
+    background: rgba(251, 252, 250, 0.98);
+    border-color: var(--desktop-line);
+    box-shadow: 0 20px 52px rgba(10, 23, 38, 0.12);
+  }
+
+  .site-header .panel-link:hover,
+  .site-header .panel-link:focus-visible {
+    background: rgba(62, 131, 156, 0.08);
+  }
+
+  .site-header .panel-link span {
+    color: var(--desktop-ink);
+  }
+
+  .site-header .panel-link small {
+    color: var(--desktop-body);
+  }
+
+  .site-header .header-cta {
+    color: #fff;
+    background: var(--desktop-ink);
+    border-radius: 2px;
+    box-shadow: none;
+  }
+
+  .message-hero {
+    min-height: clamp(620px, 78svh, 760px);
+    display: flex;
+    align-items: center;
+    overflow: clip;
+    padding: calc(var(--header-height) + 70px) 0 86px;
+    color: var(--desktop-ink);
+    background: var(--desktop-base);
+    isolation: isolate;
+  }
+
+  .message-hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background-image:
+      linear-gradient(rgba(10, 23, 38, 0.032) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(10, 23, 38, 0.032) 1px, transparent 1px);
+    background-size: 72px 72px;
+    mask-image: linear-gradient(90deg, transparent, #000 48%, #000 100%);
+  }
+
+  .message-hero::after {
+    content: "01\A A LETTER FOR\A FUTURE STUDENTS";
+    position: absolute;
+    right: max(42px, calc((100vw - var(--container)) / 2));
+    bottom: 88px;
+    width: min(31vw, 350px);
+    padding-top: 28px;
+    border-top: 1px solid var(--desktop-line-strong);
+    color: var(--desktop-gold);
+    font-size: clamp(0.72rem, 1vw, 0.82rem);
+    font-weight: 800;
+    line-height: 1.65;
+    letter-spacing: 0.18em;
+    white-space: pre-line;
+  }
+
+  .message-hero-shade {
+    display: none;
+  }
+
+  .message-hero-inner {
+    width: min(var(--container), calc(100% - 84px));
+    margin: 0 auto;
+    padding-right: min(36vw, 440px);
+  }
+
+  .hero-kicker {
+    margin-bottom: 22px;
+    color: var(--desktop-blue);
+    font-size: 0.76rem;
+    font-weight: 800;
+    letter-spacing: 0.18em;
+  }
+
+  .hero-kicker::after {
+    content: " / LETTER 01";
+    color: var(--desktop-gold);
+  }
+
+  .hero-title {
+    max-width: 720px;
+    color: var(--desktop-ink);
+    font-size: clamp(3.8rem, 6.5vw, 5.8rem);
+    font-weight: 680;
+    line-height: 0.98;
+    letter-spacing: -0.055em;
+    text-shadow: none;
+    text-wrap: balance;
+  }
+
+  .hero-lead {
+    max-width: 620px;
+    margin-top: 34px;
+    color: var(--desktop-body);
+    font-size: clamp(1.05rem, 1.4vw, 1.2rem);
+    font-weight: 550;
+    line-height: 1.9;
+    text-shadow: none;
+  }
+
+  .message-shell {
+    position: relative;
+    width: min(var(--container), calc(100% - 84px));
+    max-width: none;
+    margin: 0 auto;
+    padding: clamp(94px, 9vw, 124px) 0 clamp(104px, 10vw, 142px);
+    border: 0;
+    border-radius: 0;
+    color: var(--desktop-ink);
+    background: transparent;
+    box-shadow: none;
+    backdrop-filter: none;
+  }
+
+  .message-shell::before {
+    content: "MESSAGE 01\A TO FUTURE STUDENTS\A YUTO MATSUI";
+    position: absolute;
+    top: clamp(102px, 10vw, 138px);
+    left: 0;
+    width: 176px;
+    padding-left: 22px;
+    border-left: 2px solid var(--desktop-gold);
+    color: var(--desktop-body);
+    font-size: 0.68rem;
+    font-weight: 760;
+    line-height: 2;
+    letter-spacing: 0.13em;
+    white-space: pre-line;
+  }
+
+  .message-shell::after {
+    content: none;
+  }
+
+  .message-body {
+    width: min(720px, calc(100% - 250px));
+    margin: 0 auto;
+    color: var(--desktop-ink);
+    font-size: clamp(1.04rem, 1.22vw, 1.12rem);
+    line-height: 2.02;
+  }
+
+  .message-body p {
+    margin-bottom: 1.65rem;
+    color: var(--desktop-body);
+  }
+
+  .quote-lines {
+    margin: 2.6rem 0 3rem;
+    padding: 8px 0 8px 30px;
+    border: 0;
+    border-left: 3px solid var(--desktop-blue);
+    border-radius: 0;
+    color: var(--desktop-ink);
+    background: transparent;
+    box-shadow: none;
+  }
+
+  .quote-lines p {
+    margin-bottom: 0.8rem;
+    color: var(--desktop-ink);
+    font-size: clamp(1.08rem, 1.4vw, 1.22rem);
+    font-weight: 650;
+    line-height: 1.75;
+  }
+
+  .choice-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0 34px;
+    margin: 2.3rem 0 2.8rem;
+    counter-reset: choices;
+    border-bottom: 1px solid var(--desktop-line);
+  }
+
+  .choice-list li {
+    min-height: 88px;
+    padding: 24px 0 22px 42px;
+    border: 0;
+    border-top: 1px solid var(--desktop-line-strong);
+    border-radius: 0;
+    color: var(--desktop-ink);
+    background: transparent;
+    counter-increment: choices;
+  }
+
+  .choice-list li::before {
+    content: counter(choices, decimal-leading-zero);
+    left: 0;
+    top: 27px;
+    width: auto;
+    height: auto;
+    border-radius: 0;
+    color: var(--desktop-gold);
+    background: transparent;
+    box-shadow: none;
+    font-size: 0.68rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+  }
+
+  .compass-statement {
+    position: relative;
+    width: min(900px, calc(100vw - 84px));
+    margin: clamp(74px, 8vw, 104px) 50% 0;
+    padding: clamp(54px, 6vw, 76px) clamp(46px, 7vw, 88px);
+    border: 0;
+    border-radius: 2px;
+    background: var(--desktop-dark);
+    box-shadow: none;
+    transform: translateX(-50%);
+  }
+
+  .compass-statement::before {
+    content: "OUR COMPASS";
+    display: block;
+    margin-bottom: 28px;
+    color: #91c1d0;
+    font-size: 0.7rem;
+    font-weight: 800;
+    letter-spacing: 0.18em;
+  }
+
+  .compass-statement::after {
+    content: "";
+    position: absolute;
+    top: clamp(54px, 6vw, 76px);
+    bottom: clamp(54px, 6vw, 76px);
+    left: clamp(22px, 3vw, 34px);
+    width: 2px;
+    background: var(--desktop-gold);
+  }
+
+  .compass-statement p {
+    color: rgba(255, 255, 255, 0.92);
+    font-size: clamp(1.08rem, 1.45vw, 1.24rem);
+    font-weight: 650;
+    line-height: 1.95;
+  }
+
+  .signature {
+    margin-top: 4.8rem;
+    padding-top: 2.5rem;
+    border-top: 1px solid var(--desktop-line-strong);
+  }
+
+  .signature .name {
+    color: var(--desktop-ink);
+    font-weight: 800;
+    letter-spacing: 0.035em;
+  }
+
+  .signature .role {
+    color: var(--desktop-body);
+  }
+
+  .site-footer {
+    color: #fff;
+    background: #050d17;
+    border-color: rgba(255, 255, 255, 0.1);
+  }
+
+  .site-footer p {
+    color: rgba(255, 255, 255, 0.7);
+  }
+
+  .site-footer .footer-logo {
+    color: #fff;
+  }
+
+  .site-footer .footer-nav a:hover {
+    color: #91c1d0;
+  }
+}
