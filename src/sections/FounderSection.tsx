@@ -5,9 +5,22 @@ export function FounderSection() {
         <figure className="founder-portrait">
           <picture>
             <source
+              media="(min-width: 901px)"
+              type="image/webp"
+              srcSet="/images/founder/yuto-matsui-desktop-480.webp 480w, /images/founder/yuto-matsui-desktop-800.webp 800w, /images/founder/yuto-matsui-desktop-1200.webp 1200w"
+              sizes="400px"
+            />
+            <source
+              media="(min-width: 901px)"
+              type="image/jpeg"
+              srcSet="/images/founder/yuto-matsui-desktop-480.jpg 480w, /images/founder/yuto-matsui-desktop-800.jpg 800w, /images/founder/yuto-matsui-desktop-1200.jpg 1200w"
+              sizes="400px"
+            />
+            <source
+              media="(max-width: 900px)"
               type="image/webp"
               srcSet="/images/founder/yuto-matsui-portrait-480.webp 480w, /images/founder/yuto-matsui-portrait-800.webp 800w, /images/founder/yuto-matsui-portrait-1200.webp 1200w"
-              sizes="(min-width: 901px) 400px, calc(100vw - 28px)"
+              sizes="calc(100vw - 28px)"
             />
             <img
               src="/images/founder/yuto-matsui-portrait-800.jpg"
