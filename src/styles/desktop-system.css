@@ -630,8 +630,8 @@
     width: min(var(--container), calc(100% - 84px));
     margin: 0 auto;
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 0 72px;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0;
     background: var(--desktop-paper);
   }
 
@@ -651,20 +651,107 @@
     background: transparent;
   }
 
+  .trust-chapter .founder-section {
+    grid-column: 1 / -1;
+    padding-bottom: 38px;
+  }
+
+  .trust-chapter .contact-section {
+    grid-column: 1 / -1;
+    padding-top: 38px;
+  }
+
   .trust-chapter .container {
     width: 100%;
   }
 
-  .trust-chapter .contact-card {
-    height: 100%;
+  .trust-chapter .founder-profile {
+    display: grid;
+    grid-template-columns: minmax(340px, 400px) minmax(0, 1fr);
+    align-items: center;
     max-width: none;
-    padding: 34px 0 0;
+    overflow: visible;
+    border: 0;
+    border-top: 1px solid var(--desktop-line-strong);
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+    backdrop-filter: none;
+  }
+
+  .trust-chapter .founder-portrait {
+    align-self: start;
+    margin-top: 34px;
+    border: 1px solid var(--desktop-line);
+    border-radius: 2px;
+    box-shadow: 0 22px 54px rgba(10, 23, 38, 0.12);
+  }
+
+  .trust-chapter .founder-profile__body {
+    padding: 32px 0 24px clamp(50px, 6vw, 78px);
+  }
+
+  .trust-chapter .founder-profile h2 {
+    color: var(--desktop-ink);
+    font-size: clamp(2.5rem, 4vw, 3.6rem);
+  }
+
+  .trust-chapter .founder-name-latin {
+    color: var(--desktop-muted);
+  }
+
+  .trust-chapter .founder-profile__copy p {
+    color: var(--desktop-muted);
+  }
+
+  .trust-chapter .founder-experience {
+    border-color: var(--desktop-line);
+  }
+
+  .trust-chapter .founder-experience div {
+    border-color: var(--desktop-line);
+  }
+
+  .trust-chapter .founder-experience dt {
+    color: var(--desktop-blue);
+  }
+
+  .trust-chapter .founder-experience dd {
+    color: var(--desktop-ink);
+  }
+
+  .trust-chapter .contact-card {
+    display: grid;
+    grid-template-columns: minmax(260px, 0.8fr) minmax(0, 1.2fr);
+    grid-template-areas:
+      "label body"
+      "heading body"
+      "heading action";
+    column-gap: clamp(48px, 7vw, 88px);
+    align-items: start;
+    max-width: none;
+    padding: 34px 0 62px;
     border-top: 1px solid var(--desktop-line-strong);
     border-radius: 0;
   }
 
+  .trust-chapter .contact-card .section-label {
+    grid-area: label;
+  }
+
   .trust-chapter .contact-card h2 {
+    grid-area: heading;
     font-size: clamp(2rem, 3vw, 2.7rem);
+  }
+
+  .trust-chapter .contact-card p:not(.section-label) {
+    grid-area: body;
+    margin-top: 0;
+  }
+
+  .trust-chapter .contact-card .button {
+    grid-area: action;
+    justify-self: start;
   }
 
   .trust-chapter .founder-subcopy {

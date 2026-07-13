@@ -28,7 +28,7 @@ export function NewHero() {
               COMPASSを知る
             </a>
             <a className="button button-primary hero-action-mobile" href="INTRO_Interactive/">
-              未来を体験する
+              講義を体験する
             </a>
             <a
               className="button button-secondary hero-library-link"
@@ -42,7 +42,7 @@ export function NewHero() {
               className="button button-secondary hero-interactive-link hero-action-desktop"
               href="INTRO_Interactive/"
             >
-              未来を体験する <span aria-hidden="true">→</span>
+              講義を体験する <span aria-hidden="true">→</span>
             </a>
           </div>
           <nav className="mobile-orbit-brief" aria-label="Mobile Three Orbits">

@@ -12,6 +12,7 @@ export function SiteFooter() {
       <a href="#resources">Resources</a>
       <a href="#education">Education</a>
       <a href="#community">Community</a>
+      <a href="#founder">Founder</a>
       <a href="messages/index.html">Messages</a>
     </nav>
 
