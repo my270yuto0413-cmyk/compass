@@ -10,8 +10,8 @@ export function AILearningSupport() {
         <div className="ai-support-heading">
           <div className="ai-model-badge">
             <span aria-hidden="true" />
-            <strong>OpenAI API 最新モデル搭載</strong>
-            <small>2026年7月現在</small>
+            <strong>OPENAI FRONTIER INTELLIGENCE</strong>
+            <small>Lecture-aware AI Core</small>
           </div>
           <SectionHeader
             eyebrow="AI LEARNING SUPPORT"
@@ -21,12 +21,12 @@ export function AILearningSupport() {
           />
         </div>
       </Reveal>
-      <div className="ai-model-grid" aria-label="搭載予定AIモデル">
+      <div className="ai-model-grid" aria-label="AIコア技術">
         {plannedAIModels.map((model, index) => (
           <Reveal delay={index * 80} key={model.name}>
             <article className="ai-model-card">
               <div>
-                <span>搭載予定</span>
+                <span>AI CORE</span>
                 <small>{model.role}</small>
               </div>
               <h3>{model.name}</h3>

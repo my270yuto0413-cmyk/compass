@@ -1,7 +1,7 @@
 import { hero, links } from "../content/interactiveContent";
 import { CTAButton } from "../components/ui/CTAButton";
 import { FeatureChip } from "../components/ui/FeatureChip";
-import { LiveLectureMock } from "../components/ui/LiveLectureMock";
+import { ProductExperienceMock } from "../components/ui/ProductExperienceMock";
 import { Reveal } from "../components/ui/Reveal";
 
 export function Hero() {
@@ -27,7 +27,7 @@ export function Hero() {
           <div className="mobile-hero-brand-card" aria-label="COMPASS Interactive Live Lecture Experience">
             <span className="mobile-hero-brand-card__status" aria-hidden="true" />
             <strong>COMPASS Interactive</strong>
-            <small>LIVE LECTURE</small>
+            <small>NEXT LECTURE</small>
           </div>
           <h1 id="hero-title" className="hero-title" aria-label={hero.title}>
             <span className="hero-title__line hero-title__line--quiet">
@@ -51,29 +51,33 @@ export function Hero() {
           </div>
           <div className="hero-ai-badge">
             <span aria-hidden="true" />
-            <strong>OpenAI API 最新モデル搭載</strong>
-            <small>2026年7月現在</small>
+            <strong>AIが講義をリアルタイム理解</strong>
+            <small>OpenAI API × Lecture Data</small>
           </div>
-          <CTAButton className="hero-cta" href={links.join}>
-            今すぐ講義に参加する
-          </CTAButton>
+          <div className="hero-actions">
+            <CTAButton id="hero-primary-cta" className="hero-cta" href={links.demo}>
+              未来を体験する <span aria-hidden="true">→</span>
+            </CTAButton>
+            <a className="hero-secondary-cta" data-cta-location="hero-code-join" href={links.join}>講義コードで参加する</a>
+          </div>
+          <p className="hero-cta-note">登録不要・デモデータ・約3分</p>
         </Reveal>
 
         <Reveal className="hero-mock" delay={120}>
           <div className="hero-mock-stage">
             <div className="hero-orbit hero-orbit--question" aria-hidden="true">
               <span />
-              <strong>Question</strong>
+              <strong>Student Voice</strong>
             </div>
             <div className="hero-orbit hero-orbit--quiz" aria-hidden="true">
               <span />
-              <strong>Quiz</strong>
+              <strong>Live Poll</strong>
             </div>
             <div className="hero-orbit hero-orbit--ai" aria-hidden="true">
               <span />
-              <strong>AI</strong>
+              <strong>AI Recap</strong>
             </div>
-            <LiveLectureMock />
+            <ProductExperienceMock />
           </div>
         </Reveal>
       </div>

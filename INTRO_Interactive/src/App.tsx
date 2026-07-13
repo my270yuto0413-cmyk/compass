@@ -7,12 +7,11 @@ import { Students } from "./sections/Students";
 import { ScienceLectureExperience } from "./sections/ScienceLectureExperience";
 import { Features } from "./sections/Features";
 import { AILearningSupport } from "./sections/AILearningSupport";
-import { BeforeAfter } from "./sections/BeforeAfter";
 import { Teachers } from "./sections/Teachers";
-import { TeachingUseCases } from "./sections/TeachingUseCases";
 import { Technology } from "./sections/Technology";
 import { SecurityGovernance } from "./sections/SecurityGovernance";
 import { FinalCTA } from "./sections/FinalCTA";
+import { StickyCTA } from "./components/ui/StickyCTA";
 
 export function App() {
   return (
@@ -25,17 +24,16 @@ export function App() {
         <Hero />
         <MobileLectureStatus />
         <LectureMoment />
+        <Students />
         <Features />
         <AILearningSupport />
-        <BeforeAfter />
-        <Students />
         <ScienceLectureExperience />
         <Teachers />
-        <TeachingUseCases />
         <SecurityGovernance />
         <Technology />
         <FinalCTA />
       </main>
+      <StickyCTA />
       <Footer />
     </>
   );

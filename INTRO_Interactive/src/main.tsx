@@ -7,6 +7,7 @@ import "./styles/layout.css";
 import "./styles/components.css";
 import "./styles/sections.css";
 import "./styles/animations.css";
+import "./styles/experience.css";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>

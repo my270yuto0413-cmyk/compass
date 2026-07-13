@@ -1,13 +1,14 @@
 export const links = {
-  join: "https://compass-interactive.pages.dev",
+  demo: "https://compass-interactive.pages.dev/demo",
+  join: "https://compass-interactive.pages.dev/join",
   compassHome: "../"
 };
 
 export const hero = {
-  eyebrow: "COMPASS Interactive",
+  eyebrow: "NEXT LECTURE EXPERIENCE",
   title: "わからないが、動き出す。",
-  lead: "リアルタイム × AI が、講義を変える。",
-  chips: ["リアルタイム掲示板", "ライブクイズ", "AI学習サポート", "リアルタイム字幕", "講義後AI要約"]
+  lead: "聞くだけの講義から、反応し、つながり、AIと深める講義へ。",
+  chips: ["資料と同期", "ライブ投票", "匿名で質問", "リアルタイム字幕", "AI 5分要約"]
 };
 
 export const heroLectureMock = {
@@ -316,14 +317,14 @@ export const aiSupportCards = [
 
 export const plannedAIModels = [
   {
-    name: "GPT-5.6 Luna",
+    name: "Frontier Lecture Intelligence",
     role: "講義理解・質問整理",
-    description: "講義資料と投稿の文脈を横断し、質問分類、学術的な参考回答、重要論点の抽出、講義後要約を高精度に担う次世代モデル。"
+    description: "OpenAI APIのフロンティアモデルが講義資料、字幕、投票、学生の声を横断し、重要論点、質問の集中、次に深めるべき学びをリアルタイムに見つけ出します。"
   },
   {
-    name: "OpenAI Realtime-Whisper",
+    name: "Realtime Speech Intelligence",
     role: "リアルタイム音声理解",
-    description: "講義音声を低遅延で文字化し、専門用語を含む字幕と多言語翻訳へ接続。講義の言葉を、その瞬間に理解へ変える音声モデル。"
+    description: "講義音声を低遅延で理解し、専門用語を含む字幕、多言語翻訳、5分ごとの学習ハイライトへ接続。流れていく言葉を、残る理解へ変えます。"
   }
 ];
 

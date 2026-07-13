@@ -7,14 +7,15 @@ export function FinalCTA() {
   return (
     <Section id="start" className="final-cta section--dark">
       <Reveal className="final-cta__panel">
-        <p className="eyebrow">START</p>
-        <h2>今日の講義から、理解を動かそう。</h2>
+        <p className="eyebrow">ENTER THE NEXT LECTURE</p>
+        <h2>未来の講義は、<br />もう始まっている。</h2>
         <p>
-          COMPASS Interactiveは、薬学・生命科学の大人数講義で生まれる疑問を、質問、クイズ、字幕、翻訳、AI要約によって、講義中の理解と講義後の復習へつなげる。
+          資料、投票、質問、字幕、AI。すべてがリアルタイムにつながる講義を、まずは3分で体験してください。
         </p>
+        <div className="final-cta__proof"><span>登録不要</span><span>デモデータ</span><span>約3分</span></div>
         <div className="final-cta__actions">
-          <CTAButton href={links.join}>今すぐ講義に参加する</CTAButton>
-          <a href={links.compassHome}>COMPASSへ戻る</a>
+          <CTAButton href={links.demo}>未来を体験する <span aria-hidden="true">→</span></CTAButton>
+          <a data-cta-location="final-code-join" href={links.join}>講義コードで参加する</a>
         </div>
       </Reveal>
     </Section>

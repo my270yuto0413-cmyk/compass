@@ -7,7 +7,12 @@ type CTAButtonProps = AnchorHTMLAttributes<HTMLAnchorElement> & {
 
 export function CTAButton({ href, children, className = "", ...props }: CTAButtonProps) {
   return (
-    <a className={`cta-button ${className}`} href={href} {...props}>
+    <a
+      className={`cta-button ${className}`}
+      href={href}
+      data-cta-location={className || "default"}
+      {...props}
+    >
       {children}
     </a>
   );
