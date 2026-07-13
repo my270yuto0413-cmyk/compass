@@ -8,7 +8,7 @@ export function MobileLectureStatus() {
       <div className="section__inner experience-section__inner">
         <Reveal className="experience-copy">
           <p className="eyebrow">3 MINUTE EXPERIENCE</p>
-          <h2 id="experience-title">講義は、もう<br />聞くだけ<br />じゃない。</h2>
+          <h2 id="experience-title">講義はもう、<br />聞くだけじゃない。</h2>
           <p className="experience-lead">
             資料が動く。問いが届く。みんなの声が重なる。AIがその瞬間の学びを整理する。
             これまで分断されていた体験が、ひとつの講義空間でつながります。

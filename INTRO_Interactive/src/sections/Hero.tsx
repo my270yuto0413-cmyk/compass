@@ -37,7 +37,7 @@ export function Hero() {
             <span className="hero-title__line hero-title__line--active">動き出す。</span>
           </h1>
           <p className="hero-lead">
-            <span className="hero-lead__desktop">{hero.lead}</span>
+            <span className="hero-lead__desktop">リアルタイム×AIが、講義を変える。</span>
             <span className="hero-lead__mobile">
               リアルタイム×AIが
               <br />

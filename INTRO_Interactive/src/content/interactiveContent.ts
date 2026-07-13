@@ -317,12 +317,12 @@ export const aiSupportCards = [
 
 export const plannedAIModels = [
   {
-    name: "Frontier Lecture Intelligence",
+    name: "GPT5.6 Luna",
     role: "講義理解・質問整理",
     description: "OpenAI APIのフロンティアモデルが講義資料、字幕、投票、学生の声を横断し、重要論点、質問の集中、次に深めるべき学びをリアルタイムに見つけ出します。"
   },
   {
-    name: "Realtime Speech Intelligence",
+    name: "OpenAI Realtime Whisper",
     role: "リアルタイム音声理解",
     description: "講義音声を低遅延で理解し、専門用語を含む字幕、多言語翻訳、5分ごとの学習ハイライトへ接続。流れていく言葉を、残る理解へ変えます。"
   }

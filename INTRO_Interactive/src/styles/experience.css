@@ -517,10 +517,11 @@
   max-width: 560px;
   margin-top: 18px;
   color: #111c2e;
-  font-size: clamp(2.8rem, 4vw, 4.55rem);
+  font-size: clamp(2.8rem, 3.4vw, 4rem);
   font-weight: 950;
   line-height: 1.02;
   letter-spacing: -0.045em;
+  white-space: nowrap;
 }
 
 .experience-lead {
@@ -866,7 +867,7 @@
 
   .experience-copy h2 {
     margin-top: 14px;
-    font-size: clamp(2.5rem, 12vw, 3.3rem);
+    font-size: clamp(2.15rem, 10vw, 2.8rem);
     line-height: 0.98;
   }
 
@@ -1114,5 +1115,11 @@
 
   .sticky-experience-cta__primary {
     padding-inline: 12px;
+  }
+}
+
+@media (min-width: 681px) {
+  .hero-chips {
+    display: none;
   }
 }
