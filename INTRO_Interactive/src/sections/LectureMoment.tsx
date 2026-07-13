@@ -25,7 +25,12 @@ export function LectureMoment() {
       </div>
       <Reveal className="lecture-reality__content">
         <p className="eyebrow">{lectureReality.eyebrow}</p>
-        <h2>{lectureReality.title}</h2>
+        <h2>
+          200人の講義室で、<br />
+          <span className="lecture-title__keyphrase">「わからない」は</span>
+          <br className="lecture-title__compact-break" />
+          声にならない。
+        </h2>
         <div className="prose-block">
           {lectureReality.body.map((line) => (
             <p key={line}>{line}</p>

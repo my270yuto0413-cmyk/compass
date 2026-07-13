@@ -7,7 +7,8 @@ const navItems = [
   { href: "#students", label: "学生向け" },
   { href: "#features", label: "機能" },
   { href: "#ai-support", label: "AI" },
-  { href: "#teachers", label: "教員向け" }
+  { href: "#teachers", label: "教員向け" },
+  { href: "#developers", label: "開発者向け" }
 ];
 
 const mobileItems = [

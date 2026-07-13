@@ -43,7 +43,7 @@ export const lectureReality = {
     "説明は進む。自分の理解だけが、少し前で止まっている。",
     "作用機序、反応機構、実験デザイン。一つの疑問を残したまま、その先の説明が遠くなっていく。",
     "質問したい。同じところで迷う誰かとつながりたい。それでも、大人数の講義室では声を上げるまでの距離が長い。",
-    "その小さな「わからない」を、講義の中で動かし始める。それがCOMPASS Interactiveである。"
+    "その小さな「わからない」を、講義の中で動かし始める。それがCOMPASS\u00a0Interactiveである。"
   ],
   floatingWords: [
     "作用機序をつなげたい",
@@ -425,7 +425,7 @@ export const technologyCards = [
   ["フロントエンド", "React / TypeScript / Vite"],
   ["バックエンド基盤", "Supabase（PostgreSQL / Realtime / Auth）"],
   ["アクセス制御", "Row Level Security / Lecture-scoped Access"],
-  ["AI・音声処理", "OpenAI API 最新モデル / Realtime API / Moderation"],
+  ["AI・音声処理", "OpenAI API / Realtime API"],
   ["外部連携", "Google Workspace API / Google Apps Script"],
   ["ホスティング", "Cloudflare Pages"],
   ["開発・継続改善", "GitHub / CI/CD / OpenAI Codex"]
