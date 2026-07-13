@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="COMPASS">
+  <defs>
+    <radialGradient id="surface" cx="36%" cy="30%" r="74%">
+      <stop offset="0" stop-color="#ffffff" />
+      <stop offset="0.58" stop-color="#eef4f2" />
+      <stop offset="1" stop-color="#dfe9e7" />
+    </radialGradient>
+    <linearGradient id="needle" x1="42" y1="16" x2="22" y2="48" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#b58b3e" />
+      <stop offset="1" stop-color="#3e839c" />
+    </linearGradient>
+  </defs>
+  <circle cx="32" cy="32" r="29" fill="url(#surface)" stroke="#78909a" stroke-width="2" />
+  <circle cx="32" cy="32" r="16" fill="none" stroke="#0a1726" stroke-opacity="0.62" stroke-width="2" />
+  <path d="M14 32h36" fill="none" stroke="#0a1726" stroke-opacity="0.56" stroke-width="2" stroke-linecap="round" />
+  <path d="M22 48 42 16" fill="none" stroke="url(#needle)" stroke-width="4" stroke-linecap="round" />
+  <circle cx="32" cy="32" r="2.6" fill="#0a1726" />
+</svg>

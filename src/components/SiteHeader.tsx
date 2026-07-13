@@ -60,6 +60,7 @@ const navGroups: NavGroup[] = [
         external: true
       },
       { href: "#activities", label: "Activities", description: "講演・交流・資料改善" },
+      { href: "#founder", label: "Founder", description: "創設者・代表について" },
       { href: "#contact", label: "Partners", description: "教員・研究者・外部協力者との連携" }
     ]
   }
@@ -80,6 +81,7 @@ const mobileNavGroups: NavGroup[] = [
         external: true
       },
       { href: "#activities", label: "活動内容", description: "" },
+      { href: "#founder", label: "代表者紹介", description: "" },
       { href: "#contact", label: "Partners", description: "" }
     ]
   }
@@ -275,7 +277,7 @@ export function SiteHeader() {
               ライブラリを見る
             </a>
             <a className="header-cta header-cta--interactive" href="INTRO_Interactive/">
-              未来を体験する
+              講義を体験する
             </a>
           </div>
 
