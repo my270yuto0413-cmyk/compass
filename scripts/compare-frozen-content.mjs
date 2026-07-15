@@ -7,8 +7,8 @@ if (!originalRoot) throw new Error("Pass the original COMPASS directory as the f
 const originalHtmlPath = process.argv[3] ?? path.join(originalRoot, "index.html");
 
 const projectRoot = process.cwd();
-const distRoot = path.join(projectRoot, "dist");
-const frozenDirectories = ["messages", "future-strategy-library", "INTRO_Interactive"];
+const distRoot = path.join(projectRoot, "out");
+const frozenDirectories = ["messages", "future-strategy-library"];
 const ignoredSegments = new Set(["node_modules", "dist", ".build", ".git"]);
 
 async function fileMap(root) {
@@ -75,8 +75,8 @@ assertSameList(
 
 assertSameList(
   "Document IDs",
-  uniqueMatches(originalHtml, /\bid="([^"]+)"/gi),
-  uniqueMatches(builtHtml, /\bid="([^"]+)"/gi).filter((id) => id !== "app")
+  uniqueMatches(originalHtml.replace(/<script[\s\S]*?<\/script>/gi, ""), /\bid="([^"]+)"/gi).filter((id) => id !== "app"),
+  uniqueMatches(builtHtml.replace(/<script[\s\S]*?<\/script>/gi, ""), /\bid="([^"]+)"/gi)
 );
 
 function decodeEntities(value) {

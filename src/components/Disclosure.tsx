@@ -1,3 +1,5 @@
+"use client";
+
 import { type ReactNode, useId, useState } from "react";
 import { useMediaQuery } from "../hooks/useMediaQuery";
 

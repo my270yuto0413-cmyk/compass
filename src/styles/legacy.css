@@ -2335,6 +2335,10 @@ p {
   .hero-media {
     inset: -6% -10%;
     background-image: url("/images/hero.mobile.highlight.png");
+    background-image: image-set(
+      url("/images/hero.mobile.highlight.webp") type("image/webp"),
+      url("/images/hero.mobile.highlight.png") type("image/png")
+    );
     background-position: center top;
     opacity: 0.92;
     transform: scale(1.08);
