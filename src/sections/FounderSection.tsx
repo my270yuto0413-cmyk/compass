@@ -58,11 +58,11 @@ export function FounderSection() {
           <dl className="founder-experience" aria-label="主な経験と実績">
             <div>
               <dt>English</dt>
-              <dd>英検1級 / TOEIC 965</dd>
+              <dd>英検1級 / TOEIC 965 / IELTS 7.5</dd>
             </div>
             <div>
               <dt>Education</dt>
-              <dd>集団指導 約3年</dd>
+              <dd>集団指導 3.5年</dd>
             </div>
             <div>
               <dt>Research</dt>
@@ -70,7 +70,7 @@ export function FounderSection() {
             </div>
             <div>
               <dt>Development</dt>
-              <dd>Web開発 3年</dd>
+              <dd>Web開発・プログラミング 4年</dd>
             </div>
           </dl>
         </div>
