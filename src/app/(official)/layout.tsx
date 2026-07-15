@@ -4,6 +4,7 @@ import type { ReactNode } from "react";
 import "../../styles/legacy.css";
 import "../../styles/hero.css";
 import "../../styles/desktop-system.css";
+import "../../styles/official-immersive.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://compass-official.pages.dev"),
@@ -46,7 +47,8 @@ export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
   themeColor: [
-    { media: "(min-width: 901px)", color: "#F5F6F2" },
+    { media: "(min-width: 1121px)", color: "#050A14" },
+    { media: "(min-width: 901px) and (max-width: 1120px)", color: "#F5F6F2" },
     { media: "(max-width: 900px)", color: "#020812" }
   ]
 };
