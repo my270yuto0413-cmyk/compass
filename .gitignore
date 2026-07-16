@@ -1,5 +1,6 @@
 node_modules/
 .build/
+.legacy-vite/
 dist/
 .next/
 out/

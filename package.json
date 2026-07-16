@@ -5,9 +5,11 @@
   "scripts": {
     "dev": "next dev --hostname 127.0.0.1",
     "typecheck": "tsc --noEmit",
+    "clean": "node scripts/clean-next-output.mjs",
     "optimize:images": "node scripts/optimize-images.mjs",
-    "build": "npm run optimize:images && next build --webpack && node scripts/assemble-next-export.mjs",
+    "build": "npm run clean && npm run optimize:images && next build --webpack && node scripts/assemble-next-export.mjs",
     "verify": "node scripts/verify-next-build.mjs",
+    "deploy:cloudflare": "npx wrangler pages deploy out --project-name compass-official",
     "check": "npm run typecheck && npm run build && npm run verify"
   },
   "dependencies": {
