@@ -5,10 +5,6 @@ export function DeveloperProfile() {
   return (
     <Section className="developer-profile-section">
       <Reveal>
-        <p className="eyebrow">THE PERSON BEHIND THE DESIGN</p>
-        <h2>この設計をつくった人。</h2>
-      </Reveal>
-      <Reveal>
         <div id="developer-profile" className="developer-credit developer-credit--wide">
           <span>開発者・プロダクト設計者</span>
           <strong>Yuto Matsui</strong>

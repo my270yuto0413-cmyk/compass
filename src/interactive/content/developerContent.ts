@@ -7,212 +7,175 @@ export const stackGroups = [
   { label: "開発・品質", technologies: "GitHub / CI / OpenAI Codex" }
 ];
 
+export const codebaseStats = [
+  { value: "173", label: "TypeScript / TSX / MJS files" },
+  { value: "32,506", label: "lines of source and tests" },
+  { value: "18", label: "database migrations" },
+  { value: "21", label: "Edge Functions" }
+];
+
+export const directoryGroups = [
+  {
+    path: "src/",
+    description: "ReactプロダクトUI",
+    children: [
+      "pages/ — 学生・教員・教室表示",
+      "components/ — PDF・Poll・コメント・AI関連UI",
+      "context/ — 講義状態と5秒同期",
+      "repositories/ — Mock／Supabaseデータアクセス",
+      "caption/・pdf/・archive/・demo/"
+    ]
+  },
+  {
+    path: "supabase/",
+    description: "データベース・認証・サーバー処理",
+    children: ["migrations/ — 18 migrations", "functions/ — 21 Edge Functions＋共通処理", "tests/ — 17 pgTAP files"]
+  },
+  { path: "publisher/", description: "教員PC用PDF Publisher", children: [] },
+  { path: "cloudflare/asset-worker/", description: "Private R2配信・講義Archive", children: [] },
+  { path: "scripts/", description: "回帰・負荷・セキュリティ・本番検査", children: [] },
+  { path: "docs/", description: "Phase別設計記録・Gate・Runbook", children: [] },
+  { path: "public/", description: "静的アセット", children: [] }
+];
+
+export const productSurfaces = [
+  {
+    label: "STUDENT ENTRY",
+    route: "/join",
+    title: "講義へ参加する",
+    body: "講義コードを入力し、公開中の講義または終了後のArchiveへ進みます。"
+  },
+  {
+    label: "LIVE LECTURE",
+    route: "/lecture",
+    title: "講義を受ける",
+    body: "PDF、字幕、コメント、Poll、5分要約を一つの学生画面へまとめています。"
+  },
+  {
+    label: "TEACHER CONTROL",
+    route: "/admin",
+    title: "講義を運営する",
+    body: "講義開始・終了、資料、Poll、コメント、AI機能を教員が操作します。"
+  },
+  {
+    label: "CLASSROOM DISPLAY",
+    route: "/display",
+    title: "教室へ共有する",
+    body: "講義の進行と学生の反応を、投影用の表示へ分離して届けます。"
+  },
+  {
+    label: "READ-ONLY ARCHIVE",
+    route: "/lecture/archive",
+    title: "終了後に振り返る",
+    body: "ライブ接続を継続せず、サニタイズ済みの講義記録を読み取り専用で提供します。"
+  },
+  {
+    label: "OFFLINE DEMO",
+    route: "/demo",
+    title: "接続なしで体験する",
+    body: "Supabaseへ接続せず、主要な学生・教員体験を確認できるデモです。"
+  }
+];
+
 export const designDecisions = [
   {
     number: "01",
-    domain: "SYNC PROTOCOL",
-    status: "IMPLEMENTED",
-    title: "324,000回の同期を、324,000回の全量取得にしない。",
+    domain: "5秒同期",
+    title: "変化のないデータは、送り直さない。",
     constraint:
-      "300人が90分間、5秒ごとに取得するとsnapshotは324,000回。コメント、字幕、Poll、PDF、AI要約を毎回全量で返せば、変化のない時間にもDB処理とegressが積み上がります。",
+      "300人が90分間、5秒ごとに状態を取得する設計モデルでは、snapshotは324,000回になります。字幕、コメント、Poll、PDFを毎回全量で返すと、変化のない時間にもDB処理と転送量が積み上がります。",
     implementation:
-      "クライアントがlecture、caption、comments、likes、polls、summaries、pdf、metricsの既知versionを一つの認証済みsnapshot RPCへ送信し、サーバーは変更されたsectionだけを返します。参加者固有状態は分離し、コメント履歴はcursor pagination、非表示タブの同期は低速化後に停止します。",
+      "クライアントがsectionごとの既知versionを一つの認証済みsnapshot RPCへ送り、サーバーは更新されたsectionだけを返します。コメント履歴はcursor paginationへ分離し、非表示タブでは同期を低速化した後に停止します。",
     behavior:
-      "字幕だけが更新されたとき、コメントやPDFを再送しません。public Realtime tableは0件。presence書込みはブラウザごとに最大45秒に1回、参加者数集計は講義単位で15秒cacheします。",
-    evidence: "300人・90分の負荷モデルでsnapshot 324,000回を前提に検証"
+      "字幕だけが更新されたとき、コメント、Poll、PDFを再送しません。presence書き込みはブラウザごとに最大45秒に1回、参加者数は講義単位で15秒cacheします。",
+    evidence: "300人・90分は実測人数ではなく、負荷モデル上の設計条件です。"
   },
   {
     number: "02",
-    domain: "PDF DELIVERY",
-    status: "IMPLEMENTED",
-    title: "PDFを届けても、Supabaseへバイナリを流さない。",
-    constraint:
-      "PDF本体を講義状態やコメントと同じ経路へ通すと、Storage、egress、障害範囲が一つの基盤へ集中します。",
-    implementation:
-      "Local PublisherがMIME、magic bytes、暗号化・破損、テキストレイヤー、容量・ページ・文字数を検証し、SHA-256を算出。private R2へ不変objectとして保存し、version付きmanifestとWorkerの短寿命認可・Range requestで配信します。Supabaseには資料ID、版、現在ページなどの小さなmetadataだけを保持します。",
-    behavior:
-      "PDFバイナリ、Storage、配信egressはSupabaseを経由しません。PDF追加時にメインアプリを再deployせず、manifest更新に失敗しても直前の公開PDFを維持します。",
-    evidence: "Publisher / Worker / private R2を独立した配信境界として実装"
-  },
-  {
-    number: "03",
-    domain: "IDENTITY & AUTHORIZATION",
-    status: "IMPLEMENTED",
-    title: "匿名参加を、無認証にしない。",
+    domain: "匿名参加と認可",
+    title: "匿名でも、操作主体は曖昧にしない。",
     constraint:
       "氏名入力をなくすだけでは、別の参加者IDを指定するなりすましや、講義をまたいだ読み書きを防げません。",
     implementation:
-      "Supabase Anonymous Authのauth.uid()とparticipant所有権を結び付け、RLS、table GRANT、function EXECUTEを別々に制御します。ブラウザ向けRPCは原則SECURITY INVOKERとし、特権処理はEdgeとprivate関数でactor、lecture、状態を再検証します。",
+      "Supabase Anonymous Authのauth.uid()とparticipant所有権を結び付け、RLS、table GRANT、function EXECUTEを別々に制御します。特権処理ではactor、lecture、講義状態をサーバー側で再検証します。",
     behavior:
-      "氏名・学生番号・大学メールを参加条件にせず、行単位の所有権をサーバー側で確認します。表示上の匿名性と、認可に必要な匿名Auth識別子を両立する設計です。",
-    evidence: "RLS、権限、RPCを講義横断・参加者横断のSQLテストで検証"
+      "氏名、学生番号、大学メールを参加条件にせず、行単位の所有権をサーバーで確認します。認証済みであることだけを認可条件にはしません。",
+    evidence: "講義横断・参加者横断のアクセスをpgTAPで検証しています。"
+  },
+  {
+    number: "03",
+    domain: "PDF配信",
+    title: "PDFは、講義データと別の経路で届ける。",
+    constraint:
+      "PDF本体をコメントや講義状態と同じ経路へ通すと、保存容量、転送量、障害範囲がSupabaseへ集中します。",
+    implementation:
+      "Local PublisherがMIME、magic bytes、暗号化・破損、容量・ページ・文字数を検証し、private R2へ保存します。Workerが短寿命認可とRange requestを処理し、Supabaseには資料ID、版、現在ページなどのmetadataだけを保持します。",
+    behavior:
+      "PDFバイナリと配信egressはSupabaseを経由しません。新しいPDFを公開するときも、メインアプリの再deployは不要です。",
+    evidence: "Publisher 10/10、Worker 11/11のローカルテストを通過しています。"
   },
   {
     number: "04",
-    domain: "PAID OPERATIONS",
-    status: "IMPLEMENTED",
-    title: "課金機能を、ボタンのdisabledだけで守らない。",
+    domain: "教育AI",
+    title: "AIの出力に、公開条件を持たせる。",
     constraint:
-      "複数タブ、再試行、応答消失、講義終了後の遅延結果は、二重API呼び出しや予算超過を引き起こし得ます。",
+      "モデル出力をそのまま教材として扱うと、根拠不足、重複、情報量の少ない要約が講義画面へ混入します。",
     implementation:
-      "管理認証とAPI利用PINを分離し、actor・lecture・actionへscopeした短寿命・一回限りの開始許可を発行。provider呼び出し前に予算をreservationし、実績をusage ledgerで確定します。server time、hard stop、決定的idempotency key、独立したRealtime／Batch laneを使い、DB lockを保持したまま外部APIを呼びません。",
+      "入力を直近の講義内容へ限定し、Strict JSON Schemaとevidence IDを要求します。サーバーが根拠、重複、情報量を検証し、低価値な結果は新しいカードとして表示しません。",
     behavior:
-      "停止にはAPI利用PINを要求しません。時間、回数、token、予算を複合上限で制御し、講義終了後の結果は公開せずdiscardedとして扱います。曖昧なnetwork failureを無条件に自動再試行しません。",
-    evidence: "開始許可、reservation、ledger、hard stopをサーバー権威で管理"
+      "5分要約は『AI生成・教員未確認』などの状態を明示し、教員が確認、修正、非表示、固定できます。AI Poll候補は教員専用の下書きで、学生へ自動配信しません。",
+    evidence: "AI原文と教員修正を別revisionとして保持します。"
   },
   {
     number: "05",
-    domain: "FAILURE ISOLATION",
-    status: "IMPLEMENTED",
-    title: "AIを止めても、講義は止めない。",
+    domain: "APIコスト",
+    title: "APIを呼ぶ前に、利用可否を決める。",
     constraint:
-      "外部AIの遅延や障害がコメント、Poll、PDF、講義状態へ波及すれば、支援機能の失敗が講義そのものの停止になります。",
+      "複数タブ、再試行、応答消失、講義終了後の遅延結果は、二重呼び出しや予算超過を引き起こし得ます。",
     implementation:
-      "AI処理を講義の基本機能から分離し、失敗・停止・期限切れを機能単位の状態として記録します。要約失敗時は直前の有用な公開内容を、PDF公開失敗時は現在の資料を維持します。",
+      "actor・lecture・actionへ限定した一回限りの開始許可を発行し、provider呼び出し前に予算をreservationします。実績はusage ledgerで確定し、server time、hard stop、idempotency keyで重複実行を防ぎます。",
     behavior:
-      "OpenAIが利用できない時間にも、参加、コメント、Poll、PDF、5秒同期は継続できます。課金機能はそれぞれ独立して停止できます。",
-    evidence: "障害を機能単位へ閉じ込めるfail-safe契約"
+      "時間、回数、token、予算を複合上限で制御します。講義終了後に届いた結果は公開せず、応答不明の要求を無条件に再試行しません。",
+    evidence: "開始許可、reservation、ledgerをサーバー権威で管理します。"
   },
   {
     number: "06",
-    domain: "CLOSED LECTURE ARCHIVE",
-    status: "IMPLEMENTED",
-    title: "講義終了を、ライブ接続の延長にしない。",
+    domain: "講義終了とArchive",
+    title: "講義が終わったら、ライブ接続も終える。",
     constraint:
-      "終了済み講義をSupabaseのlive loopで提供し続けると、不要な認証、participant生成、5秒通信、private dataの露出面が残ります。",
+      "終了済み講義をlive loopで提供し続けると、不要な認証、参加者生成、5秒通信、private dataの露出面が残ります。",
     implementation:
-      "サニタイズ済みread-only payloadだけをoutbox経由でprivate R2へexport。WorkerがHMAC lookup、Turnstile、多層rate limit、短寿命memory tokenを検証し、PDFは別の短寿命ticketで認可します。",
+      "サーバー時刻のhard_stop_at、Cron、再実行可能な終了処理を組み合わせます。終了後はサニタイズ済みread-only payloadだけをprivate R2へexportし、Workerから配信します。",
     behavior:
-      "終了済み講義では新しいAuth sessionやparticipantを作らず、継続pollingもしません。archiveへAuth ID、participant ID、PIN、secret、raw PDF text、raw transcript、audioを含めません。",
-    evidence: "live joinとread-only archiveを異なる障害・認可境界へ分離"
+      "終了済み講義では新しいAuth sessionやparticipantを作らず、継続pollingもしません。Archiveへ認証ID、PIN、secret、raw transcript、audioを含めません。",
+    evidence: "ライブ講義と終了後閲覧を異なる認可・障害境界へ分離しています。"
   }
 ];
 
-export const educationalAISteps = [
+export const educationalPrinciples = [
   {
-    step: "01",
-    label: "BOUNDED CONTEXT",
-    title: "入力を、講義の現在地に限定する。",
-    body:
-      "5分要約へ渡すのは、直近5分のcompleted transcript、現在ページと前後1ページ、資料outline、公開コメント最大20件、DBで集計した活動量、前回要約です。PDFファイル、画像、全コメント、全文transcriptは送りません。"
+    number: "01",
+    label: "参加",
+    title: "発言より低い負担で、反応できる。",
+    body: "氏名を必須にせず、任意のニックネーム、コメント、いいね、Pollを使って理解や疑問を伝えられるようにしています。"
   },
   {
-    step: "02",
-    label: "STRUCTURED OUTPUT",
-    title: "出力を、検証できる構造にする。",
-    body:
-      "lecture recap、comment pulse、学術質問候補、display recommendation、evidence segment／page IDをStrict JSON Schemaで生成します。Poll候補にも学習目標、狙う誤概念、難易度、根拠ページ、根拠excerptを要求します。"
+    number: "02",
+    label: "講義",
+    title: "学生の反応を、講義へ戻す。",
+    body: "コメント、Poll、参加人数、AI要約を教員操作と教室表示へ接続し、学生の反応をその場の説明や進行へ反映できるようにしています。"
   },
   {
-    step: "03",
-    label: "DETERMINISTIC GATE",
-    title: "モデルの自己評価で、公開を決めない。",
-    body:
-      "サーバーがevidence IDの実在、schema、入力情報量、重複、根拠不一致、小標本、教育的価値を再検証します。情報不足windowはAPI呼び出し前にskipし、低価値・根拠不足・高重複の出力は新しいカードとして表示しません。"
+    number: "03",
+    label: "判断",
+    title: "AIを、教育判断の代わりにしない。",
+    body: "根拠と品質条件を満たさない出力を表示せず、Poll候補は教員の下書き、要約は確認状態付きの内容として扱います。"
   },
   {
-    step: "04",
-    label: "PUBLICATION CONTRACT",
-    title: "公開責任を、機能ごとに分ける。",
-    body:
-      "5分要約は決定論的quality gate通過時に「AI生成・教員未確認」として公開される場合があり、教員が確認、修正、非表示、固定できます。AI原文は上書きせず、修正を新しいrevisionとして保存します。"
-  }
-];
-
-export const educationalAIContracts = [
-  {
-    label: "FIVE-MINUTE SUMMARY",
-    title: "要約は、状態を明示して届ける。",
-    body:
-      "品質ゲートを通過した要約は「AI生成・教員未確認」として表示され得ます。教員確認済み／教員修正済みを別状態として管理し、原文とrevisionを追跡可能にします。"
-  },
-  {
-    label: "AI POLL PROPOSAL",
-    title: "Poll候補は、学生へ自動配信しない。",
-    body:
-      "資料要点とAI Poll候補はAdmin専用の下書きです。候補を採用しても通常Pollのdraftになるだけで、学生への配信には教員による別の開始操作が必要です。"
-  }
-];
-
-export const securityBoundaries = [
-  {
-    title: "Anonymous Authで主体を持つ",
-    body: "表示名ではなく、サーバーが検証できるauth.uid()を操作主体の基準にします。"
-  },
-  {
-    title: "RLSと権限を重ねる",
-    body: "RLS、table privilege、function EXECUTEを別々に制限し、認証済みであることだけを認可条件にしません。"
-  },
-  {
-    title: "特権操作をEdgeへ閉じる",
-    body: "Admin moderation、AI開始、archive exportなどはservice-backed Edgeを経由し、ブラウザへ直接の更新権限を渡しません。"
-  },
-  {
-    title: "秘密とraw sourceを集約しない",
-    body: "OpenAI keyやservice roleはサーバー側に保持。音声ファイルは保存せず、raw transcriptとPDF抽出本文もSupabaseへ永続化しません。"
-  }
-];
-
-export const loadAndCostLanes = [
-  {
-    label: "SYNC LOAD",
-    title: "変化だけを届ける。",
-    items: [
-      {
-        tag: "SECTION VERSION",
-        title: "全量再送をつくらない",
-        body: "既知versionを送り、変更sectionだけを取得。Realtime subscriptionと全量再送を追加しません。"
-      },
-      {
-        tag: "VISIBILITY CONTROL",
-        title: "見ていない画面を動かし続けない",
-        body: "hidden時は同期を30秒へ低速化し、60秒後に停止。復帰時だけ即時snapshotを取得します。"
-      }
-    ]
-  },
-  {
-    label: "AI COST",
-    title: "呼び出す前に止める。",
-    items: [
-      {
-        tag: "CONTEXT",
-        title: "必要な文脈だけ",
-        body: "PDF全文や全コメントではなく、現在ページ周辺、直近window、DB集計値へ限定します。"
-      },
-      {
-        tag: "ADMISSION",
-        title: "provider前に予約する",
-        body: "actor、講義状態、hard stop、実行回数、token、残予算を確認し、reservation確定後だけproviderを呼びます。"
-      },
-      {
-        tag: "ACCOUNTING",
-        title: "ledgerと冪等性へ収束させる",
-        body: "予約額と実績額を分け、同一window・operationの重複要求は既存状態へ収束。失敗やdiscardも費用判断へ反映します。"
-      }
-    ]
-  }
-];
-
-export const reliabilityPractices = [
-  {
-    title: "EXPAND FIRST",
-    body: "additive migrationと旧RPCの互換期間により、Database、Edge、Worker、Pagesを順番に更新します。"
-  },
-  {
-    title: "SERVER-SIDE DEADLINE",
-    body: "Cronだけを停止装置にせず、RPC、Edge、DBが講義状態と期限を再確認します。"
-  },
-  {
-    title: "IDEMPOTENT OPERATIONS",
-    body: "講義終了、archive export、日次digest、provider hangupを再実行可能な処理として設計します。"
-  },
-  {
-    title: "AUDITABLE STATE",
-    body: "重要操作、AI usage、revision、archive outboxを後から追跡できる状態で保持します。"
-  },
-  {
-    title: "FORWARD REPAIR",
-    body: "incident時はfeature flagを先に停止し、audit、ledger、outboxを残したまま修復します。"
+    number: "04",
+    label: "振り返り",
+    title: "講義中の気づきを、終了後まで残す。",
+    body: "ライブ講義を無期限に延長せず、終了後は30日間の読み取り専用Archiveへ移し、講義中の疑問と要点を振り返れるようにしています。"
   }
 ];
 
@@ -220,14 +183,27 @@ export const verifiedProductionFacts = [
   { value: "0–6.6", label: "本番反映済みPhase" },
   { value: "18", label: "Hosted migrations" },
   { value: "21", label: "ACTIVE Edge Functions" },
+  { value: "38 / 38", label: "public tables with RLS" },
   { value: "6", label: "scheduled jobs" },
-  { value: "0", label: "public Realtime tables" },
-  { value: "17 / 837", label: "ローカルSQL files / assertions" }
+  { value: "17 / 837", label: "pgTAP files / assertions" }
+];
+
+export const qualityInProgress = [
+  {
+    title: "GitHub Actions CI",
+    status: "実装中",
+    body: "型検査、Lint、Production Build、既存のNode回帰テストとSQLテストを、変更時に同じ条件で再実行できる構成へ接続しています。"
+  },
+  {
+    title: "Playwright E2E",
+    status: "実装中",
+    body: "学生参加、教員操作、教室表示、講義終了、Archive移行の主要導線を、ブラウザ上で再現・検証する自動E2E基盤を構築しています。"
+  }
 ];
 
 export const technicalDetails = [
   {
-    title: "5秒差分同期の契約",
+    title: "5秒差分同期",
     body:
       "クライアントはsectionごとの既知versionを認証済みsnapshot RPCへ送信します。versionが一致するsectionはpayloadへ含めず、字幕更新でコメント、Poll、PDFを再送しません。hidden時は低速化後に停止し、visible復帰時に即時同期します。"
   },
@@ -242,7 +218,7 @@ export const technicalDetails = [
       "匿名参加でもauth.uid()を持ち、participant所有権、講義membership、教員操作を別々に検証します。RLSだけでなくGRANTとEXECUTEも最小化し、ブラウザ表示制御をセキュリティ境界として扱いません。"
   },
   {
-    title: "AI生成と公開の契約",
+    title: "AI生成と公開状態",
     body:
       "資料要点・Poll候補は教員確認前の非公開下書きです。5分要約はstrict schemaと決定論的quality gateを通過した場合のみAI未確認ラベルで公開され得ます。教員の確認・修正はreview stateとappend-only revisionとして保持します。"
   },
@@ -254,6 +230,6 @@ export const technicalDetails = [
   {
     title: "本番反映と検証範囲",
     body:
-      "Phase 0〜6.6、18 migration、21 Edge Functions、6 scheduled jobsを本番で確認済みです。17 SQL files・837 assertionsはローカルゲートの証拠として区別して表示します。約300人は実講義の実測値ではなく、負荷モデル上の設計条件です。"
+      "Phase 0〜6.6、18 migrations、21 Edge Functions、6 scheduled jobsを本番で確認済みです。17 pgTAP files・837 assertionsはローカルゲートの証拠として区別しています。約300人は実講義の実測値ではなく、負荷モデル上の設計条件です。"
   }
 ];

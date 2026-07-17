@@ -19,11 +19,11 @@ const mainNavItems = [
 ];
 
 const developerNavItems = [
+  { href: "#codebase", label: "コード構成" },
+  { href: "#product", label: "プロダクト" },
   { href: "#stack", label: "技術スタック" },
   { href: "#decisions", label: "設計判断" },
-  { href: "#ai-design", label: "AI教育設計" },
-  { href: "#security-design", label: "安全性" },
-  { href: "#operations", label: "運用" }
+  { href: "#quality", label: "品質・検証" }
 ];
 
 const mainMobileGroups = [
@@ -63,11 +63,12 @@ const developerMobileGroups = [
   {
     label: "DEVELOPER",
     items: [
+      { href: "#codebase", label: "ディレクトリ構造", note: "Codebase" },
+      { href: "#product", label: "プロダクト構成", note: "Product" },
       { href: "#stack", label: "技術スタック", note: "Stack" },
       { href: "#decisions", label: "共有価値の高い設計判断", note: "Decisions" },
-      { href: "#security-design", label: "安全性と権限", note: "Security" },
-      { href: "#cost-design", label: "負荷と費用", note: "Load & Cost" },
-      { href: "#operations", label: "運用と信頼性", note: "Operations" },
+      { href: "#education", label: "教育的な設計", note: "Educational Design" },
+      { href: "#quality", label: "品質と検証", note: "Quality" },
       { href: "#developer-profile", label: "開発者・プロダクト設計者", note: "Profile" }
     ]
   }
