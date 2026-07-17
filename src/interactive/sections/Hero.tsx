@@ -2,7 +2,6 @@ import { hero, links } from "../content/interactiveContent";
 import { CTAButton } from "../components/ui/CTAButton";
 import { FeatureChip } from "../components/ui/FeatureChip";
 import { ProductExperienceMock } from "../components/ui/ProductExperienceMock";
-import { Reveal } from "../components/ui/Reveal";
 
 export function Hero() {
   return (
@@ -22,7 +21,7 @@ export function Hero() {
         <div className="hero-data-ribbon hero-data-ribbon--two" />
       </div>
       <div className="hero-grid section__inner">
-        <Reveal className="hero-copy">
+        <div className="hero-copy">
           <p className="eyebrow">{hero.eyebrow}</p>
           <div className="mobile-hero-brand-card" aria-label="COMPASS Interactive Live Lecture Experience">
             <span className="mobile-hero-brand-card__status" aria-hidden="true" />
@@ -37,11 +36,11 @@ export function Hero() {
             <span className="hero-title__line hero-title__line--active">動き出す。</span>
           </h1>
           <p className="hero-lead">
-            <span className="hero-lead__desktop">リアルタイム×AIが、講義を変える。</span>
+            <span className="hero-lead__desktop">リアルタイム×AIが、講義を次の次元へ。</span>
             <span className="hero-lead__mobile">
-              リアルタイム×AIが
+              リアルタイム×AIが、
               <br />
-              講義を変える
+              講義を次の次元へ。
             </span>
           </p>
           <div className="hero-chips" aria-label="主要機能">
@@ -49,21 +48,21 @@ export function Hero() {
               <FeatureChip key={chip}>{chip}</FeatureChip>
             ))}
           </div>
-          <div className="hero-ai-badge">
+          <div className="hero-ai-badge hero-trust-line">
             <span aria-hidden="true" />
-            <strong>AIが講義をリアルタイム理解</strong>
-            <small>OpenAI API × Lecture Data</small>
+            <strong>OpenAI Frontier Intelligence 搭載</strong>
+            <small>OpenAI API × Realtime API</small>
           </div>
           <div className="hero-actions">
             <CTAButton id="hero-primary-cta" className="hero-cta" href={links.demo}>
-              未来を体験する <span aria-hidden="true">→</span>
+              3分で講義を体験 <span aria-hidden="true">→</span>
             </CTAButton>
             <a className="hero-secondary-cta" data-cta-location="hero-code-join" href={links.join}>講義コードで参加する</a>
           </div>
           <p className="hero-cta-note">登録不要・デモデータ・約3分</p>
-        </Reveal>
+        </div>
 
-        <Reveal className="hero-mock" delay={120}>
+        <div className="hero-mock">
           <div className="hero-mock-stage">
             <div className="hero-orbit hero-orbit--question" aria-hidden="true">
               <span />
@@ -79,7 +78,7 @@ export function Hero() {
             </div>
             <ProductExperienceMock />
           </div>
-        </Reveal>
+        </div>
       </div>
     </section>
   );

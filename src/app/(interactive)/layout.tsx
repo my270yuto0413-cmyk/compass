@@ -8,12 +8,13 @@ import "../../interactive/styles/components.css";
 import "../../interactive/styles/sections.css";
 import "../../interactive/styles/animations.css";
 import "../../interactive/styles/experience.css";
+import "../../interactive/styles/redesign.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://compass-official.pages.dev"),
   title: "COMPASS Interactive | 参加型講義システム",
   description:
-    "COMPASS Interactiveは、リアルタイム掲示板、ライブクイズ、字幕・翻訳、最新AIによる質問整理と講義要約で、薬学・生命科学の大人数講義を双方向化する参加型講義システムです。",
+    "質問、投票、字幕、5分ごとの要点整理をひとつにつなぎ、学生の疑問を教員の次の説明へ届ける参加型講義システムです。",
   alternates: { canonical: "/INTRO_Interactive/" },
   icons: {
     icon: [{ url: "/images/compass-mark.svg?v=20260713", type: "image/svg+xml", sizes: "any" }]
@@ -23,14 +24,14 @@ export const metadata: Metadata = {
     type: "website",
     siteName: "COMPASS Interactive",
     title: "COMPASS Interactive | わからないが、動き出す。",
-    description: "リアルタイム × 最新AIが、薬学・生命科学の講義を変える。",
+    description: "学生の疑問が届き、教員の次の説明が変わる。講義の一瞬を次の理解へつなぐ参加型講義システム。",
     url: "/INTRO_Interactive/",
     images: ["/images/hero.desktop.highlight.png"]
   },
   twitter: {
     card: "summary_large_image",
     title: "COMPASS Interactive | わからないが、動き出す。",
-    description: "リアルタイム × 最新AIが、薬学・生命科学の講義を変える。",
+    description: "学生の疑問が届き、教員の次の説明が変わる。講義の一瞬を次の理解へつなぐ参加型講義システム。",
     images: ["/images/hero.desktop.highlight.png"]
   },
   formatDetection: { telephone: false }

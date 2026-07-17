@@ -1,14 +1,14 @@
 export const links = {
   demo: "https://compass-interactive.pages.dev/demo",
   join: "https://compass-interactive.pages.dev/join",
-  compassHome: "../"
+  compassHome: "/"
 };
 
 export const hero = {
   eyebrow: "NEXT LECTURE EXPERIENCE",
   title: "わからないが、動き出す。",
-  lead: "聞くだけの講義から、反応し、つながり、AIと深める講義へ。",
-  chips: ["資料と同期", "ライブ投票", "匿名で質問", "リアルタイム字幕", "AI 5分要約"]
+  lead: "質問、投票、字幕、AI。講義の一瞬が、次の理解へつながっていく。",
+  chips: ["資料と同期", "匿名で質問", "ライブ投票", "リアルタイム字幕", "5分ハイライト"]
 };
 
 export const heroLectureMock = {

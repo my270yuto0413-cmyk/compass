@@ -1,10 +1,16 @@
 import { links } from "../../content/interactiveContent";
 
-export function Footer() {
+type FooterProps = {
+  variant?: "main" | "developer";
+};
+
+export function Footer({ variant = "main" }: FooterProps) {
+  const mainPrefix = variant === "developer" ? "/INTRO_Interactive/" : "";
+
   return (
     <footer className="site-footer">
       <div className="footer-inner">
-        <a className="footer-logo" href="#top">
+        <a className="footer-logo" href={variant === "developer" ? "#developer-top" : "#top"}>
           <span className="logo-mark" aria-hidden="true">
             <span />
           </span>
@@ -15,15 +21,15 @@ export function Footer() {
         </a>
         <nav className="footer-nav" aria-label="フッターナビゲーション">
           <a href={links.demo}>デモを体験</a>
-          <a href="#students">学生向け</a>
-          <a href="#ai-support">AI機能</a>
-          <a href="#examples">講義例</a>
-          <a href="#teachers">教員向け</a>
-          <a href="#developers">開発者向け</a>
+          <a href={`${mainPrefix}#students`}>学生の体験</a>
+          <a href={`${mainPrefix}#ai-support`}>AI学習支援</a>
+          <a href={`${mainPrefix}#teachers`}>教員の使い方</a>
+          <a href={`${mainPrefix}#use-cases`}>こんな場面で</a>
+          <a href="/INTRO_Interactive/developers/">設計・技術</a>
           <a href={links.compassHome}>COMPASSへ戻る</a>
         </nav>
         <div className="footer-meta">
-          <p className="footer-note">AIとリアルタイム技術で、講義を次の次元へ。</p>
+          <p className="footer-note">疑問が動けば、講義が変わる。</p>
           <p className="footer-copy">© 2026 COMPASS. All rights reserved.</p>
         </div>
       </div>

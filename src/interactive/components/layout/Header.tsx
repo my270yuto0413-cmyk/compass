@@ -4,29 +4,84 @@ import { useEffect, useRef, useState } from "react";
 import { links } from "../../content/interactiveContent";
 import { CTAButton } from "../ui/CTAButton";
 
-const navItems = [
-  { href: "#experience", label: "体験" },
-  { href: "#students", label: "学生向け" },
-  { href: "#features", label: "機能" },
-  { href: "#ai-support", label: "AI" },
-  { href: "#teachers", label: "教員向け" },
-  { href: "#developers", label: "開発者向け" }
+type HeaderVariant = "main" | "developer";
+
+type HeaderProps = {
+  variant?: HeaderVariant;
+};
+
+const mainNavItems = [
+  { href: "#students", label: "学生の体験" },
+  { href: "#ai-support", label: "AI学習支援" },
+  { href: "#teachers", label: "教員の使い方" },
+  { href: "#use-cases", label: "こんな場面で" },
+  { href: "#developers", label: "設計・技術" }
 ];
 
-const mobileItems = [
-  { href: "#experience", label: "3分でわかる講義体験", note: "Experience" },
-  { href: "#students", label: "学生の体験", note: "For Students" },
-  { href: "#features", label: "できること", note: "Features" },
-  { href: "#ai-support", label: "AI学習サポート", note: "AI Intelligence" },
-  { href: "#teachers", label: "教員の体験", note: "For Teachers" },
-  { href: "#security", label: "安全性", note: "Trust & Security" }
+const developerNavItems = [
+  { href: "#stack", label: "技術スタック" },
+  { href: "#decisions", label: "設計判断" },
+  { href: "#ai-design", label: "AI教育設計" },
+  { href: "#security-design", label: "安全性" },
+  { href: "#operations", label: "運用" }
 ];
 
-export function Header() {
+const mainMobileGroups = [
+  {
+    label: "STUDENT",
+    items: [
+      { href: "#students", label: "講義の体験", note: "Experience" },
+      { href: "#features", label: "講義の流れ", note: "Learning Journey" },
+      { href: "#ai-support", label: "AI学習支援", note: "AI for Learning" }
+    ]
+  },
+  {
+    label: "TEACHER",
+    items: [
+      { href: "#teachers", label: "教員の使い方", note: "Teaching Flow" },
+      { href: "#use-cases", label: "こんな場面で", note: "Use Scenes" },
+      { href: "#security", label: "安心して使える理由", note: "Trust & Privacy" }
+    ]
+  },
+  {
+    label: "DEVELOPER",
+    items: [
+      { href: "#developers", label: "設計・技術", note: "Architecture" },
+      { href: "/INTRO_Interactive/developers/#developer-profile", label: "開発者・プロダクト設計者", note: "Profile" }
+    ]
+  }
+];
+
+const developerMobileGroups = [
+  {
+    label: "PRODUCT",
+    items: [
+      { href: "/INTRO_Interactive/", label: "紹介ページへ戻る", note: "Product Experience" },
+      { href: "/INTRO_Interactive/#teachers", label: "教員の使い方", note: "For Teachers" }
+    ]
+  },
+  {
+    label: "DEVELOPER",
+    items: [
+      { href: "#stack", label: "技術スタック", note: "Stack" },
+      { href: "#decisions", label: "共有価値の高い設計判断", note: "Decisions" },
+      { href: "#security-design", label: "安全性と権限", note: "Security" },
+      { href: "#cost-design", label: "負荷と費用", note: "Load & Cost" },
+      { href: "#operations", label: "運用と信頼性", note: "Operations" },
+      { href: "#developer-profile", label: "開発者・プロダクト設計者", note: "Profile" }
+    ]
+  }
+];
+
+export function Header({ variant = "main" }: HeaderProps) {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const menuRef = useRef<HTMLElement>(null);
   const toggleRef = useRef<HTMLButtonElement>(null);
+  const isDeveloper = variant === "developer";
+  const navItems = isDeveloper ? developerNavItems : mainNavItems;
+  const mobileGroups = isDeveloper ? developerMobileGroups : mainMobileGroups;
+  const topHref = isDeveloper ? "#developer-top" : "#top";
 
   const closeMenu = (restoreFocus = false) => {
     setOpen(false);
@@ -77,13 +132,13 @@ export function Header() {
   }, [open]);
 
   return (
-    <header className={`site-header ${scrolled ? "is-scrolled" : ""}`}>
+    <header className={`site-header ${isDeveloper ? "site-header--developer" : ""} ${scrolled ? "is-scrolled" : ""}`}>
       <div className="header-inner">
-        <a className="site-logo" href="#top" aria-label="COMPASS Interactive トップへ">
+        <a className="site-logo" href={topHref} aria-label={isDeveloper ? "開発者ページトップへ" : "COMPASS Interactive トップへ"}>
           <span className="logo-mark" aria-hidden="true"><span /></span>
           <span className="logo-copy">
             <strong>COMPASS Interactive</strong>
-            <small>Lecture Experience</small>
+            <small>{isDeveloper ? "For Developers" : "Lecture Experience"}</small>
           </span>
         </a>
 
@@ -122,9 +177,9 @@ export function Header() {
       >
         <div className="mobile-menu-panel">
           <div className="mobile-menu-top">
-            <a className="mobile-menu-brand" href="#top" onClick={() => closeMenu()}>
+            <a className="mobile-menu-brand" href={topHref} onClick={() => closeMenu(true)}>
               <span>COMPASS Interactive</span>
-              <small>THE NEXT LECTURE EXPERIENCE</small>
+              <small>{isDeveloper ? "FOR DEVELOPERS" : "THE NEXT LECTURE EXPERIENCE"}</small>
             </a>
             <button className="mobile-menu-close" type="button" aria-label="メニューを閉じる" onClick={() => closeMenu(true)}>
               <span /><span />
@@ -132,17 +187,22 @@ export function Header() {
           </div>
 
           <div className="mobile-menu-hero">
-            <span>登録不要・約3分</span>
-            <strong>未来の講義を、いま体験。</strong>
+            <span>{isDeveloper ? "DESIGN REFERENCE" : "登録不要・約3分"}</span>
+            <strong>{isDeveloper ? "見えない設計まで、たどる。" : "未来の講義を、いま体験。"}</strong>
             <CTAButton className="mobile-join" href={links.demo}>講義を体験する <span aria-hidden="true">→</span></CTAButton>
             <a className="mobile-code-join" data-cta-location="mobile-menu-code-join" href={links.join}>講義コードをお持ちの方</a>
           </div>
 
-          <nav className="mobile-nav" aria-label="モバイルナビゲーション">
-            {mobileItems.map((item) => (
-              <a key={item.href} href={item.href} onClick={() => closeMenu()}>
-                <span>{item.label}</span><small>{item.note}</small>
-              </a>
+          <nav className="mobile-nav mobile-nav--grouped" aria-label="モバイルナビゲーション">
+            {mobileGroups.map((group) => (
+              <div className="mobile-nav-group" key={group.label}>
+                <p className="mobile-nav-group__label">{group.label}</p>
+                {group.items.map((item) => (
+                  <a key={item.href} href={item.href} onClick={() => closeMenu(true)}>
+                    <span>{item.label}</span><small>{item.note}</small>
+                  </a>
+                ))}
+              </div>
             ))}
           </nav>
 
