@@ -2,10 +2,10 @@ import { Header } from "./components/layout/Header";
 import { Footer } from "./components/layout/Footer";
 import { Hero } from "./sections/Hero";
 import { MobileLectureStatus } from "./sections/MobileLectureStatus";
+import { AILearningSupport } from "./sections/AILearningSupport";
 import { FinalCTA } from "./sections/FinalCTA";
 import { StickyCTA } from "./components/ui/StickyCTA";
 import {
-  AILearningJourney,
   DeveloperGateway,
   LearningTrust,
   LearningUseScenes,
@@ -26,7 +26,7 @@ export function App() {
           <MobileLectureStatus />
         </div>
         <LectureExperienceTimeline />
-        <AILearningJourney />
+        <AILearningSupport />
         <TeacherLectureJourney />
         <LearningUseScenes />
         <LearningTrust />

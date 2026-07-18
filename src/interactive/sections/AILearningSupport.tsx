@@ -16,7 +16,7 @@ export function AILearningSupport() {
           <SectionHeader
             eyebrow="AI LEARNING SUPPORT"
             title="最新AIが、質問と復習を次の理解へつなぐ。"
-            lead="講義中に生まれた疑問を整理し、重要な質問を見つけ、講義後の復習まで支援する。すべての学習データを、次の理解を生み出す体験へ変える。"
+            lead="講義音声、資料、投票、学生の問いをAIがひとつにつなぐ。聞き逃した一節から、クラスで深めたい論点、講義後の振り返りまで、講義中に生まれた情報が次の理解に変わる。"
             align="center"
           />
         </div>
@@ -24,11 +24,11 @@ export function AILearningSupport() {
       <div className="ai-model-grid" aria-label="AIコア技術">
         {plannedAIModels.map((model, index) => (
           <Reveal delay={index * 80} key={model.name}>
-            <article className="ai-model-card">
-              <div>
-                <span>AI CORE</span>
+            <article className="ai-model-card" data-state={model.state}>
+              <header>
+                <span>{model.status}</span>
                 <small>{model.role}</small>
-              </div>
+              </header>
               <h3>{model.name}</h3>
               <p>{model.description}</p>
             </article>
@@ -39,9 +39,13 @@ export function AILearningSupport() {
         {aiSupportCards.map((card, index) => (
           <Reveal delay={index * 70} key={card.title}>
             <article className="ai-support-card">
-              <p>{card.eyebrow}</p>
+              <header>
+                <span>{String(index + 1).padStart(2, "0")}</span>
+                <p>{card.eyebrow}</p>
+                {card.status && <small>{card.status}</small>}
+              </header>
               <h3>{card.title}</h3>
-              <span>{card.body}</span>
+              <p className="ai-support-card__body">{card.body}</p>
               <div className="mini-tags">
                 {card.tags.map((tag) => (
                   <small key={tag}>{tag}</small>
