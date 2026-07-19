@@ -19,11 +19,11 @@ const mainNavItems = [
 ];
 
 const developerNavItems = [
-  { href: "#codebase", label: "コード構成" },
-  { href: "#product", label: "プロダクト" },
   { href: "#stack", label: "技術スタック" },
-  { href: "#decisions", label: "設計判断" },
-  { href: "#quality", label: "品質・検証" }
+  { href: "#codebase", label: "コード構成" },
+  { href: "#technology-overview", label: "技術概要" },
+  { href: "#engineering-details", label: "設計詳細" },
+  { href: "#automation", label: "CI・E2E" }
 ];
 
 const mainMobileGroups = [
@@ -63,12 +63,13 @@ const developerMobileGroups = [
   {
     label: "DEVELOPER",
     items: [
-      { href: "#codebase", label: "ディレクトリ構造", note: "Codebase" },
-      { href: "#product", label: "プロダクト構成", note: "Product" },
       { href: "#stack", label: "技術スタック", note: "Stack" },
-      { href: "#decisions", label: "共有価値の高い設計判断", note: "Decisions" },
-      { href: "#education", label: "教育的な設計", note: "Educational Design" },
-      { href: "#quality", label: "品質と検証", note: "Quality" },
+      { href: "#codebase", label: "ディレクトリ構造", note: "Codebase" },
+      { href: "#technology-overview", label: "技術概要", note: "Technology Overview" },
+      { href: "#product-idea", label: "統合設計", note: "Interaction Design" },
+      { href: "#engineering-details", label: "設計判断", note: "Engineering Details" },
+      { href: "#automation", label: "CI・E2E検証", note: "Automation" },
+      { href: "#technical-reference", label: "実装条件・境界", note: "Technical Reference" },
       { href: "#developer-profile", label: "開発者・プロダクト設計者", note: "Profile" }
     ]
   }
@@ -189,7 +190,7 @@ export function Header({ variant = "main" }: HeaderProps) {
 
           <div className="mobile-menu-hero">
             <span>{isDeveloper ? "DESIGN REFERENCE" : "登録不要・約3分"}</span>
-            <strong>{isDeveloper ? "見えない設計まで、たどる。" : "未来の講義を、いま体験。"}</strong>
+            <strong>{isDeveloper ? "技術の責任まで、たどる。" : "未来の講義を、いま体験。"}</strong>
             <CTAButton className="mobile-join" href={links.demo}>講義を体験する <span aria-hidden="true">→</span></CTAButton>
             <a className="mobile-code-join" data-cta-location="mobile-menu-code-join" href={links.join}>講義コードをお持ちの方</a>
           </div>

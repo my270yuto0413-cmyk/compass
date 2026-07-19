@@ -5,15 +5,18 @@ import { Reveal } from "./components/ui/Reveal";
 import { Section } from "./components/ui/Section";
 import { SectionHeader } from "./components/ui/SectionHeader";
 import {
+  aiSafeguards,
+  automationGates,
   codebaseStats,
-  designDecisions,
+  databaseDomains,
   directoryGroups,
-  educationalPrinciples,
-  productSurfaces,
-  qualityInProgress,
+  engineeringDecisions,
+  lifecycleSteps,
+  pdfResponsibilities,
+  productPrinciples,
   stackGroups,
-  technicalDetails,
-  verifiedProductionFacts
+  syncCadences,
+  technicalDetails
 } from "./content/developerContent";
 import { links } from "./content/interactiveContent";
 import { DeveloperProfile } from "./sections/DeveloperProfile";
@@ -39,58 +42,46 @@ export function DeveloperApp() {
                 <p className="developer-hero__lead">
                   匿名参加、5秒差分同期、根拠をたどれるAI。教室の一瞬を取りこぼさないために、UX、セキュリティ、負荷、APIコストを一つのアーキテクチャで設計しました。
                 </p>
+                <p className="developer-hero__audience">
+                  <span>開発者向け情報</span>
+                  情報教育、教育工学、情報セキュリティ、ソフトウェア開発の観点から、実装構成と設計判断を紹介します。
+                </p>
                 <div className="developer-hero__actions">
-                  <CTAButton href="#decisions">設計判断を読む <span aria-hidden="true">↓</span></CTAButton>
-                  <a href="/INTRO_Interactive/">学生・教員の体験へ</a>
+                  <a href="/INTRO_Interactive/">学生・教員向けページ</a>
                 </div>
-                <p className="developer-hero__date">Phase 0–6.6 本番反映確認 · 2026-07-17</p>
+                <p className="developer-hero__date">Repository snapshot · 2026-07-19</p>
               </div>
-              <figure className="developer-architecture" aria-labelledby="developer-architecture-title">
-                <figcaption className="developer-architecture__header">
-                  <span id="developer-architecture-title">SYSTEM RESPONSIBILITY MAP</span>
-                  <small>COMPASS Interactive</small>
-                </figcaption>
-                <div className="developer-architecture__surface">
-                  <small>EXPERIENCE SURFACE</small>
-                  <ul><li>Student</li><li>Teacher</li><li>Classroom Display</li></ul>
-                </div>
-                <ol className="developer-architecture__lanes">
-                  <li>
-                    <div className="developer-architecture__lane-head"><span>01</span><strong>LIVE STATE</strong></div>
-                    <div className="developer-architecture__route">
-                      <b>Student / Display browser</b><i aria-hidden="true">→</i><b>5秒差分 snapshot RPC</b><i aria-hidden="true">→</i><b>Supabase PostgreSQL</b>
-                    </div>
-                    <p>auth.uid() / scoped credential / RLS / section version</p>
-                  </li>
-                  <li>
-                    <div className="developer-architecture__lane-head"><span>02</span><strong>PRIVILEGED &amp; AI</strong></div>
-                    <div className="developer-architecture__route">
-                      <b>Teacher Admin</b><i aria-hidden="true">→</i><b>Supabase Edge</b><i aria-hidden="true">→</i><span className="developer-architecture__destinations"><b>PostgreSQL</b><b>OpenAI API</b></span>
-                    </div>
-                    <p>authorized RPC / scoped start grant / hard limits</p>
-                  </li>
-                  <li>
-                    <div className="developer-architecture__lane-head"><span>03</span><strong>PDF &amp; ARCHIVE</strong></div>
-                    <div className="developer-architecture__route">
-                      <b>Student browser</b><i aria-hidden="true">→</i><b>Cloudflare Worker</b><i aria-hidden="true">→</i><b>Private R2</b>
-                    </div>
-                    <p>short-lived ticket / Range delivery / sanitized payload</p>
-                  </li>
-                </ol>
-                <div className="developer-architecture__footer">
-                  <span><i aria-hidden="true" /> PHASE 6.6 LIVE</span><span>18 MIGRATIONS</span><span>21 EDGE FUNCTIONS</span>
-                </div>
-              </figure>
             </div>
           </div>
         </section>
+
+        <Section id="stack" className="developer-stack section--dark">
+          <Reveal>
+            <SectionHeader
+              eyebrow="TECHNOLOGY STACK"
+              title="主要技術と担当領域"
+              align="center"
+            />
+          </Reveal>
+          <div className="developer-stack__flow">
+            {stackGroups.map((group, index) => (
+              <Reveal delay={index * 45} key={group.label}>
+                <article>
+                  <small>STACK {String(index + 1).padStart(2, "0")}</small>
+                  <h3>{group.label}</h3>
+                  <strong>{group.technologies}</strong>
+                </article>
+              </Reveal>
+            ))}
+          </div>
+        </Section>
 
         <Section id="codebase" className="developer-codebase section--dark">
           <Reveal>
             <SectionHeader
               eyebrow="CODEBASE"
               title="ディレクトリ構造"
-              lead="COMPASS Interactiveは、プロダクトUI、データベース、PDF配信、検証コードを一つのリポジトリで管理しています。"
+              lead="フロントエンド、PostgreSQL migration、Edge Functions、PDF Publisher、Cloudflare Worker、CI/E2E、設計文書を同一リポジトリで管理しています。"
               align="center"
             />
           </Reveal>
@@ -114,147 +105,208 @@ export function DeveloperApp() {
                   </li>
                 ))}
               </ul>
-              <p>コード規模は2026-07-17の評価レポート基準。生成物・ローカル資格情報は掲載対象外です。</p>
+              <p>2026-07-19時点のローカルリポジトリを集計。未コミットの実装を含み、生成物、依存パッケージ、ローカル資格情報を除外しています。</p>
             </figure>
           </Reveal>
         </Section>
 
-        <Section id="product" className="developer-product section--dark">
+        <Section id="technology-overview" className="developer-overview section--dark">
           <Reveal>
             <SectionHeader
-              eyebrow="PRODUCT"
-              title="プロダクト構成"
-              lead="学生、教員、教室表示、終了後の閲覧を別画面に分け、一つの講義状態を共有します。"
+              eyebrow="TECHNOLOGY OVERVIEW"
+              title="システム構成"
+              lead="画面、データ、同期、講義Lifecycle、PDF配信、AI利用制御を、それぞれ独立した責務として構成しています。"
               align="center"
             />
           </Reveal>
-          <div className="developer-product__surfaces">
-            {productSurfaces.map((surface, index) => (
-              <Reveal delay={index * 45} key={surface.route}>
-                <article>
-                  <div><small>{surface.label}</small><code>{surface.route}</code></div>
-                  <h3>{surface.title}</h3>
-                  <p>{surface.body}</p>
-                </article>
-              </Reveal>
-            ))}
-          </div>
-        </Section>
 
-        <Section id="stack" className="developer-stack section--dark">
-          <Reveal>
-            <SectionHeader
-              eyebrow="TECHNOLOGY STACK"
-              title="ひとつの体験を、役割の違う技術で支える。"
-              align="center"
-            />
-          </Reveal>
-          <div className="developer-stack__flow">
-            {stackGroups.map((group, index) => (
-              <Reveal delay={index * 45} key={group.label}>
-                <article>
-                  <small>STACK {String(index + 1).padStart(2, "0")}</small>
-                  <h3>{group.label}</h3>
-                  <strong>{group.technologies}</strong>
-                </article>
-              </Reveal>
-            ))}
-          </div>
-        </Section>
-
-        <Section id="decisions" className="design-decisions section--dark">
-          <Reveal>
-            <SectionHeader
-              eyebrow="ENGINEERING DECISIONS"
-              title="実装で解いた、6つの課題。"
-              lead="講義環境で起こる具体的な問題と、それに対して採用した実装を対応づけて示します。"
-              align="center"
-            />
-          </Reveal>
-          <div className="design-decisions__list">
-            {designDecisions.map((decision, index) => (
-              <Reveal delay={index * 45} key={decision.number}>
-                <article>
-                  <header>
-                    <span>{decision.number}</span>
-                    <div><small>{decision.domain}</small><h3>{decision.title}</h3></div>
-                  </header>
-                  <div className="decision-case">
-                    <div className="decision-case__constraint"><small>課題</small><p>{decision.constraint}</p></div>
-                    <div className="decision-case__implementation"><small>実装</small><p>{decision.implementation}</p></div>
-                    <div className="decision-case__behavior">
-                      <small>結果</small><p>{decision.behavior}</p>
-                      <strong>{decision.evidence}</strong>
-                    </div>
+          <div className="developer-overview__foundation">
+            <Reveal>
+              <article className="developer-foundation-card">
+                <header><small>01 / FRONTEND</small><h3>React SPAと画面構成</h3></header>
+                <p>React 19、TypeScript 6、Vite 8、React Router 7によるSPAです。学生、教員、教室表示、Archiveをroute単位で構成し、共通のlecture snapshotを参照します。</p>
+                <dl className="developer-surface-profile">
+                  <div>
+                    <dt>STUDENT UI</dt>
+                    <dd><strong>Desktop / Mobile optimized</strong>DesktopとMobileの双方で、画面特性に合わせたUIを設計しています。</dd>
                   </div>
+                  <div>
+                    <dt>TEACHER UI</dt>
+                    <dd><strong>Desktop First</strong>講義制御と状態監視を同一画面で行うDesktop構成です。</dd>
+                  </div>
+                </dl>
+              </article>
+            </Reveal>
+            <Reveal delay={60}>
+              <article className="developer-foundation-card developer-foundation-card--backend">
+                <header><small>02 / BACKEND</small><h3>バックエンドの責務分担</h3></header>
+                <p>PostgreSQLを講義状態と所有権の正本とし、Supabase Authで参加主体を識別します。Edge Functionsは管理操作、AI処理、外部サービス連携など、秘密情報を必要とする処理を担当します。</p>
+                <ul className="developer-trust-zones">
+                  <li><span>BROWSER</span><p>publishable keyと公開設定だけ</p></li>
+                  <li><span>POSTGRESQL</span><p>所有権・Lifecycle・監査・metadata</p></li>
+                  <li><span>EDGE</span><p>Admin・AI・machine-authenticated処理</p></li>
+                </ul>
+              </article>
+            </Reveal>
+          </div>
+
+          <Reveal className="developer-overview-block">
+            <div className="developer-overview-block__heading">
+              <p className="eyebrow">DATA RESPONSIBILITIES</p>
+              <h3>Supabaseのデータ領域</h3>
+              <p>講義中の役割と保持条件に基づき、Supabase上のデータを九つの領域へ分類しています。</p>
+            </div>
+            <div className="developer-domain-grid">
+              {databaseDomains.map((domain) => (
+                <article key={domain.label}>
+                  <small>{domain.label}</small>
+                  <h4>{domain.title}</h4>
+                  <code>{domain.code}</code>
+                  <p>{domain.body}</p>
                 </article>
-              </Reveal>
-            ))}
+              ))}
+            </div>
+          </Reveal>
+
+          <Reveal className="developer-authorization-note">
+            <div><small>AUTHORIZATION BOUNDARY</small><h3>認可モデル</h3></div>
+            <p>Anonymous Authの<code>auth.uid()</code>、participant所有権、講義状態を、明示的なGRANTとRLS（行単位アクセス制御）で検証します。特権関数はprivate schema、固定<code>search_path</code>、最小限のEXECUTE権限に限定しています。</p>
+          </Reveal>
+
+          <div className="developer-overview__systems">
+            <Reveal>
+              <article className="developer-system-panel">
+                <header><small>03 / SYNCHRONIZATION &amp; LOAD</small><h3>version付きsnapshot同期</h3></header>
+                <p>クライアントは既知のsection versionをsnapshot RPCへ送信し、更新されたsectionだけを受け取ります。前景では5秒間隔、背景タブでは30秒間隔で同期します。</p>
+                <dl className="developer-cadence-grid">
+                  {syncCadences.map((item) => <div key={item.label}><dt>{item.value}</dt><dd>{item.label}</dd></div>)}
+                </dl>
+                <p className="developer-system-panel__note">コメント履歴は明示的に開いた場合だけ取得し、PDF本体はSupabaseを通しません。</p>
+              </article>
+            </Reveal>
+            <Reveal delay={60}>
+              <article className="developer-system-panel developer-system-panel--lifecycle">
+                <header><small>04 / LECTURE LIFECYCLE</small><h3>サーバー主導の講義Lifecycle</h3></header>
+                <p>講義開始時に<code>hard_stop_at</code>をサーバー時刻で確定します。手動終了、毎分Cron、各RPCの期限判定は、同じ冪等な終了処理を使用します。</p>
+                <ol className="developer-lifecycle-flow">
+                  {lifecycleSteps.map((step) => (
+                    <li key={step.number}><span>{step.number}</span><div><small>{step.label}</small><h4>{step.title}</h4><p>{step.body}</p></div></li>
+                  ))}
+                </ol>
+              </article>
+            </Reveal>
+          </div>
+
+          <div className="developer-overview__systems developer-overview__systems--delivery">
+            <Reveal>
+              <article className="developer-system-panel">
+                <header><small>05 / PDF &amp; CLOUDFLARE</small><h3>Private R2によるPDF配信</h3></header>
+                <p>PDFの検証、保存、配信をLocal Publisher、Private R2、Cloudflare Workerが担当し、Supabaseは資料ID、version、現在ページなどの参照情報を保持します。</p>
+                <div className="developer-responsibility-list">
+                  {pdfResponsibilities.map((item) => <section key={item.label}><small>{item.label}</small><h4>{item.title}</h4><p>{item.body}</p></section>)}
+                </div>
+              </article>
+            </Reveal>
+            <Reveal delay={60}>
+              <article className="developer-system-panel developer-system-panel--ai">
+                <header><small>06 / AI, COST &amp; HUMAN REVIEW</small><h3>AI実行・利用量・公開状態</h3></header>
+                <p>AI処理の開始許可、利用量予約、実績確定、品質検査、教員による公開判断を、独立したサーバー状態として管理します。</p>
+                <div className="developer-responsibility-list">
+                  {aiSafeguards.map((item) => <section key={item.label}><small>{item.label}</small><h4>{item.title}</h4><p>{item.body}</p></section>)}
+                </div>
+              </article>
+            </Reveal>
           </div>
         </Section>
 
-        <Section id="education" className="educational-ai section--dark">
+        <Section id="product-idea" className="developer-product-thesis section--dark">
           <Reveal>
             <SectionHeader
               eyebrow="EDUCATIONAL DESIGN"
-              title="講義中の気づきを、振り返りまでつなぐ。"
-              lead="コメント、Poll、字幕、要約を個別の機能で終わらせず、気づく、伝える、講義が応答する、あとで振り返るという一続きの体験として設計しています。"
+              title="専門領域への深い適合と、分野横断の実用性"
+              lead="Mentimeter、SNS、Zoomをはじめ、コメント、投票、資料同期、字幕、AI要約のいずれかを備えるソフトウェアは、すでに数多く存在します。COMPASS Interactiveは、薬学教育と生命科学研究の現場で開発者自身が見出した課題から要件を定め、教育、研究、生命科学、システム設計の視点を一つのプロダクトへ統合しています。"
               align="center"
             />
           </Reveal>
-          <div className="educational-ai__pipeline">
-            {educationalPrinciples.map((item, index) => (
-              <Reveal delay={index * 45} key={item.number}>
-                <article>
-                  <div><span>{item.number}</span><small>{item.label}</small></div>
-                  <h3>{item.title}</h3>
-                  <p>{item.body}</p>
-                </article>
+          <div className="developer-product-thesis__grid">
+            {productPrinciples.map((item, index) => (
+              <Reveal delay={index * 55} key={item.number}>
+                <article><div><span>{item.number}</span><small>{item.label}</small></div><h3>{item.title}</h3><p>{item.body}</p></article>
+              </Reveal>
+            ))}
+          </div>
+          <Reveal className="developer-product-thesis__statement">
+            <p>課題発見、要件定義、UX、アーキテクチャ、検証を同じ開発者が横断し、AIを設計・実装の協働手段として活用しました。既成の要件を実装するだけでなく、教育体験、情報セキュリティ、負荷、運用までを一つの課題解決として設計した点に、本プロダクトの独自性があります。</p>
+          </Reveal>
+        </Section>
+
+        <Section id="engineering-details" className="developer-engineering section--dark">
+          <Reveal>
+            <SectionHeader
+              eyebrow="ENGINEERING DECISIONS"
+              title="設計判断と検証方法"
+              lead="各設計について、要件、実装、失敗時動作、検証方法を記載します。"
+              align="center"
+            />
+          </Reveal>
+          <div className="developer-engineering__list">
+            {engineeringDecisions.map((decision, index) => (
+              <Reveal delay={index * 45} key={decision.number}>
+                <details>
+                  <summary>
+                    <span>{decision.number}</span>
+                    <div><small>{decision.domain}</small><h3>{decision.title}</h3><p>{decision.summary}</p></div>
+                    <i aria-hidden="true">＋</i>
+                  </summary>
+                  <div className="developer-engineering__detail-grid">
+                    <section><small>REQUIREMENT</small><p>{decision.requirement}</p></section>
+                    <section><small>IMPLEMENTATION</small><p>{decision.mechanism}</p></section>
+                    <section><small>FAILURE BEHAVIOR</small><p>{decision.failure}</p></section>
+                    <section><small>VERIFICATION</small><p>{decision.evidence}</p></section>
+                  </div>
+                </details>
               </Reveal>
             ))}
           </div>
         </Section>
 
-        <Section id="quality" className="developer-quality section--dark">
+        <Section id="automation" className="developer-automation section--dark">
           <Reveal>
             <SectionHeader
-              eyebrow="QUALITY & EVIDENCE"
-              title="検証済みと実装中を分けて示す。"
-              lead="本番で確認した構成、ローカルゲートの検証結果、現在構築している自動テスト基盤を同じ状態として扱いません。"
+              eyebrow="GITHUB ACTIONS CI / PLAYWRIGHT E2E"
+              title="CI / E2Eの検証構成"
+              lead="GitHub Actionsで型検査、Lint、production build、secret scan、CodeQL、pgTAP、Playwright E2Eを段階実行します。"
               align="center"
             />
           </Reveal>
-          <Reveal className="production-evidence">
-            <div className="production-evidence__heading">
-              <p className="eyebrow">VERIFIED PRODUCTION STATE</p>
-              <h3>本番にあるものだけを、数字で示す。</h3>
-              <small>2026-07-17時点の読み取り専用確認</small>
-            </div>
-            <dl>
-              {verifiedProductionFacts.map((fact) => (
-                <div key={fact.label}><dt>{fact.value}</dt><dd>{fact.label}</dd></div>
-              ))}
-            </dl>
-            <p className="production-evidence__note">約300人は実講義の実測値ではなく、負荷モデル上の設計条件です。</p>
+          <Reveal className="developer-automation__boundary">
+            <div><span>IMPLEMENTATION IN PROGRESS</span><strong>Production環境と分離したCI</strong></div>
+            <p>Local Supabaseとsynthetic credentialsを使用し、アプリケーションのrouteとrepositoryを検証します。production環境、OpenAI API、Cloudflare deploymentには接続しません。</p>
           </Reveal>
-          <div className="developer-quality__progress">
-            {qualityInProgress.map((item, index) => (
-              <Reveal delay={index * 55} key={item.title}>
+          <div className="developer-automation__grid">
+            {automationGates.map((gate, index) => (
+              <Reveal delay={index * 55} key={gate.number}>
                 <article>
-                  <header><h3>{item.title}</h3><span>{item.status}</span></header>
-                  <p>{item.body}</p>
+                  <header><span>{gate.number}</span><small>{gate.status}</small></header>
+                  <p>{gate.label}</p>
+                  <h3>{gate.title}</h3>
+                  <ul>{gate.points.map((point) => <li key={point}>{point}</li>)}</ul>
                 </article>
               </Reveal>
             ))}
           </div>
+          <Reveal className="developer-automation__speed">
+            <div><small>FAST FEEDBACK</small><h3>Workflow並列制御と失敗時artifact</h3></div>
+            <p>同一branchの旧workflowをcancelし、独立したsecurity jobを並列実行します。失敗時にはPlaywright trace、動画、スクリーンショット、HTML report、Local Edge logを保存します。</p>
+          </Reveal>
         </Section>
 
-        <Section id="technical-details" className="technical-details section--dark">
+        <Section id="technical-reference" className="technical-details section--dark">
           <Reveal>
             <SectionHeader
-              eyebrow="TECHNICAL DETAILS"
-              title="実装の詳細"
-              lead="同期、認可、PDF配信、AI利用、講義終了処理の詳細をまとめています。"
+              eyebrow="IMPLEMENTATION DETAILS"
+              title="実装条件とセキュリティ境界"
+              lead="認可、snapshot同期、講義Lifecycle、PDF配信、AI利用制御、CIの実装条件と検証範囲を記載します。"
               align="center"
             />
           </Reveal>
@@ -272,8 +324,8 @@ export function DeveloperApp() {
 
         <Section className="developer-closing section--dark">
           <Reveal className="developer-return-cta">
-            <p>設計の先にある、学生と教員の体験へ。</p>
-            <div><CTAButton href={links.demo}>3分で講義を体験 <span aria-hidden="true">→</span></CTAButton><a href="/INTRO_Interactive/">紹介ページへ戻る</a></div>
+            <p>学生・教員向けの紹介とデモ</p>
+            <div><CTAButton href={links.demo}>デモを開く <span aria-hidden="true">→</span></CTAButton><a href="/INTRO_Interactive/">紹介ページへ戻る</a></div>
           </Reveal>
         </Section>
       </main>

@@ -16,7 +16,7 @@ export function Footer({ variant = "main" }: FooterProps) {
           </span>
           <span>
             <strong>COMPASS Interactive</strong>
-            <small>薬学・生命科学の参加型講義システム</small>
+            <small>リアルタイム×AIで、講義を次の次元へ。</small>
           </span>
         </a>
         <nav className="footer-nav" aria-label="フッターナビゲーション">

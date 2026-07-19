@@ -207,7 +207,7 @@ export function DeveloperGateway() {
             lead="画面の速さ、情報の扱い、AIの妥当性、負荷、費用、障害時の継続性。教育体験から逆算した設計判断を公開します。"
           />
           <CTAButton className="developer-gateway__cta" href="/INTRO_Interactive/developers/">
-            設計と技術を詳しく見る <span aria-hidden="true">→</span>
+            開発者向け情報へ <span aria-hidden="true">→</span>
           </CTAButton>
         </Reveal>
         <Reveal delay={100}>
