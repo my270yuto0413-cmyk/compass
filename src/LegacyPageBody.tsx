@@ -3,10 +3,10 @@ import { Hero } from "./components/Hero";
 import { SiteFooter } from "./components/SiteFooter";
 import { VisionSection } from "./sections/VisionSection";
 import { OrbitsSection } from "./sections/OrbitsSection";
+import { TechnologySection } from "./sections/TechnologySection";
 import { ResourcesSection } from "./sections/ResourcesSection";
 import { EducationSection } from "./sections/EducationSection";
 import { CommunitySection } from "./sections/CommunitySection";
-import { LibrarySection } from "./sections/LibrarySection";
 import { MessageSection } from "./sections/MessageSection";
 import { FounderSection } from "./sections/FounderSection";
 import { ContactSection } from "./sections/ContactSection";
@@ -19,11 +19,11 @@ export function LegacyPageBody() {
         <Hero />
         <VisionSection />
         <OrbitsSection />
+        <TechnologySection />
         <ResourcesSection />
         <EducationSection />
         <CommunitySection />
         <div className="explore-chapter">
-          <LibrarySection />
           <MessageSection />
         </div>
         <div className="trust-chapter">

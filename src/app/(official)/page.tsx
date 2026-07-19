@@ -3,18 +3,30 @@ import { LegacyInteractions } from "../../components/LegacyInteractions";
 
 const organizationSchema = {
   "@context": "https://schema.org",
-  "@type": "EducationalOrganization",
+  "@type": "Organization",
   name: "COMPASS",
   alternateName: ["コンパス", "COMPASS 北里大学", "コンパス 北里大学", "COMPASS 北里薬学部"],
   url: "https://compass-official.pages.dev/",
   logo: "https://compass-official.pages.dev/images/compass-mark.svg",
   image: "https://compass-official.pages.dev/images/hero.desktop.highlight.png",
   description:
-    "COMPASS（コンパス）は、北里大学・北里薬学部・生命科学系学生に向けて、英語、AI、生命科学、研究、キャリアを横断的につなぐ学生支援団体・教育支援プラットフォームです。",
+    "COMPASSは、北里大学薬学部を起点に、独自教育システム、実践的な資料、講義・ワークショップ、学生コミュニティを通じて、学びとより良い意思決定を支える学生主導型教育・テクノロジープラットフォームです。",
   founder: { "@type": "Person", name: "松井優知", alternateName: "Yuto Matsui" },
   keywords:
-    "COMPASS, コンパス, 北里大学, 北里薬学部, COMPASS 松井, 松井優知, 薬学生, 生命科学, 英語教育, AI活用教育",
-  sameAs: ["https://compass-official.pages.dev/future-strategy-library/"]
+    "COMPASS, コンパス, 北里大学, 北里薬学部, 教育テクノロジー, 教育DX, COMPASS Interactive, 未来戦略ライブラリ, 松井優知",
+  hasPart: [
+    {
+      "@type": "SoftwareApplication",
+      name: "COMPASS Interactive",
+      applicationCategory: "EducationalApplication",
+      url: "https://compass-official.pages.dev/INTRO_Interactive/"
+    },
+    {
+      "@type": "CreativeWork",
+      name: "未来戦略ライブラリ",
+      url: "https://compass-official.pages.dev/future-strategy-library/"
+    }
+  ]
 };
 
 export default function OfficialPage() {

@@ -11,12 +11,29 @@ type NavItem = {
 };
 
 type NavGroup = {
-  id: "resources" | "education" | "community";
+  id: "technology" | "resources" | "education" | "community";
   items: NavItem[];
   label: string;
 };
 
 const navGroups: NavGroup[] = [
+  {
+    id: "technology",
+    label: "Technology",
+    items: [
+      {
+        href: "INTRO_Interactive/",
+        label: "COMPASS Interactive",
+        description: "質問・投票・字幕・AIで講義参加を支える",
+        className: "panel-link-interactive"
+      },
+      {
+        href: "#technology-infrastructure",
+        label: "ライブラリ登録基盤",
+        description: "安全な登録と権限管理を支える基盤"
+      }
+    ]
+  },
   {
     id: "resources",
     label: "Resources",
@@ -24,14 +41,8 @@ const navGroups: NavGroup[] = [
       {
         href: "https://compass-official.pages.dev/future-strategy-library/",
         label: "未来戦略ライブラリ",
-        description: "判断軸を届けるCOMPASSの中枢事業",
+        description: "判断軸を届ける、COMPASSの起点",
         external: true
-      },
-      {
-        href: "INTRO_Interactive/",
-        label: "COMPASS Interactive",
-        description: "先進的な技術を駆使したリアルタイム講義支援システム",
-        className: "panel-link-interactive"
       },
       {
         href: "https://forms.gle/sW49M329Dcets8ga9",
@@ -61,33 +72,12 @@ const navGroups: NavGroup[] = [
         description: "学びを共につくる運営文化",
         external: true
       },
-      { href: "#activities", label: "Activities", description: "講演・交流・資料改善" },
-      { href: "#founder", label: "Founder", description: "創設者・代表について" },
-      { href: "#contact", label: "Partners", description: "教員・研究者・外部協力者との連携" }
+      { href: "#activities", label: "Activities", description: "講演・交流・資料改善" }
     ]
   }
 ];
 
-const mobileNavGroups: NavGroup[] = [
-  navGroups[0],
-  navGroups[1],
-  {
-    id: "community",
-    label: "Community",
-    items: [
-      { href: "#community", label: "COMPASSについて", description: "" },
-      {
-        href: "https://docs.google.com/forms/u/1/d/e/1FAIpQLSe8Z0GkK9lmXKutLWO8lGezBoP5zPstNlkAnUEqVOx_IY7v7g/viewform",
-        label: "コミュニティに参加する",
-        description: "",
-        external: true
-      },
-      { href: "#activities", label: "活動内容", description: "" },
-      { href: "#founder", label: "代表者紹介", description: "" },
-      { href: "#contact", label: "Partners", description: "" }
-    ]
-  }
-];
+const mobileNavGroups: NavGroup[] = navGroups;
 
 const focusableSelector = "a[href], button:not([disabled])";
 
@@ -130,7 +120,7 @@ export function SiteHeader() {
   }, []);
 
   useEffect(() => {
-    const ids = ["top", "resources", "education", "community", "message"];
+    const ids = ["top", "technology", "resources", "education", "community", "message"];
     const elements = ids.map((id) => document.getElementById(id)).filter((item): item is HTMLElement => Boolean(item));
     const observer = new IntersectionObserver(
       (entries) => {
@@ -253,13 +243,12 @@ export function SiteHeader() {
                   >
                     {group.label}
                   </button>
-                  <div id={menuId} className="nav-panel" role="menu">
+                  <div id={menuId} className="nav-panel">
                     {group.items.map((item) => (
                       <a
                         key={item.href}
                         className={`panel-link ${item.className ?? ""}`.trim()}
                         href={item.href}
-                        role="menuitem"
                         target={item.external ? "_blank" : undefined}
                         rel={item.external ? "noopener noreferrer" : undefined}
                         onClick={() => setActiveMenu(null)}
@@ -308,7 +297,7 @@ export function SiteHeader() {
       >
         <div ref={mobilePanelRef} className="mobile-menu-panel">
           <div className="mobile-menu-top">
-            <div><p>任意学生支援団体 COMPASS</p><span>Strategic Constellation Compass</span></div>
+            <div><p>学生有志による任意の学生支援活動</p><span>Strategic Constellation Compass</span></div>
             <button className="mobile-menu-close" type="button" aria-label="メニューを閉じる" onClick={() => closeMobileMenu()}>
               <span aria-hidden="true" /><span aria-hidden="true" />
             </button>

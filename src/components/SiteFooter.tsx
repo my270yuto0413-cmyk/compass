@@ -3,16 +3,18 @@ export function SiteFooter() {
     <>
 <footer className="site-footer">
   <div className="container footer-inner">
-    <div>
+    <div className="footer-brand">
       <p className="footer-logo">COMPASS</p>
       <p>Better Education. Better Decisions.</p>
     </div>
 
     <nav className="footer-nav" aria-label="Footer navigation">
+      <a href="#technology">Technology</a>
       <a href="#resources">Resources</a>
       <a href="#education">Education</a>
       <a href="#community">Community</a>
       <a href="#founder">Founder</a>
+      <a href="#contact">Contact</a>
       <a href="messages/index.html">Messages</a>
     </nav>
 

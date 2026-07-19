@@ -47,6 +47,8 @@ for (const expected of [
   "Better Education.",
   "Better Decisions.",
   'id="vision"',
+  'id="directions"',
+  'id="technology"',
   'id="resources"',
   'id="education"',
   'id="community"',
@@ -55,6 +57,8 @@ for (const expected of [
   'href="INTRO_Interactive/"',
   'rel="canonical" href="https://compass-official.pages.dev/"',
   'type="application/ld+json"',
+  "COMPASS System Infrastructure",
+  "学生主導の教育・テクノロジープラットフォーム",
   "G-EHKJ8B8N0Y"
 ]) expectIncludes(official, expected, "Official page");
 

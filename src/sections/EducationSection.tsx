@@ -5,7 +5,10 @@ export function EducationSection() {
       <div className="container">
         <div className="section-heading narrow" data-reveal>
           <p className="section-label">Education</p>
-          <h2 id="education-title">英語、AI、生命科学を、未来を選ぶ力に変える。</h2>
+          <h2 id="education-title"><span className="education-title-part">英語、AI、</span><span className="education-title-part">生命科学を、</span><span className="education-title-part">未来を選ぶ力へ。</span></h2>
+          <p className="education-intro">
+            Educationは、資料を渡すだけでなく、問い、対話、実践、振り返りを設計する領域です。英語、AIリテラシー、生命科学の3分野を軸に、講義・講演・ワークショップを展開し、TechnologyとResourcesを実際の学習体験へ結び付けます。
+          </p>
         </div>
 
         <div className="education-grid">
@@ -14,7 +17,7 @@ export function EducationSection() {
             <p>
               英語を資格取得で終わらせず、研究、国際学会、論文読解、留学など、
               専門性を世界へ接続するための英語教育を設計します。
-              学生が将来の進路や研究に活かせる実践的な英語学習啓発講義・講演・教育プログラムの開発を目指します。
+              学生が将来の進路や研究に活かせる、実践的な英語学習講義・講演・教育プログラムを設計します。
             </p>
             <div className="education-keywords" aria-label="English Education keywords">
               <span>Keywords</span>
@@ -34,7 +37,7 @@ export function EducationSection() {
             <h3>AI Literacy Education / AI活用教育</h3>
             <p>
   生成AIを「使う技術」だけではなく、情報の信頼性を評価し、自ら考え、成果に責任を持つためのAIリテラシーを育成します。
-  システム設計、講演、教材開発を通じて、学生がAIを主体的かつ責任を持って活用できる教育プログラムの開発を目指します。
+  システム設計、講演、教材開発を通じて、学生がAIを主体的かつ責任を持って活用できる教育プログラムを設計します。
             </p>
             <div className="education-keywords" aria-label="AI Literacy Education keywords">
               <span>Keywords</span>
