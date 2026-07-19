@@ -297,7 +297,7 @@ export function SiteHeader() {
       >
         <div ref={mobilePanelRef} className="mobile-menu-panel">
           <div className="mobile-menu-top">
-            <div><p>学生有志による任意の学生支援活動</p><span>Strategic Constellation Compass</span></div>
+            <div><p>学生支援団体 COMPASS</p><span>Strategic Constellation Compass</span></div>
             <button className="mobile-menu-close" type="button" aria-label="メニューを閉じる" onClick={() => closeMobileMenu()}>
               <span aria-hidden="true" /><span aria-hidden="true" />
             </button>

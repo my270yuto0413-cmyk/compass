@@ -14,14 +14,14 @@ export function NewHero() {
             <span>Better Decisions.</span>
           </h1>
           <p className="hero-subcopy">
-            北里大学薬学部から、学び・研究・未来をつなぐ。
+            北里大学薬学部から、<br className="hero-mobile-break" />学び・研究・未来をつなぐ。
           </p>
           <p className="hero-support">
             <span className="hero-copy-desktop">
               独自システム、資料提供、教育活動、学生コミュニティを横断的につなぎ、学生が自分らしい未来を選ぶための羅針盤。
             </span>
             <span className="hero-copy-mobile">
-              仕組み・資料・教育・コミュニティをつなぎ、自分らしい未来を選ぶための羅針盤。
+              独自システム、資料提供、教育活動、学生コミュニティを横断的につなぎ、学生が自分らしい未来を選ぶための羅針盤。
             </span>
           </p>
           <div className="hero-actions" aria-label="Hero actions">
