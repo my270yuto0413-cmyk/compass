@@ -63,10 +63,11 @@ const developerMobileGroups = [
   {
     label: "DEVELOPER",
     items: [
+      { href: "#educational-design", label: "教育設計", note: "Educational Design" },
+      { href: "#developer-message", label: "開発者メッセージ", note: "Developer Message" },
       { href: "#stack", label: "技術スタック", note: "Stack" },
       { href: "#codebase", label: "ディレクトリ構造", note: "Codebase" },
       { href: "#technology-overview", label: "技術概要", note: "Technology Overview" },
-      { href: "#product-idea", label: "統合設計", note: "Interaction Design" },
       { href: "#engineering-details", label: "設計判断", note: "Engineering Details" },
       { href: "#automation", label: "CI・E2E検証", note: "Automation" },
       { href: "#technical-reference", label: "実装条件・境界", note: "Technical Reference" },

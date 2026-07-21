@@ -9,16 +9,18 @@ import {
   automationGates,
   codebaseStats,
   databaseDomains,
+  developerMessagePages,
   directoryGroups,
+  educationalDesignPrinciples,
   engineeringDecisions,
   lifecycleSteps,
   pdfResponsibilities,
-  productPrinciples,
   stackGroups,
   syncCadences,
   technicalDetails
 } from "./content/developerContent";
 import { links } from "./content/interactiveContent";
+import { DeveloperMessageReader } from "./sections/DeveloperMessageReader";
 import { DeveloperProfile } from "./sections/DeveloperProfile";
 
 export function DeveloperApp() {
@@ -54,6 +56,36 @@ export function DeveloperApp() {
             </div>
           </div>
         </section>
+
+        <Section id="educational-design" className="developer-product-thesis section--dark">
+          <Reveal>
+            <SectionHeader
+              eyebrow="EDUCATIONAL DESIGN"
+              title="現場の課題を、分野横断の設計によって一つの教育体験へ"
+              align="center"
+            />
+          </Reveal>
+          <div className="developer-product-thesis__grid">
+            {educationalDesignPrinciples.map((item, index) => (
+              <Reveal delay={index * 55} key={item.number}>
+                <article><div><span>{item.number}</span><small>{item.label}</small></div><h3>{item.title}</h3><p>{item.body}</p></article>
+              </Reveal>
+            ))}
+          </div>
+        </Section>
+
+        <Section id="developer-message" className="developer-message section--dark">
+          <Reveal>
+            <SectionHeader
+              eyebrow="DEVELOPER MESSAGE"
+              title="AI時代に、専門性を「実装」するということ"
+              align="center"
+            />
+          </Reveal>
+          <Reveal className="developer-message__reader-reveal">
+            <DeveloperMessageReader pages={developerMessagePages} />
+          </Reveal>
+        </Section>
 
         <Section id="stack" className="developer-stack section--dark">
           <Reveal>
@@ -217,27 +249,6 @@ export function DeveloperApp() {
               </article>
             </Reveal>
           </div>
-        </Section>
-
-        <Section id="product-idea" className="developer-product-thesis section--dark">
-          <Reveal>
-            <SectionHeader
-              eyebrow="EDUCATIONAL DESIGN"
-              title="専門領域への深い適合と、分野横断の実用性"
-              lead="Mentimeter、SNS、Zoomをはじめ、コメント、投票、資料同期、字幕、AI要約のいずれかを備えるソフトウェアは、すでに数多く存在します。COMPASS Interactiveは、薬学教育と生命科学研究の現場で開発者自身が見出した課題から要件を定め、教育、研究、生命科学、システム設計の視点を一つのプロダクトへ統合しています。"
-              align="center"
-            />
-          </Reveal>
-          <div className="developer-product-thesis__grid">
-            {productPrinciples.map((item, index) => (
-              <Reveal delay={index * 55} key={item.number}>
-                <article><div><span>{item.number}</span><small>{item.label}</small></div><h3>{item.title}</h3><p>{item.body}</p></article>
-              </Reveal>
-            ))}
-          </div>
-          <Reveal className="developer-product-thesis__statement">
-            <p>課題発見、要件定義、UX、アーキテクチャ、検証を同じ開発者が横断し、AIを設計・実装の協働手段として活用しました。既成の要件を実装するだけでなく、教育体験、情報セキュリティ、負荷、運用までを一つの課題解決として設計した点に、本プロダクトの独自性があります。</p>
-          </Reveal>
         </Section>
 
         <Section id="engineering-details" className="developer-engineering section--dark">
