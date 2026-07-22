@@ -78,7 +78,7 @@ export function DeveloperApp() {
           <Reveal>
             <SectionHeader
               eyebrow="DEVELOPER MESSAGE"
-              title="AI時代に、専門性を「実装」するということ"
+              title="ESSAY: AI時代に、専門性を「実装」するということ"
               align="center"
             />
           </Reveal>

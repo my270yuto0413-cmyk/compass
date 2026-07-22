@@ -226,10 +226,18 @@ const developerMessageParagraphGroups = [
 ];
 
 const developerMessageParagraphs = developerMessageParagraphGroups.flatMap((group) => group.paragraphs);
-const developerMessagePageStarts = [0, 10, 20, 30, 40, developerMessageParagraphs.length];
+const developerMessagePageTitles = [
+  "専門性を「実装」できる時代",
+  "研究者の思考は、開発にどう生きるか",
+  "遠回りした経験が、設計の基盤になる",
+  "技術ではなく、現場の問いから始める",
+  "つくる力を、何のために使うのか"
+];
+const developerMessagePageStarts = [0, 7, 13, 20, 36, developerMessageParagraphs.length];
 
 export const developerMessagePages = developerMessagePageStarts.slice(0, -1).map((start, index) => ({
   number: String(index + 1).padStart(2, "0"),
+  title: developerMessagePageTitles[index],
   paragraphs: developerMessageParagraphs.slice(start, developerMessagePageStarts[index + 1])
 }));
 
